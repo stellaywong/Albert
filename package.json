@@ -37,5 +37,12 @@
   "bugs": {
     "url": "https://github.com/stellaywong/Albert/issues"
   },
-  "homepage": "https://github.com/stellaywong/Albert#readme"
+  "homepage": "https://github.com/stellaywong/Albert#readme",
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "postinstall": "webpack"
+  }
 }
