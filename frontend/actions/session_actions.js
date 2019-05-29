@@ -1,30 +1,38 @@
-import { postUser, postSession, deleteSession } from '../utils/session_util';
+import { postUser, postSession, deleteSession } from '../util/session_api_util';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";     // safeguard against typos
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";       // safeguard against typos
+export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 
-// normal action creators: return a POJO with a type and some kind of payload
-// receive our current user
-const receiveCurrentUser = (user) => ({
-    type: RECEIVE_CURRENT_USER,
-    user: user,
-});                                                         // user is payload, and whatever properties it has on it.
+// normal action creators: 
+    // return a POJO with a type and some kind of payload
 
-const logoutCurrentUser = () => ({
+export const receiveCurrentUser = (currentUser) => {       // receive our current user
+    debugger
+    return {type: RECEIVE_CURRENT_USER,
+    currentUser}
+};                                                         // user is payload, and whatever properties it has on it.
+
+export const logoutCurrentUser = () => ({
     type: LOGOUT_CURRENT_USER,
 })                                                          // doesn't need to take in any values -- return the same.
                                                             // no payload; pass message to reducers saying yes we logged user out.
+export const receiveErrors = (errors) => ({                 // errors is an array
+    type: RECEIVE_SESSION_ERRORS,
+    errors,
+})
+
 
 // THUNK action creators
-                                                            // takes in a user object from a form
-                                                            // curry and receive dispatch from our Thunk middleware
-                                                            // call our postUser method imported from above, with formUser from form.
+    // takes in a user object from a form
+    // curry and receive dispatch from our Thunk middleware
+    // call our postUser method imported from above, with formUser from form.
 
 
 //sign up new user
-export const createNewUser = (formUser) => {
+export const signup = (user) => {
     return dispatch => {
-        return postUser(formUser).then(user => 
+        return postUser(user).then((user) =>                //this latter user is the promiseObject
             dispatch(receiveCurrentUser(user))              //implicit return
         );
     }
@@ -32,9 +40,9 @@ export const createNewUser = (formUser) => {
 //upon sucessful login, dispatch current user w/ the user object we just received
 
 //sign in our user
-export const login = (formUser) => {
+export const signin = (user) => {
     return dispatch => {
-        return postSession(formUser).then(user => 
+        return postSession(user).then((user) => 
             dispatch(receiveCurrentUser(user))
         );
     }
