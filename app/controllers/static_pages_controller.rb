@@ -1,4 +1,4 @@
 class StaticPagesController < ApplicationController
-    def root
+    def root            # leave this alone: it implicitly renders
     end
 end
