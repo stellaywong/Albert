@@ -26,4 +26,5 @@ body {
     color: black;
     display: flex;
     justify-items: column;
+    margin-bottom: 3px;
 }

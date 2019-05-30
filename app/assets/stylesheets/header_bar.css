@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin&display=swap');
 
-* {
+/* * {
     outline: 1px solid pink;
-}
+} */
 
 header {
     justify-content: center;
@@ -37,6 +37,7 @@ header {
     text-decoration: none;
     font-size: 12px;
     border-bottom: 5px #ffff64;
+    margin-right: 5px;
     /* height: 37px; */
 }
 
