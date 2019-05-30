@@ -8,7 +8,7 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
     // return a POJO with a type and some kind of payload
 
 export const receiveCurrentUser = (currentUser) => {       // receive our current user
-    debugger
+    // debugger
     return {type: RECEIVE_CURRENT_USER,
     currentUser}
 };                                                         // user is payload, and whatever properties it has on it.

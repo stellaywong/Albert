@@ -16,7 +16,7 @@ export default (state = _nullUser, action) => {
 
     switch (action.type) {
         case RECEIVE_CURRENT_USER:                          //if we receive current user, we return as our new slice of state, the current user nested under name, current user.
-           debugger
+        //    debugger
             return merge({}, { id: action.currentUser.id }); //don't worry aobut previous state: current object = current user so we don't need to worry old user.
         case LOGOUT_CURRENT_USER:                           //logging the user out: return the null session.
             return _nullUser;
