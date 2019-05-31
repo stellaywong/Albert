@@ -2,6 +2,7 @@
 // create this.props.createNewUser. when we pass in a JSON object, it creates a new user for us.
 
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SignupForm extends React.Component {
     // all the fields for the form we're building
@@ -29,7 +30,8 @@ class SignupForm extends React.Component {
     handleSubmit(e) {                                           // takes in event
         e.preventDefault();                                     // prevent default action that refreshes the page
         this.props.signup(this.state)                    // this.state is an object with username, email, password
-            .then(() => this.props.history.push('/tracks'));    // if we successfully create new user, do this
+            // .then(() => this.props.history.push('/tracks'));    // if we successfully create new user, do this
+            .then(() => this.props.closeModal());
     }               // we don't have access to history yet but we will bc we wrap this whole component inside a route
 
     render() {
@@ -44,24 +46,28 @@ class SignupForm extends React.Component {
                         onChange={this.handleInput('username')}
                         placeholder="Username"
                         className="signup_and_signin_input_field"
+                        required
                     />
                     <label className="screenreader-only">Email</label>
                     <input
-                        type="text"
+                        type="email"
                         value={this.state.email}
                         onChange={this.handleInput('email')}
                         placeholder="Email"
                         className="signup_and_signin_input_field"
+                        required
                     />
                     <label className="screenreader-only">Password</label>
                     <input
-                        type="text"
+                        type="password"
                         value={this.state.password}
                         onChange={this.handleInput('password')}
                         placeholder="Password"
                         className="signup_and_signin_input_field"
+                        required
                     />
-                    <label>By clicking “Sign Up”, you are indicating that you have read and agree to the Terms of Service.</label>
+                    <label className="terms_of_service">By clicking “Sign Up”, you are indicating that you have read and agree to the Terms of Service.</label>
+                    <br></br>
                     <input type="submit" value="Sign Up" className="submit_button"/>
                     {/* be careful and remember inputs are self-closing */}
                 </form>
@@ -70,7 +76,7 @@ class SignupForm extends React.Component {
     }
 }
 
-export default SignupForm;
+export default withRouter(SignupForm);
 
 // create user
 // which automatically logs them in

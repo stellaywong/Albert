@@ -10,12 +10,11 @@ header {
     background-color: #ffff64;
     display: flex;
     align-items: center;
-    height: 39px;
+    height: 41px;
 }
 
 .header_bar h1 {
     color: #ffff64;
-    font-size: 25px;
     font-weight: bold;
     text-shadow: -2px 1.8px 0.5px black;
 }
@@ -26,6 +25,25 @@ header {
     width: 100%;
 }
 
+.header_website {
+    animation: fade_in 1s backwards;
+    opacity: 1;
+    color: #ffff64;
+    font-size: 25px;
+    font-weight: bold;
+    text-shadow: -2px 1.8px 0.5px black;
+    text-decoration: none;
+}
+
+@keyframes fade_in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .session_buttons_holder {
     display: flex;
     align-items: center;
@@ -33,14 +51,18 @@ header {
 }
 
 .session_buttons {
+    background-color: #ffff64;
+    border-color: #ffff64;
     display: flex;
     position: relative;
     box-sizing: border-box;
-    font-size: .75em;
-    font-weight: 700;
+    font-size: .70em;
+    font-weight: 600;
     height: 41px;
+    border-bottom: 5px solid transparent;
+    text-transform: uppercase;
+    padding-top: 5px;
     color: #000;
-    padding: .75rem .5rem 0;
     transition: .1s border-bottom;
     text-decoration: none;
     cursor: pointer;
@@ -48,6 +70,11 @@ header {
 
 .session_buttons:hover {
     border-bottom: 5px solid rgb(255, 20, 100);
+}
+
+.header_right_side {
+    display: flex;
+    align-items: center;
 }
 
 /* 

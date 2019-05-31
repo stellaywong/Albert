@@ -1,26 +1,58 @@
-/* @import url('https://fonts.googleapis.com/css?family=Cabin&display=swap'); */
-
 /* * {
     outline: 1px solid pink;
-} */
-/* 
-nav_bar {
+}     */
+
+.nav-bar {
     justify-content: center;
     display: block;
-    background-color: black;
-    display: flex;
     align-items: center;
     height: 29px;
+    background-color: black;
+    height: 20px;
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.nav_bar h1 {
-    color: #black;
+.nav-bar h1 {
+    color: white;
     font-size: 14px;
     font-weight: bold;
 } 
 
-.nav_bar:hover {
-    color: ##ffff64;
+.nav-bar-button {
+    color: white;
+}
+
+.nav-bar-button:hover {
+    color: #ffff64;
 } 
 
-*/
+/* "vh" is a measure of view-height. the number is just a percentage of 
+whatever your screen's height is. (there's also view-width).
+currently, the footer is 90% of the view-height because body takes up no space.
+once there is more material in the body, you can give the body this attribute--90vh
+and it will be taking up the majority of the screen. */
+.footer-wrapper {
+    /* height: 90vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: black;
+    width: 100%;
+}
+
+.footer-bar {
+    /* align-items: flex-end; */
+
+    box-sizing: border-box;
+}
+
+.footer-bar-button {
+    color: #ffff64;
+    text-decoration: none;
+}
+
+.footer-bar-button:hover {
+    color: rgb(153, 167, 238);
+} 
