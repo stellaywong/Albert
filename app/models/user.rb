@@ -12,6 +12,11 @@ class User < ApplicationRecord
     # foreign_key: :,
     # class_name: :
 
+    has_many :tracks,
+    primary_key: :id,
+    foreign_key: :uploader_id,
+    class_name: :Track
+
     # has_many :,
     # primary_key: :id,
     # foreign_key: :,

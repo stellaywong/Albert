@@ -7,7 +7,7 @@ import uiReducer from './ui_reducer';
 
 export default combineReducers({
     session: sessionReducer,    // signup, signin, signout
-    entities: entitiesReducer,
+    entities: entitiesReducer,  // tracksReducer etc. go into entitiesReducer, not into rootReducer level
     errors: errorsReducer,
-    ui: uiReducer               // add for modal
+    ui: uiReducer,              // add for modal
 });

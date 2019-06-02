@@ -1,0 +1,41 @@
+.create-and-edit-track-form-container {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    height: 650px;
+}
+
+.add-form-button {
+    background-color: #262626;
+    color: #ccc;
+    cursor: pointer;
+    padding: 6px 15px 7px 15px;
+    font-size: 13px;
+    margin-right: 10px;
+    border: 1px solid #444;
+    display: inline-block;
+    font: 400 13px/1rem Programme,sans-serif;
+    position: relative;
+    border-radius: 2px;
+    padding: 5px 9px;
+    margin: 3px 4px 5px 0;
+}
+
+.create-and-edit-input-field-label {
+    font: 12px sans-serif;
+    color: #626262;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.create_track_heading {
+    font-size: 40px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 100%;
+    padding-top: 1px;
+    margin-bottom: 10px;
+
+    /* for the bottom gray line */
+    border-bottom: 1px solid rgba(154,154,154,.35);
+    margin-bottom: 1rem;
+}

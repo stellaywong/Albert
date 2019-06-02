@@ -46,12 +46,11 @@ class SigninForm extends React.Component {
             .then(() => this.props.closeModal());
     }
 
-
     render() {
         return (
             <div className="signin_form_container">
                 {/* <a name="#hello">Hello</a> */}
-                <h3 className="signup_and_signin_label">SIGN IN TO RHYMESTEIN</h3>
+                <h3 className="signup_and_signin_label">Sign in to Rhymestein</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label className="screenreader-only">Username</label>
                     <input

@@ -6,8 +6,13 @@ import Root from './components/root';
 import configureStore from './store/store';
 
 import * as SessionApiUtil from './util/session_api_util';
+import * as TrackApiUtil from './util/track_api_util';
 
-window.PostUser = SessionApiUtil.PostUser;
+
+window.PostUser = SessionApiUtil.postUser;
+window.TrackApiUtil = TrackApiUtil; //on the window
+//chrome console
+//test TrackApiUtil.fetchTracks(), go to responseJSON (to see the object)
 
 document.addEventListener('DOMContentLoaded', () => {
 

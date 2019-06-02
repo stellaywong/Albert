@@ -1,35 +1,46 @@
 import React from 'react';
 import { AuthRoute } from '../util/route_util';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-import SignupFormContainer from './session_form/signup_form_container';
-import SigninFormContainer from './session_form/signin_form_container';
+// import SignupFormContainer from './session_form/signup_form_container';
+// import SigninFormContainer from './session_form/signin_form_container';
 
 import Header from './header/header_container';
 import Modal from './modal/modal';
 import NavBar from './nav_bar/nav_bar_container';
-import Track from './track/track_container';
-
+import TrackShowContainer from './track/track_show/track_show_container';
+import TrackIndexContainer from './track/track_index/track_index_container';
+import CreateTrackFormContainer from './track/track_create_and_edit/create_track_form_container';
+import EditTrackFormContainer from './track/track_create_and_edit/edit_track_form_container';
 
 const App = () => (
     <div>
-        {/* <Route path="" component={Header}></Route> */}
         <header>
             <Modal />
             <Header></Header>
         </header>
             <NavBar />
+            
 
-        {/* to move between other pages */}
-        <div>
-            <h1>This is the body</h1>
-            <Track></Track>
-            {/* <AuthRoute path="/signup_form_container" component={SignupFormContainer}></AuthRoute>
-            <AuthRoute path="/signin_form_container" component={SigninFormContainer}></AuthRoute> */}
-        </div>
+        {/* <div>
+            <p>This is the body</p>
+        </div> */}
+
+        {/* you need to import Switch from react-router-dom! */}
+        <Switch>
+            <Route exact path="/" component={TrackIndexContainer}></Route>
+            <Route exact path="/create" component={CreateTrackFormContainer}></Route>
+            {/* if exact path is /tracks/create, the router will hit tracks/:trackId first, thinking "create" is a wildcard. Therefore, put tracks/create before track/(any route that requires a wildcard) */}
+            <Route exact path="/tracks/:trackId/edit" component={EditTrackFormContainer}></Route>
+            <Route exact path="/tracks/:trackId" component={TrackShowContainer}></Route>
+
+            {/* you need a colon in front of the wildcard, otherwise it will look for literally /tracks/trackId instead of /tracks/3 */}
+        </Switch>
+
         <footer className='footer-wrapper'>
             <div className="footer-bar">
-                <a href="https://github.com/stellaywong/Albert" className="footer-bar-button">GITHUB</a>
+                <a href="https://github.com/stellaywong/Albert" className="footer-bar-button">GITHUB <i className="fab fa-github"></i></a>
+                {/* because we put the image into React, change FontAwesome's link's "class" to "classname" */}
             </div>
         </footer>
     </div>

@@ -21,6 +21,7 @@
 
 .nav-bar-button {
     color: white;
+    text-decoration: none;
 }
 
 .nav-bar-button:hover {
@@ -40,6 +41,13 @@ and it will be taking up the majority of the screen. */
     align-items: center;
     background-color: black;
     width: 100%;
+
+    /* how the footer gets stuck to the bottom of the page */
+    position: fixed;
+    bottom: 0;
+    /* bottom should go to the bottom */
+    left: 0;
+    /* leftmost edge goes to the edge */
 }
 
 .footer-bar {

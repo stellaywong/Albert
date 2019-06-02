@@ -6,10 +6,13 @@ const NavBar = (props) => {
 
     return (
         <div className="nav-bar">
-            <p className="nav-bar-button">TOP SONGS</p>
-            <p className="nav-bar-button">VIDEOS</p>
             {/* this must be changed later to accomodate the hash */}
-            
+            <Link to="/" className="nav-bar-button">TOP TRACKS</Link>
+
+            <Link to="/create" className="nav-bar-button">ADD TRACK</Link>
+
+            {/* forthcoming */}
+            {/* <p className="nav-bar-button">VIDEOS</p> */}
 
         </div>
 
