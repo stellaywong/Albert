@@ -16,8 +16,5 @@ class Track < ApplicationRecord
     foreign_key: :album_id,
     class_name: :Album
 
-    # has_many :,
-    # primary_key: :id,
-    # foreign_key: :,
-    # class_name: :
+    has_one_attached :photo
 end

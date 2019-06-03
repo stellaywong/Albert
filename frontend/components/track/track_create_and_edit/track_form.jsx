@@ -6,6 +6,7 @@ class TrackForm extends React.Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
+            id: this.props.track.id,
             title: this.props.track.title,
             lyrics: this.props.track.lyrics,
             // album_id: this.props.track.album_id,
@@ -68,7 +69,7 @@ class TrackForm extends React.Component {
                             type="integer"
                             value={this.state.album_id}       
                             onChange={this.update('album_id')}
-                            style={{ visibility: 'hidden' }}    // temporary: default for form usability
+                            style={{ visibility: 'hidden' }}    // temporary: default for form
                         />
                     </label>
                     {/* <label className="create-and-edit-input-field-label"> */}
@@ -79,7 +80,7 @@ class TrackForm extends React.Component {
                             type="integer"
                             value={this.state.artist_id}
                             onChange={this.update('artist_id')}
-                            style={{ visibility: 'hidden' }}    // temporary: default for form usability
+                            style={{ visibility: 'hidden' }}    // temporary: default for form
                         />
                     </label>
                     {/* <label className="create-and-edit-input-field-label">
