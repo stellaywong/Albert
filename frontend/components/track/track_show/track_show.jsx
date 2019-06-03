@@ -14,7 +14,8 @@ class TrackShow extends React.Component {
    // Without the componentDidUpdate, your code will not refetch the track's info because 
    // your app will not know the user is trying to access a new track
    componentDidUpdate(prevProps) {
-      if (prevProps.track.id != this.props.match.params.trackId) {
+      // debugger
+      if (prevProps.track && (prevProps.track.id != this.props.match.params.trackId)) {   //debug: "prevProps.track &&" ensures that you can refresh the page without breaking it
          this.props.fetchTrack(this.props.match.params.trackId);
       }
    }
@@ -38,6 +39,7 @@ class TrackShow extends React.Component {
             <h2>{track.title}</h2>
             <h3 className="track-lyrics">{track.lyrics}</h3>
             <Link to={`/tracks/${track.id}/edit`}>Edit this Track</Link>
+            <br></br>
             <Link to="/">Back to Homepage</Link>
          </div>
       );

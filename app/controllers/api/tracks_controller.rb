@@ -11,10 +11,22 @@ class Api::TracksController < ApplicationController
     end
 
     def create
+        # debugger
+        # commented out
         @track = Track.new(track_params)
-        @track.uploader_id = current_user   #? does this need an @ sign?
+        @track.uploader_id = current_user.id   # no @sign
 
         if @track.save
+            render :show
+        else
+            render json: @track.errors.full_messages, status: 422
+        end
+    end
+
+    def update
+        @track = Track.find(params[:id])
+        
+        if @track.update(track_params)
             render :show
         else
             render json: @track.errors.full_messages, status: 422

@@ -5,4 +5,8 @@
     max-height: 100%;
     overflow: auto;
     width: 75vh;
+
+    /* preserves line breaks */
+    white-space: pre-line;       
+
 }

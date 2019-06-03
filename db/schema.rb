@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_181505) do
+ActiveRecord::Schema.define(version: 2019_06_03_000910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_05_31_181505) do
     t.integer "artist_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artist_id"], name: "index_albums_on_artist_id", unique: true
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2019_05_31_181505) do
     t.integer "uploader_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["album_id"], name: "index_tracks_on_album_id", unique: true
-    t.index ["artist_id"], name: "index_tracks_on_artist_id", unique: true
-    t.index ["title"], name: "index_tracks_on_title", unique: true
-    t.index ["uploader_id"], name: "index_tracks_on_uploader_id", unique: true
+    t.index ["album_id"], name: "index_tracks_on_album_id"
+    t.index ["artist_id"], name: "index_tracks_on_artist_id"
+    t.index ["title"], name: "index_tracks_on_title"
+    t.index ["uploader_id"], name: "index_tracks_on_uploader_id"
   end
 
   create_table "users", force: :cascade do |t|
