@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 class TrackShow extends React.Component {
    componentDidMount() {
       // debugger
+      // p add_track_debugger
       // debugger waterfall for trackShow
       this.props.fetchTrack(this.props.match.params.trackId);
+      // this.props.fetchArtist(this.props.track.artist_id);
    }
 
    // if you're on the trackshow page of track with an id of 3 
@@ -33,14 +35,24 @@ class TrackShow extends React.Component {
    if (!track) {
       return <div>Loading...</div>;
    }
-
+// debugger
+// debugging for add-and-create-track
       return (
          <div>
-            <h2>{track.title}</h2>
-            <h3 className="track-lyrics">{track.lyrics}</h3>
-            <Link to={`/tracks/${track.id}/edit`}>Edit this Track</Link>
-            <br></br>
-            <Link to="/">Back to Homepage</Link>
+            <div className="track-show-whole-cover-container">
+               <img src={track.photoUrl} alt="" className="track-image-show-big-cover"/>
+               <img src={track.photoUrl} alt="" className="track-image-show-small-cover"/>
+               <h2 className="track-show-title">{track.title}</h2>
+               <h3 className="track-show-title">{track.artist_name}</h3>
+            </div>
+
+            <div className="track-lyrics-whole-container">
+               <h3 className="track-lyrics">{track.lyrics}</h3>
+
+               <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link>
+               <br></br>
+               <Link to="/">Back to Homepage</Link>
+            </div>
          </div>
       );
    }

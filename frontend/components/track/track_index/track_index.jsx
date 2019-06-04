@@ -21,8 +21,10 @@ class TrackIndex extends React.Component {
 
         return (
             <div>
-                <h1>Top Tracks: </h1>
-                {allTracks}
+                <h1 className="index-item-header">Top Poems: </h1>
+                <div className="top-tracks-index-item-container">
+                    {allTracks}
+                </div>
             </div>
         );
     }

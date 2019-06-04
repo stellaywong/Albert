@@ -3,6 +3,7 @@ class Api::ArtistsController < ApplicationController
         @artist = Artist.find_or_create_by(artist_params)
 
         if !@artist.save
+            # render json: ["artists_controller.rb create"]
             render json: @artist.errors.full_messages, status: :unprocessable_entity
         end
     end
@@ -11,6 +12,7 @@ class Api::ArtistsController < ApplicationController
         @artist = Artist.find(params[:id])
 
         if !@artist.update(artist_params)
+            # render json: ["artists_controller.rb update"]
             render json: @artist.errors.full_messages, status: :unprocessable_entity
         end
    end

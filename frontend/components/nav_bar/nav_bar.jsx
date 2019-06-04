@@ -7,9 +7,9 @@ const NavBar = (props) => {
     return (
         <div className="nav-bar">
             {/* this must be changed later to accomodate the hash */}
-            <Link to="/" className="nav-bar-button">TOP TRACKS</Link>
+            <Link to="/" className="nav-bar-button">TOP POEMS</Link>
 
-            <Link to="/create" className="nav-bar-button">ADD TRACK</Link>
+            <Link to="/create" className="nav-bar-button">ADD POEM</Link>
 
             {/* forthcoming */}
             {/* <p className="nav-bar-button">VIDEOS</p> */}

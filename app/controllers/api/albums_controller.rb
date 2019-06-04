@@ -3,7 +3,8 @@ class Api::AlbumsController < ApplicationController
         @album = Album.find_or_create_by(album_params)
 
         if !@album.save
-            render json: @album.errors.full_messages, status: :unprocessable_entity
+            render json: ["albums_controller.rb create"]
+            # render json: @album.errors.full_messages, status: :unprocessable_entity
         end
     end
 
@@ -11,7 +12,8 @@ class Api::AlbumsController < ApplicationController
         @album = Album.find(params[:id])
 
         if !@album.update(album_params)
-            render json: @album.errors.full_messages, status: :unprocessable_entity
+            render json: ["albums_controller.rb create"]
+            # render json: @album.errors.full_messages, status: :unprocessable_entity
         end
    end
 

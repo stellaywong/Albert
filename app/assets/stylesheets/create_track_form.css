@@ -1,23 +1,19 @@
 .create-and-edit-track-form-container {
     background-color: #000000;
     color: rgb(255, 255, 255);
-    height: 650px;
+    height: 100%;
+    padding-left: 340px;
 }
 
 .add-form-button {
     background-color: #262626;
     color: #ccc;
     cursor: pointer;
-    padding: 6px 15px 7px 15px;
+    padding: 6px;
     font-size: 13px;
-    margin-right: 10px;
     border: 1px solid #444;
     display: inline-block;
-    font: 400 13px/1rem Programme,sans-serif;
-    position: relative;
     border-radius: 2px;
-    padding: 5px 9px;
-    margin: 3px 4px 5px 0;
 }
 
 .create-and-edit-input-field-label {
@@ -28,16 +24,13 @@
 }
 
 .create_track_heading {
-    font-size: 40px;
+    font-size: 35px;
     color: #fff;
     font-weight: 700;
     line-height: 100%;
-    padding-top: 1px;
-    margin-bottom: 10px;
 
     /* for the bottom gray line */
     border-bottom: 1px solid rgba(154,154,154,.35);
-    margin-bottom: 1rem;
 }
 
 .create-and-edit-input-field {
@@ -45,12 +38,9 @@
     border: .15rem solid #ccc;
     border-radius: 0;
     color: #000;
-    padding: .25rem;
+    padding: 1px;
     resize: vertical;
-    -webkit-appearance: none;
 
-    margin-bottom: 1rem;
-    margin-top: .375rem;
     display: block;
     width: 50%;
     box-sizing: border-box;
@@ -70,12 +60,10 @@
     border: .15rem solid #ccc;
     border-radius: 0;
     color: #000;
-    padding: .25rem;
+    padding: 1px;
     resize: vertical;
     -webkit-appearance: none;
 
-    margin-bottom: 1rem;
-    margin-top: .375rem;
     display: block;
     width: 50%;
     box-sizing: border-box;
@@ -89,4 +77,22 @@
 .create-and-edit-lyrics-input-field:focus {
     outline-color: rgb(153, 167, 238);
     outline-offset: -5px;
+}
+
+.edit-button {
+    border-color: #000;
+    color: #000;
+    transition: background-color .3s,border-color .3s;
+    background-color: transparent;
+    border-width: .15rem;
+    border-style: solid;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.4rem;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.hide-this-field {
+    visibility: hidden;
 }
