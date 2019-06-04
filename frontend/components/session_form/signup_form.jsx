@@ -36,8 +36,8 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div className="signup_form_container">
-                <h3 className="signup_and_signin_label">SIGN UP FOR RHYMESTEIN</h3>
+            <div className="signup_and_signin_form_container">
+                <h3 className="signup_and_signin_label">Sign Up</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label className="screenreader-only">Username</label>
                     <input
@@ -66,9 +66,8 @@ class SignupForm extends React.Component {
                         className="signup_and_signin_input_field"
                         required
                     />
-                    <label className="terms_of_service">By clicking “Sign Up”, you are indicating that you have read and agree to the Terms of Service.</label>
                     <br></br>
-                    <input type="submit" value="Sign Up" className="submit_button"/>
+                    <input type="submit" value="Sign Up" className="submit-form-button"/>
                     {/* be careful and remember inputs are self-closing */}
                 </form>
             </div>

@@ -6,19 +6,24 @@ class EditTrackForm extends React.Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            id: this.props.track.id,
-            title: this.props.track.title,
-            lyrics: this.props.track.lyrics,
+            title: "",
+            lyrics: "",
             // album_title: this.props.album.title,
             // artist_name: this.props.artist.name,
-            uploader_id: this.props.currentUserId,
+            uploader_id: "",
         };
     }
     
     componentDidMount() {
-        this.props.fetchTrack(this.props.match.params.trackId);
-        this.props.retrieveAlbums();
-        this.props.retrieveArtists();
+        this.props.fetchTrack(this.props.match.params.trackId).then(() => {
+            this.setState({
+                id: this.props.track.id,
+                title: this.props.track.title,
+                uploader_id: this.props.currentUserId
+            })
+        });
+        this.props.fetchAlbums();
+        this.props.fetchArtists();
     }
     
     update(field) {
@@ -29,8 +34,9 @@ class EditTrackForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        const that = this;
         this.props.updateTrack(this.state)  //must call this updateTrack (same name as edit track form container) so track_form can take in 'updateTrack' to accomodate both
-        .then(() => this.props.history.push(`/tracks/${this.state.id}/`)); //wherever you want to redirect the user after the form is submitted
+        .then(() => this.props.history.push(`/tracks/${that.props.track.id}/`)); //wherever you want to redirect the user after the form is submitted
     }   //interpolate this.state, not trackId or track.id, because we don't have a variable called "track"
 
     render() {
@@ -51,7 +57,7 @@ class EditTrackForm extends React.Component {
                         <input
                             type="submit" 
                             value={this.props.formType} 
-                            className="add-form-button">
+                            className="submit-form-button">
                         </input>
                     </div>
                 </form>

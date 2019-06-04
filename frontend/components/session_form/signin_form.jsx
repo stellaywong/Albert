@@ -48,9 +48,9 @@ class SigninForm extends React.Component {
 
     render() {
         return (
-            <div className="signin_form_container">
+            <div className="signup_and_signin_form_container">
                 {/* <a name="#hello">Hello</a> */}
-                <h3 className="signup_and_signin_label">Sign in to Rhymestein</h3>
+                <h3 className="signup_and_signin_label">Sign In</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label className="screenreader-only">Username</label>
                     <input
@@ -79,7 +79,7 @@ class SigninForm extends React.Component {
                         className="signup_and_signin_input_field"
                         required
                     />
-                    <input type="submit" value="Sign In" className="submit_button"/>
+                    <input type="submit" value="Sign In" className="submit-form-button"/>
                 </form>
                 <a onClick={() => this.signinDemo()}>Demo User Sign In</a>
             </div>

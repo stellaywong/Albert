@@ -5,17 +5,6 @@
     padding-left: 340px;
 }
 
-.add-form-button {
-    background-color: #262626;
-    color: #ccc;
-    cursor: pointer;
-    padding: 6px;
-    font-size: 13px;
-    border: 1px solid #444;
-    display: inline-block;
-    border-radius: 2px;
-}
-
 .create-and-edit-input-field-label {
     font: 12px sans-serif;
     color: #626262;
@@ -77,6 +66,18 @@
 .create-and-edit-lyrics-input-field:focus {
     outline-color: rgb(153, 167, 238);
     outline-offset: -5px;
+}
+
+
+.submit-form-button {
+    background-color: #262626;
+    color: #ccc;
+    cursor: pointer;
+    padding: 6px;
+    font-size: 13px;
+    border: 1px solid #444;
+    display: inline-block;
+    border-radius: 2px;
 }
 
 .edit-button {

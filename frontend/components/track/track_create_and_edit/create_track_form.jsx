@@ -79,7 +79,7 @@ class CreateTrackForm extends React.Component {
                     <input
                         type="submit"
                         value={this.props.formType}
-                        className="add-form-button">
+                        className="submit-form-button">
                     </input>
 
                 </form>
