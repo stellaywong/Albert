@@ -1,5 +1,14 @@
 class Api::ArtistsController < ApplicationController
-   def create
+    def index
+        @artists = Artist.all
+    end
+    
+    def show
+        @artist = Artist.find(params[:id])
+        render :show
+    end
+    
+    def create
         @artist = Artist.find_or_create_by(artist_params)
 
         if !@artist.save

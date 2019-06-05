@@ -40,7 +40,7 @@ class Api::TracksController < ApplicationController
         @track.album_id = album.id
         
         # debugger
-        # @track.uploader_id = current_user.id   # no @sign
+        @track.uploader_id = current_user.id   # no @sign
         # @artist = Artist.find_or_create_by(@track.artist_name)
         # @album = Album.find_or_create_by(@track.album_title)
 

@@ -19,6 +19,7 @@ class EditTrackForm extends React.Component {
             this.setState({
                 id: this.props.track.id,
                 title: this.props.track.title,
+                lyrics: this.props.track.lyrics,        //to persist the lyrics into the update form :)
                 uploader_id: this.props.currentUserId
             })
         });

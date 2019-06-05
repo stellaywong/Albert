@@ -1,5 +1,14 @@
 class Api::AlbumsController < ApplicationController
-   def create
+   def index
+        @albums = Album.all
+    end
+    
+    def show
+        @album = Album.find(params[:id])
+        render :show
+    end
+    
+    def create
         @album = Album.find_or_create_by(album_params)
 
         if !@album.save

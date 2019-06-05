@@ -7,9 +7,11 @@ class TrackShow extends React.Component {
       // p add_track_debugger
       // debugger waterfall for trackShow
       // debugger
-      this.props.fetchTrack(this.props.match.params.trackId);
-      this.props.fetchArtist(this.props.track.artist_id);
-      this.props.fetchAlbum(this.props.track.album_id);
+      this.props.fetchTrack(this.props.match.params.trackId).then(()=> {
+         this.props.fetchArtist(this.props.track.artist_id);
+         this.props.fetchAlbum(this.props.track.album_id);
+      });
+      //needs to be a thunk action creator -- must return a promise
    }
 
    // if you're on the trackshow page of track with an id of 3 
@@ -47,7 +49,7 @@ class TrackShow extends React.Component {
                <h2 className="track-show-title">{track.title}</h2>
                <h3 className="track-show-artist">{track.artist_name}</h3>
                {/* <div className="track-show-default-text"> */}
-                  <h3 className="track-show-album">{track.album_name}</h3>
+                  <h3 className="track-show-album">{track.album_title}</h3>
                {/* </div> */}
             </div>
 

@@ -13,7 +13,10 @@ import { fetchAlbum } from '../../../actions/album_actions';
 const mapStateToProps = (state, ownProps) => {
     // debugger
     return {
-        track: state.entities.tracks[ownProps.match.params.trackId]
+        track: state.entities.tracks[ownProps.match.params.trackId],
+        //to access these words
+        artist: state.entities.artists[ownProps.match.params.artistId],
+        album: state.entities.albums[ownProps.match.params.albumId],
     }
 }
 
