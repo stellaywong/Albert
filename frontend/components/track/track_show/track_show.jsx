@@ -6,8 +6,10 @@ class TrackShow extends React.Component {
       // debugger
       // p add_track_debugger
       // debugger waterfall for trackShow
+      // debugger
       this.props.fetchTrack(this.props.match.params.trackId);
-      // this.props.fetchArtist(this.props.track.artist_id);
+      this.props.fetchArtist(this.props.track.artist_id);
+      this.props.fetchAlbum(this.props.track.album_id);
    }
 
    // if you're on the trackshow page of track with an id of 3 
@@ -43,13 +45,16 @@ class TrackShow extends React.Component {
                <img src={track.photoUrl} alt="" className="track-image-show-big-cover"/>
                <img src={track.photoUrl} alt="" className="track-image-show-small-cover"/>
                <h2 className="track-show-title">{track.title}</h2>
-               <h3 className="track-show-title">{track.artist_name}</h3>
+               <h3 className="track-show-artist">{track.artist_name}</h3>
+               {/* <div className="track-show-default-text"> */}
+                  <h3 className="track-show-album">{track.album_name}</h3>
+               {/* </div> */}
             </div>
 
             <div className="track-lyrics-whole-container">
+               <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link>
                <h3 className="track-lyrics">{track.lyrics}</h3>
 
-               <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link>
                <br></br>
                <Link to="/">Back to Homepage</Link>
             </div>

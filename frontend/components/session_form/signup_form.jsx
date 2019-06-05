@@ -36,40 +36,46 @@ class SignupForm extends React.Component {
 
     render() {
         return (
-            <div className="signup_and_signin_form_container">
-                <h3 className="signup_and_signin_label">Sign Up</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <label className="screenreader-only">Username</label>
-                    <input
-                        type="text"
-                        value={this.state.username}
-                        onChange={this.handleInput('username')}
-                        placeholder="Username"
-                        className="signup_and_signin_input_field"
-                        required
-                    />
-                    <label className="screenreader-only">Email</label>
-                    <input
-                        type="email"
-                        value={this.state.email}
-                        onChange={this.handleInput('email')}
-                        placeholder="Email"
-                        className="signup_and_signin_input_field"
-                        required
-                    />
-                    <label className="screenreader-only">Password</label>
-                    <input
-                        type="password"
-                        value={this.state.password}
-                        onChange={this.handleInput('password')}
-                        placeholder="Password"
-                        className="signup_and_signin_input_field"
-                        required
-                    />
-                    <br></br>
-                    <input type="submit" value="Sign Up" className="submit-form-button"/>
-                    {/* be careful and remember inputs are self-closing */}
-                </form>
+            <div className="signup_and_signin_form_whole_container">
+                <h3 className="signup-and-signin-form-header">Sign Up</h3>
+
+                <div className="signup-and-signin-form-fields-container">
+                        <form onSubmit={this.handleSubmit}>
+                            <label className="screenreader-only">Username</label>
+                            <label className="signup-and-signin-input-label">Rhymestein Nickname</label>
+                            <input
+                                type="text"
+                                value={this.state.username}
+                                onChange={this.handleInput('username')}
+                                placeholder="Username"
+                                className="signup-and-signin-form-field"
+                                required
+                            />
+                            <label className="screenreader-only">Email</label>
+                            <label className="signup-and-signin-input-label">Email</label>
+                            <input
+                                type="email"
+                                value={this.state.email}
+                                onChange={this.handleInput('email')}
+                                placeholder="Email"
+                                className="signup-and-signin-form-field"
+                                required
+                            />
+                            <label className="screenreader-only">Password</label>
+                            <label className="signup-and-signin-input-label">Password</label>
+                            <input
+                                type="password"
+                                value={this.state.password}
+                                onChange={this.handleInput('password')}
+                                placeholder="Password"
+                                className="signup-and-signin-form-field"
+                                required
+                            />
+                            <br></br>
+                            <input type="submit" value="Sign Up" className="submit-form-button"/>
+                            {/* be careful and remember inputs are self-closing */}
+                        </form>
+                </div>
             </div>
         )
     }

@@ -31,8 +31,8 @@ class SigninForm extends React.Component {
     // method that handles submitting the info of our state to the backend
     handleSubmit(e) {                                           // takes in event
         e.preventDefault();                                     // prevent default action that refreshes the page
-        this.props.signin(this.state)                    // this.state is an object with username, email, password
-        // .then(() => this.props.history.push('/tracks'));    // if we successfully create new user, do this
+        this.props.signin(this.state)                           // this.state is an object with username, email, password
+        // .then(() => this.props.history.push('/tracks'));     // if we successfully create new user, do this
             .then(() => this.props.closeModal());
     }               // we don't have access to history yet but we will bc we wrap this whole component inside a route
 
@@ -48,40 +48,45 @@ class SigninForm extends React.Component {
 
     render() {
         return (
-            <div className="signup_and_signin_form_container">
-                {/* <a name="#hello">Hello</a> */}
-                <h3 className="signup_and_signin_label">Sign In</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <label className="screenreader-only">Username</label>
-                    <input
-                        type="text"
-                        value={this.state.username}
-                        onChange={this.handleInput('username')}
-                        placeholder="Username"
-                        className="signup_and_signin_input_field"
-                        required
-                    />
-                    <label className="screenreader-only">Email</label>
-                    <input
-                        type="email"
-                        value={this.state.email}
-                        onChange={this.handleInput('email')}
-                        placeholder="Email"
-                        className="signup_and_signin_input_field"
-                        required
-                    />
-                    <label className="screenreader-only">Password</label>
-                    <input
-                        type="password"
-                        value={this.state.password}
-                        onChange={this.handleInput('password')}
-                        placeholder="Password"
-                        className="signup_and_signin_input_field"
-                        required
-                    />
-                    <input type="submit" value="Sign In" className="submit-form-button"/>
-                </form>
-                <a onClick={() => this.signinDemo()}>Demo User Sign In</a>
+            <div className="signup_and_signin_form_whole_container">
+                <h3 className="signup-and-signin-form-header">Sign In</h3>
+
+                <a onClick={() => this.signinDemo()} className="demo-user-button">Demo User Sign In</a>
+                <div className="signup-and-signin-form-fields-container">
+                        <form onSubmit={this.handleSubmit}>
+                            <label className="screenreader-only">Username</label>
+                            <label className="signup-and-signin-input-label">Rhymestein Username</label>
+                            <input
+                                type="text"
+                                value={this.state.username}
+                                onChange={this.handleInput('username')}
+                                placeholder="Username"
+                                className="signup-and-signin-form-field"
+                                required
+                            />
+                            <label className="screenreader-only">Email</label>
+                            <label className="signup-and-signin-input-label">Email</label>
+                            <input
+                                type="email"
+                                value={this.state.email}
+                                onChange={this.handleInput('email')}
+                                placeholder="Email"
+                                className="signup-and-signin-form-field"
+                                required
+                            />
+                            <label className="screenreader-only">Password</label>
+                            <label className="signup-and-signin-input-label">Password</label>
+                            <input
+                                type="password"
+                                value={this.state.password}
+                                onChange={this.handleInput('password')}
+                                placeholder="Password"
+                                className="signup-and-signin-form-field"
+                                required
+                            />
+                            <input type="submit" value="Sign In" className="submit-form-button"/>
+                        </form>
+                </div>
             </div>
         )
     }

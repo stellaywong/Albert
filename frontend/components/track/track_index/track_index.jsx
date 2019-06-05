@@ -12,16 +12,17 @@ class TrackIndex extends React.Component {
         const { tracks } = this.props; //destructure props here
         // debugger
 
-        const allTracks = tracks.map((track) => {
+        const allTracks = tracks.map((track, idx) => {
             return <TrackIndexItem
                 track={track}
+                idx={idx}
                 key={track.id}          //to make each one unique
             />
         })
 
         return (
             <div>
-                <h1 className="index-item-header">Top Poems: </h1>
+                <h1 className="index-item-header">Trending on Rhymestein</h1>
                 <div className="top-tracks-index-item-container">
                     {allTracks}
                 </div>

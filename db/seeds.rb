@@ -14,10 +14,10 @@ User.destroy_all
 
 Demouser = User.create(username: "DemoUser", email: "demouser@gmail.com", password: "password123")
 
-Artist1 = Artist.create(name: "testartist")
-Album1 = Artist1.albums.create(title: 'testalbum')
+Artist1 = Artist.create(name: "Jorie Graham")
+Album1 = Artist1.albums.create(title: 'Erosion')
 # fills in the artist based on the association
-Track1 = Album1.tracks.create(title: "test", lyrics: "test", uploader_id: Demouser.id)
+Track1 = Album1.tracks.create(title: "To A Friend Going Blind", lyrics: "\nToday, because I couldn't find the shortcut through,\nI had to walk this town's entire inner\nperimeter to find\nwhere the medieval walls break open\nin an eighteenth century\narch. The yellow valley flickered on and off\nthrough cracks and the gaps\nfor guns. Bruna is teaching me\nto cut a pattern.\nSaturdays we buy the cloth.\nShe takes it in her hands\nlike a good idea, feeling\nfor texture, grain, the built-in \nlimits. It's only as an afterthought she asks\nand do you think it's beautiful?\nHer measuring tapes hang down, corn-blond and endless,\nfrom her neck.\nWhen I look at her\nI think Rapunzel,\nhow one could climb that measuring,\nthat love. But I was saying,\nI wandered all along the street that hugs the walls,\na needle floating\non its cloth. Once\nI shut my eyes and felt my way\nalong the stone. Outside\nis the cashcrop, sunflowers, as far as one can see. Listen,\nthe wind rattles in them,\na loose worship\nseeking an object,\nan interruption. Sara,\nthe walls are beautiful. They block the view.\nAnd it feels rich to be\ninside their grasp.\nWhen Bruna finishes her dress\nit is the shape of what has come\nto rescue her. She puts it on.", uploader_id: Demouser.id)
 Track1.artist_id = Artist1.id
 Trackphoto1 = open("https://rhymestein-seed.s3.amazonaws.com/download.jpg")
 Track1.photo.attach(io: Trackphoto1, filename: "dog_photo.jpg")

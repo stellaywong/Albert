@@ -10,7 +10,7 @@ header {
     background-color: #ffff64;
     display: flex;
     align-items: center;
-    height: 41px;
+    height: 40px;
 }
 
 .header_bar h1 {
@@ -58,7 +58,7 @@ header {
     box-sizing: border-box;
     font-size: .70em;
     font-weight: 600;
-    height: 41px;
+    height: 40px;
     border-bottom: 5px solid transparent;
     text-transform: uppercase;
     padding-top: 5px;
