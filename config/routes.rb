@@ -9,5 +9,6 @@ Rails.application.routes.draw do
       resources :tracks, only: [:index, :show, :create, :update, :destroy]
       resources :artists, only: [:index, :show, :create, :update, :destroy]
       resources :albums, only: [:index, :show, :create, :update, :destroy]
+      resources :annotations, only: [:index, :show, :create, :update, :destroy]
     end
 end

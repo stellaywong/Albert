@@ -11,6 +11,7 @@ Artist.destroy_all
 Album.destroy_all
 Track.destroy_all
 User.destroy_all
+Annotation.destroy_all
 
 Demouser1 = User.create(username: "DemoUser1", email: "demouser1@gmail.com", password: "password123")
 
@@ -22,6 +23,10 @@ Track1.artist_id = Artist1.id
 Trackphoto1 = open("https://rhymestein-seed.s3.amazonaws.com/download.jpg")
 Track1.photo.attach(io: Trackphoto1, filename: "dog_photo.jpg")
 Track1.save!
+Annotation1 = Track1.annotations.create(body: "umbilical cord/immaculate conception", start_index: 0, end_index: 10, annotator_id: Demouser.id)
+Track1.save!
+
+# don't need to link the annotation and track ids because track doesn't have annotation id, and create method will take care o that anyway
 
 Artist2 = Artist.create(name: "Brenda Shaughnessy")
 Album2 = Artist2.albums.create(title: 'Our Andromeda')
@@ -30,6 +35,8 @@ Track2 = Album2.tracks.create(title: "Streetlamps", lyrics: "The unplowed road i
 Track2.artist_id = Artist2.id
 Trackphoto2 = open("https://rhymestein-seed.s3.amazonaws.com/brendashaughnessy.jpg")
 Track2.photo.attach(io: Trackphoto2, filename: "brendashaughnessy.jpg")
+Track2.save!
+Annotation2 = Track2.annotations.create(body: "existentialism", start_index: 0, end_index: 10, annotator_id: Demouser.id)
 Track2.save!
 
 Artist3 = Artist.create(name: "Tracy K. Smith")
@@ -57,6 +64,8 @@ Track5 = Album5.tracks.create(title: "Dinosaurs in the Hood", lyrics: "Let’s m
 Track5.artist_id = Artist5.id
 Trackphoto5 = open("https://rhymestein-seed.s3.amazonaws.com/danezsmith.jpg")
 Track5.photo.attach(io: Trackphoto5, filename: "danezsmith.jpg")
+Track5.save!
+Annotation5 = Track5.annotations.create(body: "whitewashing in hollywood", start_index: 0, end_index: 10, annotator_id: Demouser.id)
 Track5.save!
 
 Artist6 = Artist.create(name: "Hieu Minh Nguyen")

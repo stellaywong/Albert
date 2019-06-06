@@ -11,10 +11,14 @@ const receiveTracks = (tracks) => {
     })
 }
 
-const receiveTrack = (track) => {
+const receiveTrack = (promiseObj) => {
+    // debugger
     return ({
         type: RECEIVE_TRACK,
-        track
+        track: promiseObj.track,
+        annotations: promiseObj.annotations
+        // now we're sending two things at once
+        // so promiseObject received now has two keys inside
     })
 }
 
