@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TrackShow from './track_show';
-import { fetchTrack } from '../../../actions/track_actions';
+import { fetchTrack } from '../../../actions/track_actions';    //this gets the annotations for us
 import { fetchArtist } from '../../../actions/artist_actions';
 import { fetchAlbum } from '../../../actions/album_actions';
 
@@ -11,12 +11,24 @@ import { fetchAlbum } from '../../../actions/album_actions';
 // });
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger
+    debugger
+
+    let albumId = null
+    let artistId = null
+
+    //on first render, if track doesn't exist yet
+    const track = state.entities.tracks[ownProps.match.params.trackId]
+    if (track) {
+        albumId = track.album_id
+        artistId = track.artist_id
+    };
+    // else defaults to null
+
     return {
-        track: state.entities.tracks[ownProps.match.params.trackId],
-        //to access these words
-        artist: state.entities.artists[ownProps.match.params.artistId],
-        album: state.entities.albums[ownProps.match.params.albumId],
+        track: track,
+        artist: state.entities.artists[artistId],
+        album: state.entities.albums[albumId],
+        annotation: Object.values(state.entities.annotations),  //an array
     }
 }
 

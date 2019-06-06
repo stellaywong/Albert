@@ -17,6 +17,11 @@ class User < ApplicationRecord
     foreign_key: :uploader_id,
     class_name: :Track
 
+    has_many :annotations,
+    primary_key: :id,
+    foreign_key: :annotator_id,
+    class_name: :Annotation
+
     # has_many :,
     # primary_key: :id,
     # foreign_key: :,

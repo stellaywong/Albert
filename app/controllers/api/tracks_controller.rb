@@ -5,12 +5,13 @@ class Api::TracksController < ApplicationController
         @artists = Artist.all   
         render :index
     end
-
+    
     def show
         # debugger
         # p add_track_debugger
         @track = Track.find(params[:id])
-        @artist = @track.artist
+        @artist = @track.artist             #this instead of Track.all: it's less data so you spend less time in your backend   
+        @annotations = @track.annotations   #wonderful annotations object
         # a track belongs to an artist
         render :show
     end
