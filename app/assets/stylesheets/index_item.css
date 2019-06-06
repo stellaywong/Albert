@@ -1,42 +1,38 @@
 .top-tracks-index-item {
     height: 78px;
     border-bottom: 1px solid #ccc;
-    display: flex;
     width: 100%;
     font-size: 1.5em;
     font-weight: 700;
     color: #000000;
     text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    /* you dont' need vertical margins if you do this */
     /* margin-right: 100px; */
     /* flex-direction: column; */
 }
 
 .top-tracks-numbering {
-    margin: 28px 61px 10px 20px;
+    margin: 19px 61px 19px 20px;
     width: 13px;
 }
 
 .top-tracks-index-item-image {
-    /* width: 80px; */
     /* height: auto; */
     width: 61px;
     height: 61px;
-    margin-top: 10px;
-    margin-left: 10px;
     /* set height to auto to match width */
 }
 
 .top-tracks-index-item-title {
     /* font-size: 27px; */
     line-height: 17px;
-    margin-bottom: 8px;
-    margin-top: 30px;
 }
 
 .top-tracks-index-item-artist {
     font-size: 23px;
-    margin-left: 75px;
-    margin-top: 30px;
 }
 
 .top-tracks-index-item-text {
@@ -71,6 +67,7 @@
     /* border-top: 2px solid #000000; */
     width: 1188px;
     margin: 0 auto;
+    padding-bottom: 30px;
 }
 
 .index-item-whole-container {
