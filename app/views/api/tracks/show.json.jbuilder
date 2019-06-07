@@ -8,15 +8,15 @@ end
     # json.artist_name @artist, :name
     # debugger waterfall for trackShow -- just this line will suffice
 
-json.annotations do         # under a key of annotations
-    if @annotations.empty?   # created in annotations_controller's index
-        []
-    else    
-        @annotations.each do |annotation|
-            json.set! annotation.id do
-                json.extract! annotation, :id, :body, :track_id, :annotator_id, :start_index, :end_index
-            end
-        end
-    end
-end
+# json.annotations do         # under a key of annotations
+#     if @annotations.empty?   # created in annotations_controller's index
+#         []
+#     else    
+#         @annotations.each do |annotation|
+#             json.set! annotation.id do
+#                 json.extract! annotation, :id, :body, :track_id, :annotator_id, :start_index, :end_index
+#             end
+#         end
+#     end
+# end
     # not nested -- giving it a key of annotations
