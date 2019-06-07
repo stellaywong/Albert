@@ -33,6 +33,9 @@ header {
     font-weight: bold;
     text-shadow: -2px 1.8px 0.5px black;
     text-decoration: none;
+    position: absolute;
+    left: 50.02%;
+    transform: translateX(-50%)
 }
 
 @keyframes fade_in {

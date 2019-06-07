@@ -44,7 +44,7 @@ class CreateTrackForm extends React.Component {
                     </label>
 
                     <br></br>
-                    <label className="create-and-edit-input-field-label">Lyrics
+                    <label className="create-and-edit-input-field-label">Work
                         <textarea className="create-and-edit-lyrics-input-field"
                             value={this.state.lyrics}
                             onChange={this.update('lyrics')}
@@ -53,14 +53,14 @@ class CreateTrackForm extends React.Component {
                     </label>
                     <br></br>
 
-                    <label className="create-and-edit-input-field-label">Album
+                    <label className="create-and-edit-input-field-label">Collection
                         <input className="create-and-edit-input-field"
                             type="text"
                             value={this.state.album_title}       
                             onChange={this.update('album_title')}
                         />
 
-                        <label className="create-and-edit-input-field-label">Artist
+                        <label className="create-and-edit-input-field-label">Writer
                         <input className="create-and-edit-input-field"
                                 type="text"
                                 value={this.state.artist_name}

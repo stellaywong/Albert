@@ -5,7 +5,7 @@ import { createTrack } from '../../../actions/track_actions';
 
 const mapStateToProps = (state, ownProps) => {
     const track = { title: '', lyrics: '' };
-    const formType = 'Add Track';
+    const formType = 'Add Poem';
     const currentUserId = state.session.id;
 
     return { track, formType, currentUserId };

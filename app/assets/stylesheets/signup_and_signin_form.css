@@ -71,7 +71,7 @@ body {
 
         border: .15rem solid #ccc;
         border-radius: 0;
-        color: #000;
+        color: white;
         padding: .25rem;
         resize: vertical;
         -webkit-appearance: none;
@@ -111,6 +111,7 @@ body {
 
 .demo-user-button:hover {
     background-color: #5f7ec1;
+    cursor: pointer;
 }
 
 .signup-and-signin-input-label {
