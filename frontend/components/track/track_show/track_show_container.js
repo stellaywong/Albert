@@ -25,6 +25,9 @@ const mapStateToProps = (state, ownProps) => {
     // else defaults to null
 
     return {
+        currentUser: state.entities.users[state.session.id],    //to make edit track conditional
+        // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE 
+
         track: track,
         artist: state.entities.artists[artistId],
         album: state.entities.albums[albumId],

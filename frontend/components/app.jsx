@@ -2,6 +2,7 @@ import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Route, Switch } from 'react-router-dom';
 
+
 // import SignupFormContainer from './session_form/signup_form_container';
 // import SigninFormContainer from './session_form/signin_form_container';
 
@@ -28,9 +29,9 @@ const App = () => (
         {/* you need to import Switch from react-router-dom! */}
         <Switch>
             <Route exact path="/" component={TrackIndexContainer}></Route>
-            <Route exact path="/create" component={CreateTrackFormContainer}></Route>
+            <ProtectedRoute exact path="/create" component={CreateTrackFormContainer}></ProtectedRoute>
             {/* if exact path is /tracks/create, the router will hit tracks/:trackId first, thinking "create" is a wildcard. Therefore, put tracks/create before track/(any route that requires a wildcard) */}
-            <Route exact path="/tracks/:trackId/edit" component={EditTrackFormContainer}></Route>
+            <ProtectedRoute exact path="/tracks/:trackId/edit" component={EditTrackFormContainer}></ProtectedRoute>
             <Route exact path="/tracks/:trackId" component={TrackShowContainer}></Route>
 
             {/* you need a colon in front of the wildcard, otherwise it will look for literally /tracks/trackId instead of /tracks/3 */}

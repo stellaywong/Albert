@@ -39,42 +39,21 @@ class TrackShow extends React.Component {
    if (!track) {
       return <div>Loading...</div>;
    }
-debugger
+// debugger
 // debugging for add-and-create-track
 
-      // const annotation_bodies = this.props.annotations.map((annotation) => {
+      // const annotation_bodies = annotations.map((annotation) => {
       //    return (
-      //       <Annotation
+      //       <AnnotationIndexItem
       //          key={annotation.id}
       //          annotation={annotation}
+      //          deletePost={this.props.deletePost}
       //       />
       //    )
       // })
 
-      // const posts = this.props.posts.map(post => {
-      //    return (
-      //       <PostIndexItem
-      //          key={post.id}
-      //          post={post}
-      //          deletePost={this.props.deletePost} />
-      //    );
-      // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      const logged_in_edit_track_button = this.props.currentUser ? <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link> : null
+// HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE 
 
 
       return (
@@ -88,7 +67,11 @@ debugger
             </div>
 
             <div className="track-lyrics-whole-container">
-               <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link>
+               <h3 className="edit-button-container">
+                  {logged_in_edit_track_button}
+               </h3> 
+{/* // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE */}
+
                <h3 className="track-lyrics">{track.lyrics}</h3>
 
                {/* <h3>{annotation_bodies}</h3> */}

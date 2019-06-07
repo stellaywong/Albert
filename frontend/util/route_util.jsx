@@ -1,7 +1,7 @@
 // custom routes to conditionally render either the component or a <Redirect> based on whether a user is logged in.
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import React from 'react';
 
 const mapStateToProps = state => {
@@ -26,7 +26,7 @@ const Protected = ({ component: Component, path, logged_in }) => (
             logged_in ? (
                 <Component {...props} />
             ) : (
-                    <Redirect to="/signin" />
+                    <Redirect to="/" />
                 )
     )} />
 );

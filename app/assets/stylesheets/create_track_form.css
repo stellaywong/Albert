@@ -1,3 +1,7 @@
+/* * {
+    outline: 1px dotted magenta;
+} */
+
 .create-and-edit-track-form-container {
     background-color: #000000;
     color: rgb(255, 255, 255);
@@ -80,11 +84,20 @@
     border-radius: 2px;
 }
 
+.edit-button-container {
+    width: 488px;
+    background: linear-gradient(to bottom,#fff 80%,rgba(255,255,255,0));
+
+    /* sticks to top of page */
+    position: sticky;
+    top: 0; 
+}
+
 .edit-button {
     border-color: #000;
     color: #000;
     transition: background-color .3s,border-color .3s;
-    background-color: transparent;
+    /* background-color: transparent; */
     border-width: .15rem;
     border-style: solid;
     cursor: pointer;
