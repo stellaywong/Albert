@@ -1,6 +1,6 @@
 class Api::SessionsController < ApplicationController
     def create
-        let errors = []
+        errors = []
 
         if params[:user][:username] == ""
             errors << 'username'
@@ -10,6 +10,10 @@ class Api::SessionsController < ApplicationController
             errors << 'password'
         end
 
+        if params[:user][:email] == ""
+            errors << 'email'
+        end
+    
         if errors.length > 0
             render json: errors, status: 422
             return
@@ -23,7 +27,7 @@ class Api::SessionsController < ApplicationController
                 render json: ["Invalid username or password"], status: 422
             end
         end
-        #        
+               
     end
 
     def destroy

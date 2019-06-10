@@ -11,7 +11,7 @@ import { fetchAlbum } from '../../../actions/album_actions';
 // });
 
 const mapStateToProps = (state, ownProps) => {
-    debugger
+    // debugger
 
     let albumId = null
     let artistId = null

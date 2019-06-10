@@ -3,6 +3,7 @@ import { postUser, postSession, deleteSession } from '../util/session_api_util';
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";     // safeguard against typos
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";       // safeguard against typos
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 // normal action creators: 
     // return a POJO with a type and some kind of payload
@@ -22,6 +23,9 @@ export const receiveErrors = (errors) => ({                 // errors is an arra
     errors,
 })
 
+export const clearErrors = () => ({
+    type: CLEAR_SESSION_ERRORS
+})
 
 // THUNK action creators
     // takes in a user object from a form
@@ -32,8 +36,9 @@ export const receiveErrors = (errors) => ({                 // errors is an arra
 //sign up new user
 export const signup = (user) => {
     return dispatch => {
-        return postUser(user).then((user) =>                //this latter user is the promiseObject
-            dispatch(receiveCurrentUser(user))              //implicit return
+        return postUser(user).then(
+            (user) => dispatch(receiveCurrentUser(user)),
+            (err) => dispatch(receiveErrors(err.responseJSON))             //implicit return
         );
     }
 }                 
@@ -42,8 +47,9 @@ export const signup = (user) => {
 //sign in our user
 export const signin = (user) => {
     return dispatch => {
-        return postSession(user).then((user) => 
-            dispatch(receiveCurrentUser(user))
+        return postSession(user).then(
+            (user) => dispatch(receiveCurrentUser(user)),
+            (err) => dispatch(receiveErrors(err.responseJSON))
         );
     }
 }                 
@@ -52,8 +58,9 @@ export const signin = (user) => {
 //sign out our user
 export const logout = () => {
     return dispatch => {
-        return deleteSession().then(() => 
-            dispatch(logoutCurrentUser())
+        return deleteSession().then(
+            () => dispatch(logoutCurrentUser()),
+            (err) => dispatch(receiveErrors(err.responseJSON))
         );
     }
 }                 
