@@ -31,7 +31,8 @@ class SigninForm extends React.Component {
     handleSubmit(e) {                                           // takes in event
         e.preventDefault();                                     // prevent default action that refreshes the page
         this.props.signin(this.state)                    // this.state is an object with username, email, password
-        this.props.closeModal();
+            .then(() => this.props.closeModal());
+        // this.props.closeModal();
     }               // we don't have access to history yet but we will bc we wrap this whole component inside a route
 
 

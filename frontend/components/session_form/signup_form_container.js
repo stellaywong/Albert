@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';                          // containers don't need the jsx because we're not exporting.
 import React from 'react';
 
-import { signup } from '../../actions/session_actions';
+import { signup, clearErrors } from '../../actions/session_actions';
 import SignupForm from './signup_form';
 // import Signin from './signin_form';
 
@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => ({                                     
     signup: (user) => dispatch(signup(user)),
 
     signin: () => dispatch(openModal('signin')),
+    clearErrors: () => dispatch(clearErrors()),
     
     closeModal: () => dispatch(closeModal()),
 })
