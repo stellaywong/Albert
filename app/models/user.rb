@@ -1,16 +1,11 @@
 class User < ApplicationRecord
     #FIGVAPER
 
-    validates :username, :password_digest, :session_token, presence: true
+    validates :username, :email, :password_digest, :session_token, presence: true
     validates :password, length: {minimum: 6}, allow_nil: true
     attr_reader :password
 
     after_initialize :ensure_session_token  
-
-    # belongs_to :,
-    # primary_key: :id,
-    # foreign_key: :,
-    # class_name: :
 
     has_many :tracks,
     primary_key: :id,
@@ -21,11 +16,6 @@ class User < ApplicationRecord
     primary_key: :id,
     foreign_key: :annotator_id,
     class_name: :Annotation
-
-    # has_many :,
-    # primary_key: :id,
-    # foreign_key: :,
-    # class_name: :
 
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)

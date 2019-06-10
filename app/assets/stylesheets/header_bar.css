@@ -80,6 +80,10 @@ header {
     align-items: center;
 }
 
+.signup-subheader {
+    color: white;
+}
+
 /* 
 to implement later
 .search_bar {

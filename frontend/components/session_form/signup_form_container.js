@@ -14,13 +14,11 @@ const mapStateToProps = (state) => ({
 
 // our signup component doesn't rely on any part of our state so we just pass down the action needed to sign up user
 const mapDispatchToProps = (dispatch) => ({                                        // POJO
-    signup: (user) => dispatch(signup(user)),    // we imported createnewUser // the formUser comes from form
+    signup: (user) => dispatch(signup(user)),
 
+    signin: () => dispatch(openModal('signin')),
+    
     closeModal: () => dispatch(closeModal()),
-
-    otherForm: (
-        <button onClick={() => dispatch(openModal('signin'))}>Signin</button>
-    ),
 })
 //createNewUser in a props in our signup
 
