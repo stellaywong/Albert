@@ -14,7 +14,6 @@ export const fetchTrack = (id) => {
 
 export const createTrack = (track) => {
     // debugger
-    // commented out
     return $.ajax({
         method: 'POST',
         url: `api/tracks/`,
