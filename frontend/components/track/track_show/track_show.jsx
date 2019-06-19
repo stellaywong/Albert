@@ -42,15 +42,15 @@ class TrackShow extends React.Component {
 // debugger
 // debugging for add-and-create-track
 
-      const annotation_bodies = annotations.map((annotation) => {
-         return (
-            <AnnotationIndexItem
-               key={annotation.id}
-               annotation={annotation.body}
-               deletePost={this.props.deletePost}
-            />
-         )
-      })
+      // const annotation_bodies = annotations.map((annotation) => {
+      //    return (
+      //       <AnnotationIndexItem
+      //          key={annotation.id}
+      //          annotation={annotation.body}
+      //          deletePost={this.props.deletePost}
+      //       />
+      //    )
+      // })
 
       const logged_in_edit_track_button = this.props.currentUser ? <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link> : null
 // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE 
@@ -74,7 +74,7 @@ class TrackShow extends React.Component {
 
                <h3 className="track-lyrics">{track.lyrics}</h3>
 
-               <h3>{annotation_bodies}</h3>
+               {/* <h3>{annotation_bodies}</h3> */}
 
                <br></br>
                <Link to="/">Back to Homepage</Link>

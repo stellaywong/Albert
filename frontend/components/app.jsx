@@ -40,9 +40,11 @@ const App = () => (
         <footer className='footer-wrapper'>
             <div className="footer-bar">
                 <a href="https://github.com/stellaywong/Albert" className="footer-bar-button">GITHUB <i className="fab fa-github"></i></a>
+                <a href="https://linkedin.com/stella-y-wong" className="footer-bar-button">LINKEDIN <i className="fab fa-linkedin"></i></a>
                 {/* because we put the image into React, change FontAwesome's link's "class" to "classname" */}
             </div>
         </footer>
+        {/* <div className="bottom-footer-bar"></div> */}
     </div>
 );
 

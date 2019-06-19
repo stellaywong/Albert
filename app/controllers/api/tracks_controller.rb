@@ -17,8 +17,9 @@ class Api::TracksController < ApplicationController
     end
 
     def create
-        # debugger
         # commented out
+        @track = Track.new(track_params)
+        debugger
   
         artist = Artist.find_by(name: params[:track][:artist_name])
         if artist.nil?
@@ -35,7 +36,6 @@ class Api::TracksController < ApplicationController
         params[:track].delete(:album_title)
         params[:track].delete(:artist_name)
 
-        @track = Track.new(track_params)
 
         @track.artist_id = artist.id
         @track.album_id = album.id
@@ -84,6 +84,6 @@ class Api::TracksController < ApplicationController
 
     private
     def track_params
-        params.require(:track).permit(:id, :title, :lyrics, :artist_id, :album_id, :uploader_id)
+        params.require(:track).permit(:id, :title, :lyrics, :artist_id, :album_id, :uploader_id, :photo)
     end
 end

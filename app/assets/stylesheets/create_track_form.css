@@ -82,6 +82,7 @@
     border: 1px solid #444;
     display: inline-block;
     border-radius: 2px;
+    margin-bottom: 25px;
 }
 
 .edit-button-container {

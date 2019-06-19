@@ -65,32 +65,48 @@ track5.artist_id = artist5.id
 trackphoto5 = open("https://rhymestein-seed.s3.amazonaws.com/danezsmith.jpg")
 track5.photo.attach(io: trackphoto5, filename: "danezsmith.jpg")
 track5.save!
-annotation5 = track5.annotations.create(body: "whitewashing in hollywood", start_index: 0, end_index: 10, annotator_id: demouser.id)
-track5.save!
 
-artist6 = Artist.create(name: "Hieu Minh Nguyen")
-album6 = artist6.albums.create(title: 'Not Here')
+artist6 = Artist.create(name: "D. A. Powell")
+album6 = artist6.albums.create(title: 'Tea')
 # fills in the artist based on the association
-track6 = album6.tracks.create(title: "Cockfight", lyrics: "I met my brother once\n in a small village in Vietnam\n who, upon meeting me\n grabbed my small arm\n & dragged me into the woods\n behind his house\n where a group of men\n all wearing our father's face\n stood in a circle, cheering\n while the two roosters\n whose beaks had barbed hooks\n taped to them, pecked\n & clawed each other open\n until the mess of bloodied feathers\n were replaced by two clean birds\n one, my brother's. The other\n a man's, who, I am told is deaf\n but vicious. He told me\n our father calls him long distance\n from America, every week.\n I can't help but wonder how\n they tell the roosters apart\n since the blood has turned their feathers\n the same shade of burgundy.\n I told him how our father, who lives\n only three mile away from me\n avoids making eye-contact at supermarkets.\n I can tell this made him happy.\n Though, he didn't cheer\n when the crowd cheered, when one rooster\n fell to the dirt with a gash in its neck\n I knew he was the winner\n the way he lowered his head to hide\n his smile, how he looked at me\n then snatched his earnings\n from the vicious man's hands.\n I learned what it was like to be a brother\n by watching the roosters\n & how, at first, the air was calm\n until they were introduced\n & then they knew:\n there could only be one.", uploader_id: demouser.id)
+track6 = album6.tracks.create(title: "[the thicknesses of victor decreased: blanket --> sheet --> floss. until no material would do]", lyrics: "the thicknesses of victor decreased: blanket --> sheet --> \nfloss. 	until no material would do\nin the shedding season: the few of us who had not turned had \nfound his remote room in mercy\nhe wriggled slight as a silkworm on its mulberry bed. 		his lips\nspun slathering thread. 	he sleaved\nwe waited for his release and he was released: yellow and \nradiant mariposa. 	don’t let us mend.\n", uploader_id: demouser.id)
 track6.artist_id = artist6.id
-trackphoto6 = open("https://rhymestein-seed.s3.amazonaws.com/hieuminhnguyen.jpg")
-track6.photo.attach(io: trackphoto6, filename: "hieuminhnguyen.jpg")
+trackphoto6 = open("https://rhymestein-seed.s3.amazonaws.com/dapowell.jpg")
+track6.photo.attach(io: trackphoto6, filename: "dapowell.jpg")
 track6.save!
 
-artist7 = Artist.create(name: "D. A. Powell")
-album7 = artist7.albums.create(title: 'Tea')
+artist7 = Artist.create(name: "Josh Bell")
+album7 = artist7.albums.create(title: 'Alamo Theory')
 # fills in the artist based on the association
-track7 = album7.tracks.create(title: "[the thicknesses of victor decreased: blanket --> sheet --> floss. until no material would do]", lyrics: "the thicknesses of victor decreased: blanket --> sheet --> \nfloss. 	until no material would do\nin the shedding season: the few of us who had not turned had \nfound his remote room in mercy\nhe wriggled slight as a silkworm on its mulberry bed. 		his lips\nspun slathering thread. 	he sleaved\nwe waited for his release and he was released: yellow and \nradiant mariposa. 	don’t let us mend.\n", uploader_id: demouser.id)
+track7 = album7.tracks.create(title: "Where the I Comes From", lyrics: "Our days often ended and began\nwith the sound of voices raised\nin song. Even after we murdered\nour friends and neighbors. Even\nafter we brought the attention\nof our knives to the neighbors of\nour neighbors, until at last\nthe neighborhoods fell silent\nand the cities quiet and the city’s\ncity, the country then and next\nthe country, until finally the moon,\nas if its own reflection, looked\nupon an earth that we had emptied\nnearly back to Eden. Even then,\nin a silence which seemed almost\na silence, sadly we were not\nalone. All we ever wanted was\nto be alone, to visit no one, to be\nvisited by nothing. But even after\nwe’d traveled to nearby planets\nand relieved them of their voices,\neven after—and we all knew\nthis was coming—we fell amongst\neach other, brother and sister,\nuntil only I survived, still I heard it,\nthe universe subtracted of its skin\nand hair, and yet the sound\nof a voice, like someone singing\nin the hold of a sinking ship,\nunbidden and irrelevant, a fathom\nand a fathom deep, but never fading\n", uploader_id: demouser.id)
 track7.artist_id = artist7.id
-trackphoto7 = open("https://rhymestein-seed.s3.amazonaws.com/dapowell.jpg")
-track7.photo.attach(io: trackphoto7, filename: "dapowell.jpg")
+trackphoto7 = open("https://rhymestein-seed.s3.amazonaws.com/joshbell.jpg")
+track7.photo.attach(io: trackphoto7, filename: "joshbell.jpg")
 track7.save!
 
-artist8 = Artist.create(name: "Jared DJ-our-ABC-hi (AKA Shlomo Yehuda)")
-album8 = artist8.albums.create(title: 'AppAcademy Rappers')
+artist8 = Artist.create(name: "徐志摩")
+album8 = artist8.albums.create(title: 'On Leaving Cambridge')
 # fills in the artist based on the association
-track8 = album8.tracks.create(title: "Ode to Oats", lyrics: "Mushy and lumpy,\nmakes me less grumpy.", uploader_id: demouser.id)
+track8 = album8.tracks.create(title: "再别康桥", lyrics: "轻轻的我走了，\n正如我轻轻的来；\n我轻轻的招手，\n作别西天的云彩。\n那河畔的金柳，\n是夕阳中的新娘；\n波光里的艳影，\n在我的心头荡漾。\n软泥上的青荇，\n油油的在水底招摇；\n在康河的柔波里，\n我甘心做一条水草！\n那榆荫下的一潭，\n不是清泉，是天上虹；\n揉碎在浮藻间，\n沉淀着彩虹似的梦。\n寻梦？撑一支长篙，\n向青草更青处漫溯；\n满载一船星辉，\n在星辉斑斓里放歌。\n但我不能放歌，\n悄悄是别离的笙箫；\n夏虫也为我沉默，\n沉默是今晚的康桥！\n悄悄的我走了，\n正如我悄悄的来；\n我挥一挥衣袖，\n不带走一片云彩\n", uploader_id: demouser.id)
 track8.artist_id = artist8.id
-trackphoto8 = open("https://rhymestein-seed.s3.amazonaws.com/jareddjourabchi.jpg")
-track8.photo.attach(io: trackphoto8, filename: "jareddjourabchi.jpg")
+trackphoto8 = open("https://rhymestein-seed.s3.amazonaws.com/xuzhimo.jpg")
+track8.photo.attach(io: trackphoto8, filename: "xuzhimo.jpg")
 track8.save!
+
+artist9 = Artist.create(name: "Rita Dove")
+album9 = artist9.albums.create(title: 'Museum')
+# fills in the artist based on the association
+track9 = album9.tracks.create(title: "Parsley", lyrics: "\n1. The Cane Fields\n\nThere is a parrot imitating spring\nin the palace, its feathers parsley green. \nOut of the swamp the cane appears\n\nto haunt us, and we cut it down. El General \nsearches for a word; he is all the world \nthere is. Like a parrot imitating spring,\n\nwe lie down screaming as rain punches through \nand we come up green. We cannot speak an R—\nout of the swamp, the cane appears\n\nand then the mountain we call in whispers Katalina.\nThe children gnaw their teeth to arrowheads. \nThere is a parrot imitating spring.\n\nEl General has found his word: perejil.\nWho says it, lives. He laughs, teeth shining \nout of the swamp. The cane appears\n\nin our dreams, lashed by wind and streaming. \nAnd we lie down. For every drop of blood \nthere is a parrot imitating spring.\nOut of the swamp the cane appears.\n\n\n2. The Palace\n\nThe word the general’s chosen is parsley. \nIt is fall, when thoughts turn\nto love and death; the general thinks\nof his mother, how she died in the fall\nand he planted her walking cane at the grave \nand it flowered, each spring stolidly forming \nfour-star blossoms. The general\n\npulls on his boots, he stomps to\nher room in the palace, the one without \ncurtains, the one with a parrot\nin a brass ring. As he paces he wonders \nWho can I kill today. And for a moment \nthe little knot of screams\nis still. The parrot, who has traveled\n\nall the way from Australia in an ivory \ncage, is, coy as a widow, practising \nspring. Ever since the morning \nhis mother collapsed in the kitchen \nwhile baking skull-shaped candies \nfor the Day of the Dead, the general \nhas hated sweets. He orders pastries \nbrought up for the bird; they arrive\n\ndusted with sugar on a bed of lace. \nThe knot in his throat starts to twitch; \nhe sees his boots the first day in battle \nsplashed with mud and urine\nas a soldier falls at his feet amazed—\nhow stupid he looked!— at the sound\nof artillery. I never thought it would sing \nthe soldier said, and died. Now\n\nthe general sees the fields of sugar \ncane, lashed by rain and streaming. \nHe sees his mother’s smile, the teeth \ngnawed to arrowheads. He hears \nthe Haitians sing without R’s\nas they swing the great machetes: \nKatalina, they sing, Katalina,\n\nmi madle, mi amol en muelte. God knows \nhis mother was no stupid woman; she \ncould roll an R like a queen. Even \na parrot can roll an R! In the bare room \nthe bright feathers arch in a parody \nof greenery, as the last pale crumbs\ndisappear under the blackened tongue. Someone\n\ncalls out his name in a voice\nso like his mother’s, a startled tear\nsplashes the tip of his right boot.\nMy mother, my love in death. \nThe general remembers the tiny green sprigs \nmen of his village wore in their capes \nto honor the birth of a son. He will\norder many, this time, to be killed\n\nfor a single, beautiful word.", uploader_id: demouser.id)
+track9.artist_id = artist9.id
+trackphoto9 = open("https://rhymestein-seed.s3.amazonaws.com/ritadove.jpg")
+track9.photo.attach(io: trackphoto9, filename: "ritadove.jpg")
+track9.save!
+
+artist10 = Artist.create(name: "Hieu Minh Nguyen")
+album10 = artist10.albums.create(title: 'Not Here')
+# fills in the artist based on the association
+track10 = album10.tracks.create(title: "Cockfight", lyrics: "I met my brother once\n in a small village in Vietnam\n who, upon meeting me\n grabbed my small arm\n & dragged me into the woods\n behind his house\n where a group of men\n all wearing our father's face\n stood in a circle, cheering\n while the two roosters\n whose beaks had barbed hooks\n taped to them, pecked\n & clawed each other open\n until the mess of bloodied feathers\n were replaced by two clean birds\n one, my brother's. The other\n a man's, who, I am told is deaf\n but vicious. He told me\n our father calls him long distance\n from America, every week.\n I can't help but wonder how\n they tell the roosters apart\n since the blood has turned their feathers\n the same shade of burgundy.\n I told him how our father, who lives\n only three mile away from me\n avoids making eye-contact at supermarkets.\n I can tell this made him happy.\n Though, he didn't cheer\n when the crowd cheered, when one rooster\n fell to the dirt with a gash in its neck\n I knew he was the winner\n the way he lowered his head to hide\n his smile, how he looked at me\n then snatched his earnings\n from the vicious man's hands.\n I learned what it was like to be a brother\n by watching the roosters\n & how, at first, the air was calm\n until they were introduced\n & then they knew:\n there could only be one.", uploader_id: demouser.id)
+track10.artist_id = artist10.id
+trackphoto10 = open("https://rhymestein-seed.s3.amazonaws.com/hieuminhnguyen.jpg")
+track10.photo.attach(io: trackphoto10, filename: "hieuminhnguyen.jpg")
+track10.save!

@@ -50,13 +50,19 @@ and it will be taking up the majority of the screen. */
 }
 
 .footer-bar {
-    /* align-items: flex-end; */
+    align-items: flex-end;
     display: flex;
+    justify-content: space-between;
     justify-content: center;
     align-items: center;
     height: 18px;
 
     box-sizing: border-box;
+    position: sticky;
+    top: 100;
+    
+    border: 0;
+    display: block;
 }
 
 .footer-bar-button {
@@ -100,7 +106,7 @@ and it will be taking up the majority of the screen. */
     }
 }
 
-.footer-bar-button-personal:before {
+/* .footer-bar-button-personal:before {
     content: '';
     position: absolute;
     top: -5px;
@@ -113,14 +119,24 @@ and it will be taking up the majority of the screen. */
     border-radius: 40px;
     opacity: 0;
     transition: 05.s;
-}
+} */
 
-.footer-bar-button-personal:hover:before {
+/* .footer-bar-button-personal:hover:before {
     filter: blur(20px);
     opacity: 1;
     animation: animate 1s linear infinite;
-}
+} */
 
 .footer-bar-button:hover {
     color: rgb(153, 167, 238);
 } 
+
+/* .bottom-footer-bar {
+    justify-content: center;
+    position: relative;
+    display: block;
+    background-color:magenta; */
+    /* display: flex; */
+    /* align-items: center;
+    height: 40px;
+} */
