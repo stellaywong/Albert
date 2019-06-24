@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_08_005859) do
+ActiveRecord::Schema.define(version: 2019_06_21_225535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,13 +45,14 @@ ActiveRecord::Schema.define(version: 2019_06_08_005859) do
   end
 
   create_table "annotations", force: :cascade do |t|
-    t.string "body", null: false
     t.integer "track_id", null: false
     t.integer "annotator_id", null: false
     t.integer "start_index", null: false
     t.integer "end_index", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "annotation_body", null: false
+    t.string "quote", null: false
     t.index ["annotator_id"], name: "index_annotations_on_annotator_id"
     t.index ["track_id"], name: "index_annotations_on_track_id"
   end
@@ -86,9 +87,6 @@ ActiveRecord::Schema.define(version: 2019_06_08_005859) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
-  end
-
-  create_table "users_agains", force: :cascade do |t|
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

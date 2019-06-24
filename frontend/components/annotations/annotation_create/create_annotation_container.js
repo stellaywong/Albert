@@ -4,7 +4,7 @@ import CreateAnnotationForm from './create_annotation_form';
 import { createAnnotation } from '../../../actions/annotation_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    const annotation = { body: '' };
+    const annotation = { annotation_body: '' };
     const formType = 'Add Annotation';
     const currentUserId = state.session.id;
 

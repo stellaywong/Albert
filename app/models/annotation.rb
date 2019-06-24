@@ -1,5 +1,5 @@
 class Annotation < ApplicationRecord
-    validates :body, :start_index, :end_index, presence: true
+    validates :annotation_body, :start_index, :end_index, :quote, :annotator_id, :track_id, presence: true
 
     belongs_to :annotator,
     primary_key: :id,
