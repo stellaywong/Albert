@@ -4,6 +4,7 @@ import TrackShow from './track_show';
 import { fetchTrack } from '../../../actions/track_actions';    //this gets the annotations for us
 import { fetchArtist } from '../../../actions/artist_actions';
 import { fetchAlbum } from '../../../actions/album_actions';
+import { fetchAnnotations } from '../../../actions/annotation_actions';
 
 // // pass down current user from state --> (trackshow) component
 // const mapStateToProps = (state, ownProps) => ({
@@ -31,7 +32,7 @@ const mapStateToProps = (state, ownProps) => {
         track: track,
         artist: state.entities.artists[artistId],
         album: state.entities.albums[albumId],
-        annotation: Object.values(state.entities.annotations),  //an array
+        annotations_array: Object.values(state.entities.annotations),  //an array
     }
 }
 
@@ -40,6 +41,7 @@ const mapDispatchToProps = (dispatch) => ({
     fetchTrack: (id) => dispatch(fetchTrack(id)),
     fetchArtist: (id) => dispatch(fetchArtist(id)),
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
+    fetchAnnotations: (id) => dispatch(fetchAnnotations(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackShow);

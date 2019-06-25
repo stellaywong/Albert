@@ -53,7 +53,7 @@
 .index-item-header {
     text-transform: uppercase;
     margin: 0 auto;
-    width: 1100px;
+    /* width: 1100px; */
     padding-top: 10px;
     padding-bottom: 10px;
     display: flex;
@@ -65,7 +65,7 @@
 .top-tracks-index-item-container {
     /* width: 800px; */
     /* border-top: 2px solid #000000; */
-    width: 1188px;
+    /* width: 1188px; */
     margin: 0 auto;
     padding-bottom: 30px;
 }

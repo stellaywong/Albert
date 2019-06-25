@@ -14,7 +14,7 @@ class CreateAnnotationForm extends React.Component {
             annotator_id: this.props.currentUserId,
             // annotation only gets its own id after hitting the database
         };
-        debugger
+        // debugger
     }
 
     update(field) {
@@ -34,13 +34,13 @@ class CreateAnnotationForm extends React.Component {
             annotator_id: this.props.currentUserId,
             track_id: this.state.id,
         }
-        debugger 
+        // debugger 
         // for (var p of formData) {
         //     console.log(p);
         // }
         // debugger
         this.props.createAnnotation(takeFromState)  //must call this createTrack (same name as edit track form container) so track_form can take in 'createTrack' to accomodate both
-            .then((action) => this.props.history.push(`/annotations/${action.annotation.id}/`));
+            // .then((action) => this.props.history.push(`/annotations/${action.annotation.id}/`)); // comment this out so we don't redirect to annotations/2
     }
 
     updateAnnotationBody(e) {
@@ -51,7 +51,7 @@ class CreateAnnotationForm extends React.Component {
         console.log(this.state);
         console.log(this.props);
         return (
-            <div className="create-and-edit-track-form-container">
+            <div className="create-and-edit-annotation-form-container">
                 <h3 className="create_track_heading">{this.props.formType}</h3>
                 <form onSubmit={this.handleSubmit}>
 
@@ -78,6 +78,30 @@ class CreateAnnotationForm extends React.Component {
                             type="integer"
                             value={this.state.id}
                             onChange={this.update('track_id')}
+                        />
+                    </label>
+
+                    <label className="create-and-edit-input-field-label">
+                        <input className="hide-this-field"
+                            type="integer"
+                            value={this.state.start_index}
+                            onChange={this.update('start_index')}
+                        />
+                    </label>
+
+                    <label className="create-and-edit-input-field-label">
+                        <input className="hide-this-field"
+                            type="integer"
+                            value={this.state.end_index}
+                            onChange={this.update('end_index')}
+                        />
+                    </label>
+
+                    <label className="create-and-edit-input-field-label">
+                        <input className="hide-this-field"
+                            type="text"
+                            value={this.state.quote}
+                            onChange={this.update('quote')}
                         />
                     </label>
 

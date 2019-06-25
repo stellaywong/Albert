@@ -82,3 +82,7 @@
     /* preserves line breaks */
     white-space: pre-line;       
 }
+
+.lyrics-and-annotations {
+    display: flex;
+}

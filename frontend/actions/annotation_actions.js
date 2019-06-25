@@ -28,6 +28,7 @@ const removeAnnotation = (annotation) => {
 export const fetchAnnotations = () => {
     return (dispatch) => {
         return AnnotationApiUtil.fetchAnnotations().then((promiseObject) => {
+            debugger
             return dispatch(receiveAnnotations(promiseObject));
         })
     }
