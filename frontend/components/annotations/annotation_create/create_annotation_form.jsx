@@ -51,19 +51,20 @@ class CreateAnnotationForm extends React.Component {
         console.log(this.state);
         console.log(this.props);
         return (
-            <div className="create-and-edit-annotation-form-container">
-                <h3 className="create_track_heading">{this.props.formType}</h3>
+        <div className="create-and-edit-annotation-form-container">
+            <div className="create-and-edit-annotation-form">
+                {/* <h3 className="create_track_heading">{this.props.formType}</h3> */}
                 <form onSubmit={this.handleSubmit}>
 
-                    <label className="create-and-edit-input-field-label">Annotation
-                        <input className="create-and-edit-input-field"
+                    {/* <label className="create-and-edit-input-field-label">Annotation */}
+                        <input className="create-annotation-input-field"
                             type="text"
                             value={this.state.annotation_body}
-                            placeholder="Add your own annotation."
+                            placeholder="Don't just put the poem in your own words--drop some knowledge!"
                             onChange={this.updateAnnotationBody.bind(this)}
                             required
                         />
-                    </label>
+                    {/* </label> */}
 
                     <label className="create-and-edit-input-field-label">
                         <input className="hide-this-field"
@@ -107,12 +108,13 @@ class CreateAnnotationForm extends React.Component {
 
                     <input
                         type="submit"
-                        value={this.props.formType}
-                        className="submit-form-button">
+                        value="Save"
+                        className="create-annotation-button">
                     </input>
 
                 </form>
             </div>
+        </div>
         );
     }
 }

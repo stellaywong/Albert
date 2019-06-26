@@ -130,7 +130,7 @@ class SigninForm extends React.Component {
                     <button onClick={() => {
                         this.props.closeModal();
                         this.props.signup();
-                    }}>Already have an account? Sign in here.</button>
+                    }}>Don't have an account? Sign up here.</button>
 
                 </div>
             </div>

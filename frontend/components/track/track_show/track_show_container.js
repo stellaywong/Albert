@@ -14,14 +14,18 @@ import { fetchAnnotations } from '../../../actions/annotation_actions';
 const mapStateToProps = (state, ownProps) => {
     // debugger
 
-    let albumId = null
-    let artistId = null
+    let albumId = null;
+    let artistId = null;
+    let annotator = null;
+    let annotatorId = null;
 
     //on first render, if track doesn't exist yet
     const track = state.entities.tracks[ownProps.match.params.trackId]
     if (track) {
-        albumId = track.album_id
-        artistId = track.artist_id
+        albumId = track.album_id;
+        artistId = track.artist_id;
+        annotatorId = track.annotation_ids[0];
+        annotator = state.entities.users[annotatorId] ? state.entities.users[annotatorId].username : null;
     };
     // else defaults to null
 
@@ -33,6 +37,7 @@ const mapStateToProps = (state, ownProps) => {
         artist: state.entities.artists[artistId],
         album: state.entities.albums[albumId],
         annotations_array: Object.values(state.entities.annotations),  //an array
+        annotator 
     }
 }
 
