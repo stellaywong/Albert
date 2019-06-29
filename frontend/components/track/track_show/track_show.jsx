@@ -18,6 +18,7 @@ class TrackShow extends React.Component {
    
       this.clickHandler = this.clickHandler.bind(this);
       this.setAnnotation = this.setAnnotation.bind(this);
+      this.clearAnnotation = this.clearAnnotation.bind(this);
    }
 
    componentDidMount() {
@@ -46,22 +47,31 @@ class TrackShow extends React.Component {
       }
    }
 
+   clearAnnotation() {
+      this.setState({ quote: "" })
+   }
+ 
    setAnnotation(annotation){
       // debugger
       this.setState({ displayWholeAnnotation: annotation});
    }
 
-
    clickHandler(e) {    // create new function that receives event
       // debugger
       console.log(window.getSelection());
 
-      // debugger
+      // to know which object we're currently looking at
+      let currentSection = parseInt(e.target.dataset.offset);
+
+      
+      debugger
       this.setState({
-         start_index: window.getSelection().anchorOffset,
-         end_index: window.getSelection().focusOffset,
+         /////////////////work on this///////////////////
+         start_index: window.getSelection().anchorOffset + currentSection,
+         end_index: window.getSelection().focusOffset + currentSection,
+         /////////////////work on this///////////////////
          quote: window.getSelection().toString(),
-         // displayWholeAnnotation: null
+         // displayWholeAnnotation: "blank",
       })
 
       // toggling either create annotation OR show annotation
@@ -89,11 +99,6 @@ class TrackShow extends React.Component {
    // debugger
    //  debugger is where you can look at what props is
 
-   // const { track } = this.props;
-   // const trackId = track ? track.id : null
-   // const trackTitle = track ? track.title : null
-   // const trackLyrics = track ? track.lyrics : null
-
    const { track, artist, album, annotations_array } = this.props;    //refactoring to be drier
    if (!track) {
       return <div>Loading...</div>;
@@ -101,19 +106,7 @@ class TrackShow extends React.Component {
    // debugger
 // debugging for add-and-create-track
 
-// PICK UP HERE TOMORROW
-      // const annotation_bodies = annotations_array.map((annotation) => {
-      //    return (
-      //       <AnnotationShowItem
-      //          key={annotation.id}
-      //          annotation={annotation.annotation_body}
-      //          deleteAnnotation={this.props.deleteAnnotation}
-      //       />
-      //    )
-      // })
-
       const logged_in_edit_track_button = this.props.currentUser ? <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link> : null
-// HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE // HERE 
 
       let annotationsForOneTrack = [];
 
@@ -164,84 +157,39 @@ class TrackShow extends React.Component {
       annotationsForOneTrack = annotationsForOneTrack.quickSort();
       console.log(annotationsForOneTrack);
 
-      // let annotation_bodies = annotationsForOneTrack.map(annotation => {
-      //    console.log(annotation.annotation_body);
-      //    return (
-      //       <p 
-      //          key={annotation.id}
-      //          className="highlightOnHover"
-      //          // onClick = {this.displayWholeAnnotation}
-      //          >{annotation.quote}
-      //       </p>
-      //    );
-      // })
-      
-      
-      // let giveTagsToAnnotations = null;
-      // annotationsForOneTrack.forEach((annotation) => {
-      //    const before = track.lyrics.slice(0, annotation.start_index)                     // in order to render all the material pre-annotation
-      //    const after = track.lyrics.slice(annotation.end_index, track.lyrics.length - 1)  // in order to render all the material post-annotation
-      //    // const prevEndIndex = annotation.end_index;
-      //    debugger
-      //    // track.lyrics = (
-      //    //    <>
-      //    //       {before}
-      //    //       <span className="annotation-highlighted">{annotation.quote}</span>
-      //    //       {after}
-      //    //    </>
-      //    // );
-
-      //    // return (
-      //       // need a parent element to wrap everything, in order to export three separate things
-      //    giveTagsToAnnotations = 
-      //       <>
-      //       {before}
-      //       <span className="annotation-highlighted">{annotation.quote}</span>
-      //       {after}
-      //       </>;
-      //    // )
-      // });
-
-
-
-
-
-
       // 1. <p> track.lyrics </p>
       // 2. go into track.lyrics. every time there's an annotation, put: 
       //    </p> <span>annotation</span> <p>
 
-
       //       html_safe
-      //       escape_html
-
-
-
-
-
 // build an array of jsx objects stacked on top of each other; they will render in order!
       let stellaAnnotation = [];
       let previousStep = 0;
       let j=0;
 
+      // for (const annotation of annotationForOneTrack)
+
       for (let i = 0; i < annotationsForOneTrack.length; i++){
 
-
-         let startAnnotationHere = annotationsForOneTrack[i].start_index;
-         let endAnnotationHere = annotationsForOneTrack[i].end_index;
+         let startAnnotationHere = Math.min(annotationsForOneTrack[i].start_index, annotationsForOneTrack[i].end_index);
+         let endAnnotationHere = Math.max(annotationsForOneTrack[i].start_index, annotationsForOneTrack[i].end_index);
          let annotation = annotationsForOneTrack[i];
 
          let before = track.lyrics.slice(previousStep, startAnnotationHere);
-
+         debugger
          stellaAnnotation.push(
-            <span key={j++}>
+            <span data-offset={previousStep}>
                {before}
             </span>
+            // <span key={j++}>
+            //    {before}
+            // </span>
          );
 
          {/* create a separate state just for TrackShow */}
          stellaAnnotation.push(
                <a key={j++}
+                  unselectable = "on"
                   onClick={() => {
                      this.setAnnotation(annotationsForOneTrack[i])
                   }}
@@ -256,16 +204,15 @@ class TrackShow extends React.Component {
 
          if (i === annotationsForOneTrack.length - 1) {
             stellaAnnotation.push(
-               <p key={j++}>
-                  {track.lyrics.slice(previousStep, track.lyrics.length - 1)}
-               </p>
+               <span data-offset={previousStep}>{track.lyrics.slice(previousStep, track.lyrics.length)}</span>
+               // <p key={j++}>
+                  // {track.lyrics.slice(previousStep, track.lyrics.length)}
+                  // {/* slice up to, but not including, the second argument */}
+               // </p>
             )
          }
+         console.log(stellaAnnotation)
       }
-      
-
-
-
 
       const displayWholeAnnotation = this.state.displayWholeAnnotation ? 
                <ShowAnnotation 
@@ -273,14 +220,9 @@ class TrackShow extends React.Component {
                   annotator={this.props.annotator}
                /> : null;
 
+      const borderStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ borderLeft: '3.75px solid rgb(153, 167, 238)', }) : ({ border: 'none', })
 
-
-
-
-
-
-
-
+      const arrowStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ display: 'block', }) : ({ display: 'none', }) 
 
       return (
          <div>
@@ -291,6 +233,7 @@ class TrackShow extends React.Component {
                {album ? <h3 className="track-show-album">{album.title}</h3> : null}
                {artist ? <h3 className="track-show-artist">{artist.name}</h3> : null}
             </div>
+
 
             <div className="track-lyrics-whole-container">
                <h3 className="edit-button-container">
@@ -304,28 +247,37 @@ class TrackShow extends React.Component {
             <h2 className="lyrics-and-annotations">
                   {(annotationsForOneTrack.length !== 0) ?
                      <div className="track-lyrics" ref={this.lyrics}
-                        onClick={this.clickHandler}
+                        // onClick={this.clickHandler}
                         // onMouseDown={this.clickHandler}
-                        onMouseUp={this.clickHandler}
+                        // onMouseUp={this.clickHandler}
                      >
-                        {stellaAnnotation}
+                        <p onMouseUp={this.clickHandler} data-offset={previousStep}>
+                           {stellaAnnotation}
+                        </p>
+                        {/* {stellaAnnotation} */}
                         {/* {giveTagsToAnnotations} */}
                         {/* <p>{track.lyrics}</p> */}
                         {/* {annotation_bodies} */}
                      </div>
                      : <div className="track-lyrics" ref={this.lyrics}
-                        onClick={this.clickHandler}
+                        // onClick={this.clickHandler}
                         // onMouseDown={this.clickHandler}
-                        onMouseUp={this.clickHandler}
-                     >{track.lyrics}
+                        // onMouseUp={this.clickHandler}
+                     ><p onMouseUp={this.clickHandler} data-offset={0}>{track.lyrics}</p>
                      </div>
                   }
 
-                  <div className="show-annotation-container">
-                     {displayWholeAnnotation}
+                  <div className="show-annotation-container" style={borderStyle}>
+                     <div className="purple-arrow" style={arrowStyle}>
+                        <svg src="left_arrow.svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.87 21.32">
+                           <path d="M9.37 21.32L0 10.66 9.37 0l1.5 1.32-8.21 9.34L10.87 20l-1.5 1.32"></path>
+                        </svg>
+                     </div>
+
+                     <div className="show-annotation-form">
+                        {displayWholeAnnotation}
+                     </div>
                   </div>
-
-
 
                   {/* create annotation component */}
                   {(this.state.quote.length != 0) ? <CreateAnnotationFormContainer
@@ -334,6 +286,7 @@ class TrackShow extends React.Component {
                      start_index={this.state.start_index}
                      end_index={this.state.end_index}
                      quote={this.state.quote}
+                     clearAnnotation = {this.clearAnnotation}
                   />
                      : null}
             </h2>

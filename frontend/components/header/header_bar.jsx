@@ -27,6 +27,7 @@ const Header = (props) => {
         <header className="header_bar">
             <h1 className="logo">ヾ(｡ꏿ﹏ꏿ)ﾉﾞ</h1>
             <a href="https://rhymestein.herokuapp.com" className="header_website">R H Y M E S T E I N</a>
+            <a href="http://localhost:3000/#/" className="header_website">R H Y M E S T E I N</a>
             {/* <h1></h1> */}
             <div>
                 { display }

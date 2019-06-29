@@ -9,7 +9,7 @@ class AnnotationShow extends React.Component {
 
         return (
             <>
-                <h3>{annotation.annotation_body}</h3>
+                <h3 className="annotation-body">{annotation.annotation_body}</h3>
                 <h3>{annotator}</h3>
 
                 {/* <button onClick={() => deleteAnnotation(annotation.id)}>Delete</button> */}

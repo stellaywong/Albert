@@ -39,7 +39,11 @@ class CreateAnnotationForm extends React.Component {
         //     console.log(p);
         // }
         // debugger
-        this.props.createAnnotation(takeFromState)  //must call this createTrack (same name as edit track form container) so track_form can take in 'createTrack' to accomodate both
+        const that = this;
+        this.props.createAnnotation(takeFromState).then(() => {
+            // debugger 
+            that.props.clearAnnotation()
+        })  //must call this createTrack (same name as edit track form container) so track_form can take in 'createTrack' to accomodate both
             // .then((action) => this.props.history.push(`/annotations/${action.annotation.id}/`)); // comment this out so we don't redirect to annotations/2
     }
 
@@ -57,13 +61,13 @@ class CreateAnnotationForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
 
                     {/* <label className="create-and-edit-input-field-label">Annotation */}
-                        <input className="create-annotation-input-field"
-                            type="text"
-                            value={this.state.annotation_body}
-                            placeholder="Don't just put the poem in your own words--drop some knowledge!"
-                            onChange={this.updateAnnotationBody.bind(this)}
-                            required
-                        />
+                    <textarea
+                        className="create-annotation-input-field"
+                        value={this.state.annotation_body}
+                        placeholder="Don't just put the poem in your own words--drop some knowledge!"
+                        onChange={this.updateAnnotationBody.bind(this)}
+                        required
+                    ></textarea>
                     {/* </label> */}
 
                     <label className="create-and-edit-input-field-label">

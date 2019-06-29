@@ -64,7 +64,7 @@ class CreateTrackForm extends React.Component {
         const preview = this.state.photoUrl ? <img src={this.state.photoUrl}/> : null;  // if there's a photoUrl, generate a preview. Otherwise, don't.
         return (
             <div className="create-and-edit-track-form-container">
-                <h3 className="create_track_heading">{this.props.formType}</h3>
+                <h3 className="create_track_heading">Create Poem</h3>
                 <form onSubmit={this.handleSubmit}>
 
                     <label className="create-and-edit-input-field-label">Title

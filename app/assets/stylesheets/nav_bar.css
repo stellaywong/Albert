@@ -47,6 +47,7 @@ and it will be taking up the majority of the screen. */
     /* bottom should go to the bottom */
     left: 0;
     /* leftmost edge goes to the edge */
+    z-index: 100;
 }
 
 .footer-bar {

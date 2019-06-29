@@ -19,7 +19,7 @@ class Api::TracksController < ApplicationController
     def create
         # commented out
         @track = Track.new(track_params)
-        debugger
+        # debugger
   
         artist = Artist.find_by(name: params[:track][:artist_name])
         if artist.nil?

@@ -1,7 +1,11 @@
 .top-tracks-index-item {
     height: 78px;
     border-bottom: 1px solid #ccc;
-    width: 100%;
+
+    width: 90vw;
+    left: 75px;
+    margin: 0 auto;
+
     font-size: 1.5em;
     font-weight: 700;
     color: #000000;
@@ -17,6 +21,7 @@
 .top-tracks-numbering {
     margin: 19px 61px 19px 20px;
     width: 13px;
+    margin-left: 100px;
 }
 
 .top-tracks-index-item-image {
@@ -33,6 +38,7 @@
 
 .top-tracks-index-item-artist {
     font-size: 23px;
+    padding-left: 100px;
 }
 
 .top-tracks-index-item-text {
