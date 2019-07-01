@@ -180,6 +180,7 @@ class TrackShow extends React.Component {
          stellaAnnotation.push(
             <span data-offset={previousStep}>
                {before}
+               {/* before could use a key */}
             </span>
             // <span key={j++}>
             //    {before}
@@ -202,6 +203,7 @@ class TrackShow extends React.Component {
          
          previousStep = endAnnotationHere;   
 
+         // could use a key
          if (i === annotationsForOneTrack.length - 1) {
             stellaAnnotation.push(
                <span data-offset={previousStep}>{track.lyrics.slice(previousStep, track.lyrics.length)}</span>
