@@ -38,7 +38,7 @@ class CreateTrackForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let formData = new FormData();               // submission of the photo form to the backend
-        debugger
+        // debugger
         // formData.append('id', this.state.id);
         formData.append('track[title]', this.state.title);
         formData.append('track[lyrics]', this.state.lyrics);

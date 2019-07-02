@@ -64,7 +64,7 @@ class TrackShow extends React.Component {
       let currentSection = parseInt(e.target.dataset.offset);
 
       
-      debugger
+      // debugger
       this.setState({
          /////////////////work on this///////////////////
          start_index: window.getSelection().anchorOffset + currentSection,
@@ -176,7 +176,7 @@ class TrackShow extends React.Component {
          let annotation = annotationsForOneTrack[i];
 
          let before = track.lyrics.slice(previousStep, startAnnotationHere);
-         debugger
+         // debugger
          stellaAnnotation.push(
             <span data-offset={previousStep}>
                {before}
