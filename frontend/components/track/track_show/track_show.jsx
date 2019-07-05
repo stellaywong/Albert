@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CreateAnnotationFormContainer from '../../annotations/annotation_create/create_annotation_container';
 import ShowAnnotation from '../../annotations/annotation_show/annotation_show';
+import Youtube from './youtube';
 
 class TrackShow extends React.Component {
    constructor(props) {
@@ -251,6 +252,21 @@ class TrackShow extends React.Component {
                         // onMouseDown={this.clickHandler}
                         // onMouseUp={this.clickHandler}
                      >
+
+                        {/* {this.state.displayWholeAnnotation === null ? (Youtube) : (<div className="show-annotation-container" style={borderStyle}>
+                           <div className="purple-arrow" style={arrowStyle}>
+                              <svg src="left_arrow.svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.87 21.32">
+                                 <path d="M9.37 21.32L0 10.66 9.37 0l1.5 1.32-8.21 9.34L10.87 20l-1.5 1.32"></path>
+                              </svg>
+                           </div>
+
+                           <div className="show-annotation-form">
+                              {displayWholeAnnotation}
+                           </div>
+                        </div>)} */}
+
+                        {Youtube}
+
                         <p onMouseUp={this.clickHandler} data-offset={previousStep}>
                            {stellaAnnotation}
                         </p>
@@ -267,17 +283,7 @@ class TrackShow extends React.Component {
                      </div>
                   }
 
-                  <div className="show-annotation-container" style={borderStyle}>
-                     <div className="purple-arrow" style={arrowStyle}>
-                        <svg src="left_arrow.svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.87 21.32">
-                           <path d="M9.37 21.32L0 10.66 9.37 0l1.5 1.32-8.21 9.34L10.87 20l-1.5 1.32"></path>
-                        </svg>
-                     </div>
-
-                     <div className="show-annotation-form">
-                        {displayWholeAnnotation}
-                     </div>
-                  </div>
+                 
 
                   {/* create annotation component */}
                   {(this.state.quote.length != 0) ? <CreateAnnotationFormContainer
@@ -290,6 +296,7 @@ class TrackShow extends React.Component {
                   />
                      : null}
             </h2>
+               
             <br></br>
             <Link to="/" className="submit-button">Back to Homepage</Link>
 
