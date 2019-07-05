@@ -61,7 +61,9 @@ class CreateAnnotationForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
 
                     {/* <label className="create-and-edit-input-field-label">Annotation */}
+                    <label className="screenreader-only">Create Annotation Form</label>
                     <label className="screenreader-only">Create Annotation</label>
+                    <label className="screenreader-only">Don't just put the poem in your own words--drop some knowledge!</label>
                     <textarea
                         className="create-annotation-input-field"
                         value={this.state.annotation_body}
@@ -111,7 +113,7 @@ class CreateAnnotationForm extends React.Component {
                         />
                     </label>
 
-                    <label className="screenreader-only">Save This Annotation</label>
+                    <label className="screenreader-only">Save Annotation Button</label>
                     <input
                         type="submit"
                         value="Save"

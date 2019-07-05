@@ -64,11 +64,11 @@ class CreateTrackForm extends React.Component {
         const preview = this.state.photoUrl ? <img src={this.state.photoUrl}/> : null;  // if there's a photoUrl, generate a preview. Otherwise, don't.
         return (
             <div className="create-and-edit-track-form-container">
-                <label className="screenreader-only">Create Poem</label>
+                <label className="screenreader-only">Create Poem Form</label>
                 <h3 className="create_track_heading">Create Poem</h3>
                 <form onSubmit={this.handleSubmit}>
 
-                    <label className="screenreader-only">Title</label>
+                    <label className="screenreader-only">Poem Title</label>
                     <label className="create-and-edit-input-field-label">Title
                         <input className="create-and-edit-input-field"
                             type="text"
@@ -80,7 +80,7 @@ class CreateTrackForm extends React.Component {
                     </label>
 
                     <br></br>
-                    <label className="screenreader-only">Poem's Words Here</label>                    
+                    <label className="screenreader-only">Poem Words Here</label>                    
                     <label className="create-and-edit-input-field-label">Work
                         <textarea className="create-and-edit-lyrics-input-field"
                             value={this.state.lyrics}
@@ -98,7 +98,7 @@ class CreateTrackForm extends React.Component {
                             onChange={this.update('album_title')}
                         />
 
-                        <label className="screenreader-only">Writer</label>
+                        <label className="screenreader-only">Poem Writer First and Last Name</label>
                         <label className="create-and-edit-input-field-label">Writer
                         <input className="create-and-edit-input-field"
                                 type="text"
@@ -126,7 +126,7 @@ class CreateTrackForm extends React.Component {
                             >
                         </input>
 
-                        <label className="screenreader-only">Image preview placed here</label>
+                        <label className="screenreader-only">Image preview displayed here</label>
                         <div>{preview}</div>
                     </label>
 

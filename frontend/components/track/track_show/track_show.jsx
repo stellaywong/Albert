@@ -230,14 +230,20 @@ class TrackShow extends React.Component {
             <div className="track-show-whole-cover-container">
                <img src={track.photoUrl} alt="" className="track-image-show-big-cover"/>
                <img src={track.photoUrl} alt="" className="track-image-show-small-cover"/>
+               <label className="screenreader-only">{track.title}</label>
                <h2 className="track-show-title">{track.title}</h2>
+               
+               {album ? <label className="screenreader-only">Poem's Collection: {album.title}</label> : null}
                {album ? <h3 className="track-show-album">{album.title}</h3> : null}
+               
                {artist ? <h3 className="track-show-artist">{artist.name}</h3> : null}
+               {artist ? <label className="screenreader-only">Poet: {artist.name}</label> : null}
             </div>
 
 
             <div className="track-lyrics-whole-container">
                <h3 className="edit-button-container">
+                  <label className="screenreader-only">Edit the Poem</label>
                   {logged_in_edit_track_button}
                </h3> 
 
@@ -265,7 +271,7 @@ class TrackShow extends React.Component {
                            </div>
                         </div>)} */}
 
-                        {Youtube}
+      
 
                         <p onMouseUp={this.clickHandler} data-offset={previousStep}>
                            {stellaAnnotation}
@@ -294,11 +300,19 @@ class TrackShow extends React.Component {
                      quote={this.state.quote}
                      clearAnnotation = {this.clearAnnotation}
                   />
-                     : null}
+                     : 
+                     <>
+                        {/* <label className="screenreader-only">Play a Recording of the Poem Button</label> */}
+                        <Youtube />
+                        <p>Test text :)</p>
+                     </>
+                  }
             </h2>
                
             <br></br>
-            <Link to="/" className="submit-button">Back to Homepage</Link>
+
+            <label className="screenreader-only">Back to Homepage Button</label>
+            <Link to="/" className="back-to-homepage-button">Back to Homepage</Link>
 
             </div>
          </div>

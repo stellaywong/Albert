@@ -9,6 +9,9 @@ class AnnotationShow extends React.Component {
 
         return (
             <>
+                <label className="screenreader-only">Show Annotation Form</label>
+                <label className="screenreader-only">{annotation.annotation_body}</label>
+
                 <h3 className="annotation-body">{annotation.annotation_body}</h3>
                 <h3>{annotator}</h3>
 

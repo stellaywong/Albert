@@ -43,10 +43,12 @@ class EditTrackForm extends React.Component {
     render() {
         return (
             <div className="create-and-edit-track-form-container">
+                <label className="screenreader-only">Edit Poem Form</label>
                 <h3 className="create_track_heading">{this.props.formType}</h3>
                 <form onSubmit={this.handleSubmit}>
 
-                    <label className="create-and-edit-input-field-label">Lyrics
+                    <label className="screenreader-only">Poem Words Here</label>
+                    <label className="create-and-edit-input-field-label">Work
                         <textarea className="create-and-edit-lyrics-input-field"
                             value={this.state.lyrics}
                             onChange={this.update('lyrics')} 
@@ -55,6 +57,7 @@ class EditTrackForm extends React.Component {
                     </label>
 
                     <div>
+                        <label className="screenreader-only">Click Submit Button</label>
                         <input
                             type="submit" 
                             value={this.props.formType} 
