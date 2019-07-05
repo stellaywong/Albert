@@ -302,9 +302,9 @@ class TrackShow extends React.Component {
                   />
                      : 
                      <>
-                        {/* <label className="screenreader-only">Play a Recording of the Poem Button</label> */}
-                        <Youtube />
-                        <p>Test text :)</p>
+                        <label className="screenreader-only">Play a Recording of the Poem Button</label>
+                        
+                        <p>Listen to a recording of the poem: <br></br> <Youtube videoId={track.youtube_url}/></p>
                      </>
                   }
             </h2>

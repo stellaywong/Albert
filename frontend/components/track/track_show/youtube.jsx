@@ -25,7 +25,9 @@ class Youtube extends React.Component {
         this.player = new YT.Player('player', {
             height: '390',
             width: '640',
-            videoId: 'M7lc1UVf-VE',
+            videoId: this.props.videoId,        // changing THIS KEY changes the link displayed.
+                                                // cut between the first "=" equal and the first "&" ampersand
+                                                // truncate the url inside rails, then save.
             events: {
                 'onReady': this.onPlayerReady,
                 'onStateChange': this.onPlayerStateChange
@@ -52,7 +54,10 @@ class Youtube extends React.Component {
     
 
     render() { 
+        // // return <audio src="http://media.sas.upenn.edu/pennsound/groups/Close-Listening/Armantrout-Rae_Intrvw-w-Charles-Bernstein_WPS1_NY_5-10-06.mp3" width="640" height="390"></audio>
         return <div id="player">abcdefg</div>
+
+        
         // this single element gets rendered on the initial render, 
         // but the javascript runs later and
         // injects the youtube video into it

@@ -21,5 +21,21 @@ class Track < ApplicationRecord
     foreign_key: :track_id,
     class_name: :Annotation
 
+    # make a method for tracks, to be able to truncate the url
+    def self.truncate_youtube_url(youtube_string)
+        begin_char= "v="
+        end_char = "&"
+
+        begin_index = youtube_string.index(begin_char) + 2
+
+        if youtube_string.include?(end_char)
+            end_index = youtube_string.index(end_char)
+        else
+            end_index = youtube_string.length
+        end
+
+        return youtube_string[begin_index...end_index]
+    end
+
     has_one_attached :photo
 end

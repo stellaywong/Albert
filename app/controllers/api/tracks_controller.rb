@@ -9,7 +9,7 @@ class Api::TracksController < ApplicationController
     def show
         # debugger
         # p add_track_debugger
-        @track = Track.find(params[:id])
+        @track = Track.find(params[:id])    #.where will give you an array; .find will give you the first one it finds
         @artist = @track.artist             #this instead of Track.all: it's less data so you spend less time in your backend   
         @annotations = @track.annotations   #wonderful annotations object
         # a track belongs to an artist
@@ -48,7 +48,10 @@ class Api::TracksController < ApplicationController
         # @album = @track.album.create!(album_title)
         # @artist = @album.artist.create!(artist_name)
 
-
+        # truncated_youtube_url = Track.truncate_youtube_url(@track.youtube_url)
+        # overwrite the saved variable: save the short version instead of the long version
+        @track.youtube_url = Track.truncate_youtube_url(@track.youtube_url)
+        debugger
 
         if @track.save
             # debugger
@@ -84,6 +87,6 @@ class Api::TracksController < ApplicationController
 
     private
     def track_params
-        params.require(:track).permit(:id, :title, :lyrics, :artist_id, :album_id, :uploader_id, :photo)
+        params.require(:track).permit(:id, :title, :lyrics, :artist_id, :album_id, :uploader_id, :photo, :youtube_url)
     end
 end

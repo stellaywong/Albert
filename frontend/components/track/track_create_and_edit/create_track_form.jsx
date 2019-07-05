@@ -14,7 +14,8 @@ class CreateTrackForm extends React.Component {
             artist_name: "",
             uploader_id: this.props.currentUserId,
             photoFile: null,
-            photoUrl: null 
+            photoUrl: null,
+            youtube_url: "",
         };
     }
 
@@ -45,6 +46,7 @@ class CreateTrackForm extends React.Component {
         formData.append('track[album_title]', this.state.album_title);
         formData.append('track[artist_name]', this.state.artist_name);
         formData.append('track[uploader_id]',this.props.currentUserId);
+        formData.append('track[youtube_url]', this.state.youtube_url);
         
         if (this.state.photoFile) {
             formData.append('track[photo]', this.state.photoFile)
@@ -128,6 +130,15 @@ class CreateTrackForm extends React.Component {
 
                         <label className="screenreader-only">Image preview displayed here</label>
                         <div>{preview}</div>
+                    </label>
+
+                    <label className="screenreader-only">Upload a Youtube Video or Recording Here</label>
+                    <label className="create-and-edit-input-field-label">Submit Link of Recording
+                        <input className="create-and-edit-input-field"
+                            type="text"
+                            value={this.state.youtube_url}
+                            onChange={this.update('youtube_url')}
+                        />
                     </label>
 
                     <label className="screenreader-only">Click submit button</label>
