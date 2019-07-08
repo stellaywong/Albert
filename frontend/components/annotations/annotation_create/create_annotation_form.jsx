@@ -12,6 +12,7 @@ class CreateAnnotationForm extends React.Component {
             end_index: this.props.end_index,
             annotation_body: "",
             annotator_id: this.props.currentUserId,
+            error: false,
             // annotation only gets its own id after hitting the database
         };
         // debugger
@@ -24,7 +25,14 @@ class CreateAnnotationForm extends React.Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault();     // prevent automatic refresh
+
+        if (!this.props.currentUserId) {
+            this.setState({
+                error: true,
+            })
+            return;             // exit so it doesn't keep looking down
+        }
 
         const takeFromState = {
             annotation_body: this.state.annotation_body,
@@ -113,6 +121,11 @@ class CreateAnnotationForm extends React.Component {
                         />
                     </label>
 
+                    {/* custom error message to log in before making annotations */}
+                    {(this.state.error === true) ?
+                        <><h2 className="error-text-message"> Please log in before creating annotation! </h2><br></br></>
+                        : null
+                    }
                     <label className="screenreader-only">Save Annotation Button</label>
                     <input
                         type="submit"

@@ -99,24 +99,25 @@ class CreateTrackForm extends React.Component {
                             value={this.state.album_title}       
                             onChange={this.update('album_title')}
                         />
+                    </label>
+                    <br></br>
 
-                        <label className="screenreader-only">Poem Writer First and Last Name</label>
-                        <label className="create-and-edit-input-field-label">Writer
-                        <input className="create-and-edit-input-field"
-                                type="text"
-                                value={this.state.artist_name}
-                                onChange={this.update('artist_name')}
-                            />
-                        </label>
-
-                        <label className="create-and-edit-input-field-label" />
-                        <input className="hide-this-field"
-                            type="integer"
-                            value={this.state.uploader_id}
-                            onChange={this.update('uploader_id')}
+                    <label className="screenreader-only">Poem Writer First and Last Name</label>
+                    <label className="create-and-edit-input-field-label">Writer
+                    <input className="create-and-edit-input-field"
+                            type="text"
+                            value={this.state.artist_name}
+                            onChange={this.update('artist_name')}
                         />
                     </label>
 
+                    <label className="create-and-edit-input-field-label" />
+                    <input className="hide-this-field"
+                        type="integer"
+                        value={this.state.uploader_id}
+                        onChange={this.update('uploader_id')}
+                    />
+                    
                     <br></br>
                     <label className="screenreader-only">Submit image for poem</label>
                     <label className="create-and-edit-input-field-label">Submit image for poem
@@ -140,6 +141,7 @@ class CreateTrackForm extends React.Component {
                             onChange={this.update('youtube_url')}
                         />
                     </label>
+                    <br></br>
 
                     <label className="screenreader-only">Click submit button</label>
                     <input
