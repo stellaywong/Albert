@@ -12,7 +12,8 @@ class TrackShow extends React.Component {
          start_index: "",
          end_index: "",
          annotation_body: "",
-         displayWholeAnnotation: null
+         displayWholeAnnotation: null,
+         displayAnnotator: null
       };
 
       this.lyrics = React.createRef();    // using React reference to snag lyrics object -- otherwise, cannot save object within tags to a variable
@@ -29,7 +30,7 @@ class TrackShow extends React.Component {
          this.props.fetchArtist(this.props.track.artist_id);
          this.props.fetchAlbum(this.props.track.album_id);
          // debugger
-         this.props.fetchAnnotations();
+         this.props.fetchAnnotations(this.props.match.params.trackId);
       });
       //needs to be a thunk action creator -- must return a promise
    }
@@ -51,9 +52,10 @@ class TrackShow extends React.Component {
       this.setState({ quote: "" })
    }
  
-   setAnnotation(annotation){
+   setAnnotation(annotation, annotator){
       // debugger
       this.setState({ displayWholeAnnotation: annotation});
+      this.setState({ displayAnnotator: annotator });
    }
 
    clickHandler(e) {    // create new function that receives event
@@ -93,6 +95,7 @@ class TrackShow extends React.Component {
 
    render() {    //need to put in a render, otherwise you're just returning in a class   
    // debugger is where you can look at what props is
+
 
    const { track, artist, album, annotations_array } = this.props;    //refactoring to be drier
    if (!track) {
@@ -184,7 +187,9 @@ class TrackShow extends React.Component {
                <a key={j++}
                   unselectable = "on"
                   onClick={() => {
-                     this.setAnnotation(annotationsForOneTrack[i])
+                     this.setAnnotation(annotationsForOneTrack[i], 
+                                       this.props.annotators[annotation.annotator_id]) //here we indexing into the annotators object (created in the container)
+                                                                                       // by the annotator id we took from the annotation
                   }}
                className="annotation-highlighted"
                >
@@ -209,38 +214,40 @@ class TrackShow extends React.Component {
       }
 
       let sidebarStuff = null;
-      // display the annotation, if we click on an annotated quote
-      if (this.state.displayWholeAnnotation ) {
-         sidebarStuff = <ShowAnnotation
-            annotation={this.state.displayWholeAnnotation}
-            annotator={this.props.annotator}
-         />
-      } 
-      // if there is something clicked, render create annotation form component
-      else if (this.state.quote.length != 0) {
-         sidebarStuff = <CreateAnnotationFormContainer
-         track={this.props.track}
-         annotator={this.props.currentUser}
-         start_index={this.state.start_index}
-         end_index={this.state.end_index}
-         quote={this.state.quote}
-         clearAnnotation={this.clearAnnotation}
-         />
-      } 
-      // if the poem has no annotations, or the user has not yet tried to make one,
-      // the audio/video recording of the poem is available.
-      // if the uploading user didn't add a youtube link for a recording, don't render the video player (because it'll show a broken link)
-      // if this conditional goes first, the condition is checked before the others, and nothing else will happen.
-      // so the other things can get checked first.
-      else if (track.youtube_url !== null && track.youtube_url !== undefined) {
-         sidebarStuff = 
-         <div className="youtube-api-box">
-            <label className="screenreader-only">Play a Recording of the Poem Button</label>
-            <p>POEM RECORDING: <br></br> </p>
-            <Youtube videoId={track.youtube_url} />
-         </div>
-         ;
-      }
+         // display the annotation, if we click on an annotated quote
+         if (this.state.displayWholeAnnotation ) {
+            sidebarStuff = <ShowAnnotation
+               // the annotation body of the annotation
+               annotation={this.state.displayWholeAnnotation}
+               // the username of the annotator
+               annotator={this.state.displayAnnotator}
+            />
+         } 
+         // if there is something clicked, render create annotation form component
+         else if (this.state.quote.length != 0) {
+            sidebarStuff = <CreateAnnotationFormContainer
+            track={this.props.track}
+            annotator={this.props.currentUser}
+            start_index={this.state.start_index}
+            end_index={this.state.end_index}
+            quote={this.state.quote}
+            clearAnnotation={this.clearAnnotation}
+            />
+         } 
+         // if the poem has no annotations, or the user has not yet tried to make one,
+         // the audio/video recording of the poem is available.
+         // if the uploading user didn't add a youtube link for a recording, don't render the video player (because it'll show a broken link)
+         // if this conditional goes first, the condition is checked before the others, and nothing else will happen.
+         // so the other things can get checked first.
+         else if (track.youtube_url !== null && track.youtube_url !== undefined) {
+            sidebarStuff = 
+            <div className="youtube-api-box">
+               <label className="screenreader-only">Play a Recording of the Poem Button</label>
+               <p>POEM RECORDING: <br></br> </p>
+               <Youtube videoId={track.youtube_url} />
+            </div>
+            ;
+         }
       
       const borderStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ borderLeft: '3.75px solid rgb(153, 167, 238)', }) : ({ border: 'none', })
 

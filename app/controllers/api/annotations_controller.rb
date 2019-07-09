@@ -1,6 +1,8 @@
 class Api::AnnotationsController < ApplicationController
     def index
-        @annotations = Annotation.all
+        # @annotations = Annotation.includes(:annotator).all
+        @annotations = Track.find(params[:trackId]).annotations.includes(:annotator)
+
     end
 
     def show

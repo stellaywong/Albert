@@ -4,10 +4,11 @@ export const RECEIVE_ANNOTATIONS = "RECEIVE_ANNOTATIONS";
 export const RECEIVE_ANNOTATION = "RECEIVE_ANNOTATION";
 export const REMOVE_ANNOTATION = "REMOVE_ANNOTATION";
 
-const receiveAnnotations = (annotations) => {
+const receiveAnnotations = ({annotations, users}) => {
     return ({
         type: RECEIVE_ANNOTATIONS,
-        annotations
+        annotations,
+        users
     })
 }
 
@@ -25,11 +26,11 @@ const removeAnnotation = (annotation) => {
     })
 }
 
-export const fetchAnnotations = () => {
+export const fetchAnnotations = (trackId) => {
     return (dispatch) => {
-        return AnnotationApiUtil.fetchAnnotations().then((promiseObject) => {
+        return AnnotationApiUtil.fetchAnnotations(trackId).then((payload) => {
             // debugger
-            return dispatch(receiveAnnotations(promiseObject));
+            return dispatch(receiveAnnotations(payload));
         })
     }
 }

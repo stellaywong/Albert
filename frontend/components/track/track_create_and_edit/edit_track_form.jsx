@@ -44,7 +44,7 @@ class EditTrackForm extends React.Component {
         return (
             <div className="create-and-edit-track-form-container">
                 <label className="screenreader-only">Edit Poem Form</label>
-                <h3 className="create_track_heading">{this.props.formType}</h3>
+                <h3 className="create_track_heading">{"Update Poem"}</h3>
                 <form onSubmit={this.handleSubmit}>
 
                     <label className="screenreader-only">Poem Words Here</label>
@@ -60,7 +60,7 @@ class EditTrackForm extends React.Component {
                         <label className="screenreader-only">Click Submit Button</label>
                         <input
                             type="submit" 
-                            value={this.props.formType} 
+                            value={"Edit Poem"} 
                             className="submit-form-button">
                         </input>
                     </div>

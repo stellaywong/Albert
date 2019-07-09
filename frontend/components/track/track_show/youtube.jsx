@@ -22,8 +22,8 @@ class Youtube extends React.Component {
 
     onYoutubeIframeAPIReady() {
         this.player = new YT.Player('player', {
-            height: '390',
-            width: '640',
+            height: '240px',
+            width: '100%',
             videoId: this.props.videoId,        // changing THIS KEY changes the link displayed.
                                                 // cut between the first "=" equal and the first "&" ampersand
                                                 // truncate the url inside rails, then save.

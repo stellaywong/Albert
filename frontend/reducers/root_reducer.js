@@ -11,5 +11,6 @@ export default combineReducers({
     entities: entitiesReducer,  // tracksReducer etc. go into entitiesReducer, not into rootReducer level
     errors: errorsReducer,
     ui: uiReducer,              // add for modal
-    annotations: annotationsReducer,
 });
+
+    // annotations: annotationsReducer, // this is extra -- you'd have an annotations slice outside of your entities group of slices and annotations gets doubled.
