@@ -232,9 +232,9 @@ class TrackShow extends React.Component {
       // so the other things can get checked first.
       else if (track.youtube_url !== null && track.youtube_url !== undefined) {
          sidebarStuff = 
-         <div>
+         <div className="youtube-api-box">
             <label className="screenreader-only">Play a Recording of the Poem Button</label>
-            <p>Listen to a recording of the poem: <br></br> </p>
+            <p>POEM RECORDING: <br></br> </p>
             <Youtube videoId={track.youtube_url} />
          </div>
          ;

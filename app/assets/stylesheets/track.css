@@ -17,7 +17,7 @@
 .track-image-show-small-cover {
     width: 220px;
     height: 220px;
-    border: 2px solid #9A9A9A;
+    border: 2px solid #9a9a9a;
     position: absolute;
     left: 220px;
     top: 32px;
@@ -85,4 +85,9 @@
 
 .lyrics-and-annotations {
     display: flex;
+}
+
+.youtube-api-box {
+    padding: 20px;
+    border: 5px solid #f7f7f7;
 }
