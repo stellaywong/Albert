@@ -12,6 +12,7 @@ class CreateAnnotationForm extends React.Component {
             end_index: this.props.end_index,
             annotation_body: "",
             annotator_id: this.props.currentUserId,
+            error: false,
             // annotation only gets its own id after hitting the database
         };
         // debugger
@@ -24,7 +25,14 @@ class CreateAnnotationForm extends React.Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault();
+        e.preventDefault();     // prevent automatic refresh
+
+        if (!this.props.currentUserId) {
+            this.setState({
+                error: true,
+            })
+            return;             // exit so it doesn't keep looking down
+        }
 
         const takeFromState = {
             annotation_body: this.state.annotation_body,
@@ -61,6 +69,9 @@ class CreateAnnotationForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
 
                     {/* <label className="create-and-edit-input-field-label">Annotation */}
+                    <label className="screenreader-only">Create Annotation Form</label>
+                    <label className="screenreader-only">Create Annotation</label>
+                    <label className="screenreader-only">Don't just put the poem in your own words--drop some knowledge!</label>
                     <textarea
                         className="create-annotation-input-field"
                         value={this.state.annotation_body}
@@ -110,6 +121,16 @@ class CreateAnnotationForm extends React.Component {
                         />
                     </label>
 
+                    {/* custom error message to log in before making annotations, otherwise do nothing */}
+                    {(this.state.error === true) ?
+                        <>
+                            <h2 className="screenreader-only"> Please sign in before creating annotation! </h2>
+                            <h2 className="error-text-message"> Please sign in before creating annotation! </h2>
+                            <br></br>
+                        </>
+                        : null
+                    }
+                    <label className="screenreader-only">Save Annotation Button</label>
                     <input
                         type="submit"
                         value="Save"

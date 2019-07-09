@@ -14,7 +14,8 @@ class CreateTrackForm extends React.Component {
             artist_name: "",
             uploader_id: this.props.currentUserId,
             photoFile: null,
-            photoUrl: null 
+            photoUrl: null,
+            youtube_url: "",
         };
     }
 
@@ -45,6 +46,7 @@ class CreateTrackForm extends React.Component {
         formData.append('track[album_title]', this.state.album_title);
         formData.append('track[artist_name]', this.state.artist_name);
         formData.append('track[uploader_id]',this.props.currentUserId);
+        formData.append('track[youtube_url]', this.state.youtube_url);
         
         if (this.state.photoFile) {
             formData.append('track[photo]', this.state.photoFile)
@@ -64,9 +66,11 @@ class CreateTrackForm extends React.Component {
         const preview = this.state.photoUrl ? <img src={this.state.photoUrl}/> : null;  // if there's a photoUrl, generate a preview. Otherwise, don't.
         return (
             <div className="create-and-edit-track-form-container">
+                <label className="screenreader-only">Create Poem Form</label>
                 <h3 className="create_track_heading">Create Poem</h3>
                 <form onSubmit={this.handleSubmit}>
 
+                    <label className="screenreader-only">Poem Title</label>
                     <label className="create-and-edit-input-field-label">Title
                         <input className="create-and-edit-input-field"
                             type="text"
@@ -78,6 +82,7 @@ class CreateTrackForm extends React.Component {
                     </label>
 
                     <br></br>
+                    <label className="screenreader-only">Poem Words Here</label>                    
                     <label className="create-and-edit-input-field-label">Work
                         <textarea className="create-and-edit-lyrics-input-field"
                             value={this.state.lyrics}
@@ -87,30 +92,34 @@ class CreateTrackForm extends React.Component {
                     </label>
                     <br></br>
 
+                    <label className="screenreader-only">Poem Collection</label>
                     <label className="create-and-edit-input-field-label">Collection
                         <input className="create-and-edit-input-field"
                             type="text"
                             value={this.state.album_title}       
                             onChange={this.update('album_title')}
                         />
+                    </label>
+                    <br></br>
 
-                        <label className="create-and-edit-input-field-label">Writer
-                        <input className="create-and-edit-input-field"
-                                type="text"
-                                value={this.state.artist_name}
-                                onChange={this.update('artist_name')}
-                            />
-                        </label>
-
-                        <label className="create-and-edit-input-field-label" />
-                        <input className="hide-this-field"
-                            type="integer"
-                            value={this.state.uploader_id}
-                            onChange={this.update('uploader_id')}
+                    <label className="screenreader-only">Poem Writer First and Last Name</label>
+                    <label className="create-and-edit-input-field-label">Writer
+                    <input className="create-and-edit-input-field"
+                            type="text"
+                            value={this.state.artist_name}
+                            onChange={this.update('artist_name')}
                         />
                     </label>
 
+                    <label className="create-and-edit-input-field-label" />
+                    <input className="hide-this-field"
+                        type="integer"
+                        value={this.state.uploader_id}
+                        onChange={this.update('uploader_id')}
+                    />
+                    
                     <br></br>
+                    <label className="screenreader-only">Submit image for poem</label>
                     <label className="create-and-edit-input-field-label">Submit image for poem
                     <br></br>
                         <input 
@@ -120,9 +129,21 @@ class CreateTrackForm extends React.Component {
                             >
                         </input>
 
+                        <label className="screenreader-only">Image preview displayed here</label>
                         <div>{preview}</div>
                     </label>
 
+                    <label className="screenreader-only">Upload a Youtube Video or Recording Here</label>
+                    <label className="create-and-edit-input-field-label">Submit Link of Recording
+                        <input className="create-and-edit-input-field"
+                            type="text"
+                            value={this.state.youtube_url}
+                            onChange={this.update('youtube_url')}
+                        />
+                    </label>
+                    <br></br>
+
+                    <label className="screenreader-only">Click submit button</label>
                     <input
                         type="submit"
                         value={this.props.formType}

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CreateAnnotationFormContainer from '../../annotations/annotation_create/create_annotation_container';
 import ShowAnnotation from '../../annotations/annotation_show/annotation_show';
+import Youtube from './youtube';
 
 class TrackShow extends React.Component {
    constructor(props) {
@@ -22,10 +23,8 @@ class TrackShow extends React.Component {
    }
 
    componentDidMount() {
-      // debugger
       // p add_track_debugger
       // debugger waterfall for trackShow
-      // debugger
       this.props.fetchTrack(this.props.match.params.trackId).then(()=> {
          this.props.fetchArtist(this.props.track.artist_id);
          this.props.fetchAlbum(this.props.track.album_id);
@@ -42,7 +41,8 @@ class TrackShow extends React.Component {
    // your app will not know the user is trying to access a new track
    componentDidUpdate(prevProps) {
       // debugger
-      if (prevProps.track && (prevProps.track.id != this.props.match.params.trackId)) {   //debug: "prevProps.track &&" ensures that you can refresh the page without breaking it
+      if (prevProps.track && (prevProps.track.id != this.props.match.params.trackId)) {   
+         //debug: "prevProps.track &&" ensures that you can refresh the page without breaking it
          this.props.fetchTrack(this.props.match.params.trackId);
       }
    }
@@ -63,13 +63,10 @@ class TrackShow extends React.Component {
       // to know which object we're currently looking at
       let currentSection = parseInt(e.target.dataset.offset);
 
-      
       // debugger
-      this.setState({
-         /////////////////work on this///////////////////
+      this.setState({      //allows the user to click down and release mouse to create annotation
          start_index: window.getSelection().anchorOffset + currentSection,
          end_index: window.getSelection().focusOffset + currentSection,
-         /////////////////work on this///////////////////
          quote: window.getSelection().toString(),
          // displayWholeAnnotation: "blank",
       })
@@ -84,7 +81,6 @@ class TrackShow extends React.Component {
       }
 
       // debugger
-
       // return thisIsTheState;
 
       // const start_index = window.getSelection().anchorOffset;
@@ -96,15 +92,13 @@ class TrackShow extends React.Component {
    }
 
    render() {    //need to put in a render, otherwise you're just returning in a class   
-   // debugger
-   //  debugger is where you can look at what props is
+   // debugger is where you can look at what props is
 
    const { track, artist, album, annotations_array } = this.props;    //refactoring to be drier
    if (!track) {
       return <div>Loading...</div>;
    }
-   // debugger
-// debugging for add-and-create-track
+   // debugging for add-and-create-track
 
       const logged_in_edit_track_button = this.props.currentUser ? <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link> : null
 
@@ -161,13 +155,14 @@ class TrackShow extends React.Component {
       // 2. go into track.lyrics. every time there's an annotation, put: 
       //    </p> <span>annotation</span> <p>
 
-      //       html_safe
-// build an array of jsx objects stacked on top of each other; they will render in order!
+      //    html_safe so the annotation can't be annotated over, in an overlap
+      
+      // build an array of jsx objects stacked on top of each other; they will render in order!
       let stellaAnnotation = [];
       let previousStep = 0;
       let j=0;
 
-      // for (const annotation of annotationForOneTrack)
+      // for (const annotation of annotationForOneTrack) -- suggestion
 
       for (let i = 0; i < annotationsForOneTrack.length; i++){
 
@@ -182,9 +177,6 @@ class TrackShow extends React.Component {
                {before}
                {/* before could use a key */}
             </span>
-            // <span key={j++}>
-            //    {before}
-            // </span>
          );
 
          {/* create a separate state just for TrackShow */}
@@ -216,12 +208,40 @@ class TrackShow extends React.Component {
          console.log(stellaAnnotation)
       }
 
-      const displayWholeAnnotation = this.state.displayWholeAnnotation ? 
-               <ShowAnnotation 
-                  annotation={this.state.displayWholeAnnotation} 
-                  annotator={this.props.annotator}
-               /> : null;
-
+      let sidebarStuff = null;
+      // display the annotation, if we click on an annotated quote
+      if (this.state.displayWholeAnnotation ) {
+         sidebarStuff = <ShowAnnotation
+            annotation={this.state.displayWholeAnnotation}
+            annotator={this.props.annotator}
+         />
+      } 
+      // if there is something clicked, render create annotation form component
+      else if (this.state.quote.length != 0) {
+         sidebarStuff = <CreateAnnotationFormContainer
+         track={this.props.track}
+         annotator={this.props.currentUser}
+         start_index={this.state.start_index}
+         end_index={this.state.end_index}
+         quote={this.state.quote}
+         clearAnnotation={this.clearAnnotation}
+         />
+      } 
+      // if the poem has no annotations, or the user has not yet tried to make one,
+      // the audio/video recording of the poem is available.
+      // if the uploading user didn't add a youtube link for a recording, don't render the video player (because it'll show a broken link)
+      // if this conditional goes first, the condition is checked before the others, and nothing else will happen.
+      // so the other things can get checked first.
+      else if (track.youtube_url !== null && track.youtube_url !== undefined) {
+         sidebarStuff = 
+         <div className="youtube-api-box">
+            <label className="screenreader-only">Play a Recording of the Poem Button</label>
+            <p>POEM RECORDING: <br></br> </p>
+            <Youtube videoId={track.youtube_url} />
+         </div>
+         ;
+      }
+      
       const borderStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ borderLeft: '3.75px solid rgb(153, 167, 238)', }) : ({ border: 'none', })
 
       const arrowStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ display: 'block', }) : ({ display: 'none', }) 
@@ -231,14 +251,20 @@ class TrackShow extends React.Component {
             <div className="track-show-whole-cover-container">
                <img src={track.photoUrl} alt="" className="track-image-show-big-cover"/>
                <img src={track.photoUrl} alt="" className="track-image-show-small-cover"/>
+               <label className="screenreader-only">{track.title}</label>
                <h2 className="track-show-title">{track.title}</h2>
+               
+               {album ? <label className="screenreader-only">Poem's Collection: {album.title}</label> : null}
                {album ? <h3 className="track-show-album">{album.title}</h3> : null}
+               
                {artist ? <h3 className="track-show-artist">{artist.name}</h3> : null}
+               {artist ? <label className="screenreader-only">Poet: {artist.name}</label> : null}
             </div>
 
 
             <div className="track-lyrics-whole-container">
                <h3 className="edit-button-container">
+                  <label className="screenreader-only">Edit the Poem</label>
                   {logged_in_edit_track_button}
                </h3> 
 
@@ -253,13 +279,19 @@ class TrackShow extends React.Component {
                         // onMouseDown={this.clickHandler}
                         // onMouseUp={this.clickHandler}
                      >
+
+                        {/* {this.state.displayWholeAnnotation === null ? (Youtube) : (<div className="show-annotation-container" style={borderStyle}>
+                           <div className="purple-arrow" style={arrowStyle}>
+                              <svg src="left_arrow.svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.87 21.32">
+                                 <path d="M9.37 21.32L0 10.66 9.37 0l1.5 1.32-8.21 9.34L10.87 20l-1.5 1.32"></path>
+                              </svg>
+                           </div>
+
+                        </div>)} */}
+
                         <p onMouseUp={this.clickHandler} data-offset={previousStep}>
                            {stellaAnnotation}
                         </p>
-                        {/* {stellaAnnotation} */}
-                        {/* {giveTagsToAnnotations} */}
-                        {/* <p>{track.lyrics}</p> */}
-                        {/* {annotation_bodies} */}
                      </div>
                      : <div className="track-lyrics" ref={this.lyrics}
                         // onClick={this.clickHandler}
@@ -269,31 +301,15 @@ class TrackShow extends React.Component {
                      </div>
                   }
 
-                  <div className="show-annotation-container" style={borderStyle}>
-                     <div className="purple-arrow" style={arrowStyle}>
-                        <svg src="left_arrow.svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.87 21.32">
-                           <path d="M9.37 21.32L0 10.66 9.37 0l1.5 1.32-8.21 9.34L10.87 20l-1.5 1.32"></path>
-                        </svg>
-                     </div>
-
-                     <div className="show-annotation-form">
-                        {displayWholeAnnotation}
-                     </div>
+                  <div className="show-annotation-form">
+                     {sidebarStuff}
                   </div>
-
-                  {/* create annotation component */}
-                  {(this.state.quote.length != 0) ? <CreateAnnotationFormContainer
-                     track={this.props.track}
-                     annotator={this.props.currentUser}
-                     start_index={this.state.start_index}
-                     end_index={this.state.end_index}
-                     quote={this.state.quote}
-                     clearAnnotation = {this.clearAnnotation}
-                  />
-                     : null}
             </h2>
+               
             <br></br>
-            <Link to="/" className="submit-button">Back to Homepage</Link>
+
+            <label className="screenreader-only">Back to Homepage Button</label>
+            <Link to="/" className="back-to-homepage-button">Back to Homepage</Link>
 
             </div>
          </div>

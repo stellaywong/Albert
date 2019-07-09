@@ -4,7 +4,7 @@ import CreateTrackForm from './create_track_form';
 import { createTrack } from '../../../actions/track_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    const track = { title: '', lyrics: '' };
+    const track = { title: '', lyrics: '', youtube_url: '' };
     const formType = 'Add Poem';
     const currentUserId = state.session.id;
 

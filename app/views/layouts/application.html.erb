@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ヾ(｡ꏿ﹏ꏿ)ﾉﾞ RHYMESTEIN</title>
+    
+    <title>RHYMESTEIN</title>
+    <%#adding a favicon to a rails app is different: use this format%>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%# these following two lines allow the youtube player to execute before anything else on the page%>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://kit.fontawesome.com/525e69fa68.js"></script>
+    
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
