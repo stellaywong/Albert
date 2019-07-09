@@ -121,7 +121,7 @@ class CreateAnnotationForm extends React.Component {
                         />
                     </label>
 
-                    {/* custom error message to log in before making annotations, otherwise do nothing */}
+                    {/* custom error message to log in before making annotations, otherwise do nothing */} 
                     {(this.state.error === true) ?
                         <>
                             <h2 className="screenreader-only"> Please sign in before creating annotation! </h2>
