@@ -146,3 +146,12 @@ track10.save!
 # trackphoto4 = open("https://rhymestein-seed.s3.amazonaws.com/alvinzablan.jpg")
 # track4.photo.attach(io: trackphoto4, filename: "alvinzablan.jpg")
 # track4.save!
+
+# artist4 = Artist.create(name: "az")
+# album4 = artist4.albums.create(title: 'Alvin Collection')
+# # fills in the artist based on the association
+# track4 = album4.tracks.create(title: "App Academy", lyrics: "Hey\nProgrammers", uploader_id: demouser.id)
+# track4.artist_id = artist4.id
+# trackphoto4 = open("https://rhymestein-seed.s3.amazonaws.com/alvinzablan.jpg")
+# track4.photo.attach(io: trackphoto4, filename: "alvinzablan.jpg")
+# track4.save!
