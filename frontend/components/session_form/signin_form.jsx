@@ -77,6 +77,7 @@ class SigninForm extends React.Component {
         }
 
         const inputs = <>
+            <label className="screenreader-only">Demo User Sign In Button</label>
             <a onClick={() => this.signinDemo()} className="demo-user-button">Demo User Sign In</a>
 
             <label className="screenreader-only">Username</label>
@@ -130,7 +131,7 @@ class SigninForm extends React.Component {
                     <button onClick={() => {
                         this.props.closeModal();
                         this.props.signup();
-                    }}>Don't have an account? Sign up here.</button>
+                    }} className="submit-form-button">Don't have an account? Sign up here.</button>
 
                 </div>
             </div>
