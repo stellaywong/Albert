@@ -51,7 +51,7 @@ class Api::TracksController < ApplicationController
         # truncated_youtube_url = Track.truncate_youtube_url(@track.youtube_url)
         # overwrite the saved variable: save the short version instead of the long version
         @track.youtube_url = Track.truncate_youtube_url(@track.youtube_url)
-        debugger
+        # debugger
 
         if @track.save
             # debugger

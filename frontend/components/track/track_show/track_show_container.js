@@ -32,6 +32,8 @@ const mapStateToProps = (state, ownProps) => {
             // key: annotator id
             // value: annotator's username
         // time complexity: n + m
+        // call each element iterated through "annotationId"
+        // the array that is iterated through is called "annotation_ids"
         for (let annotationId of track.annotation_ids) {
             let annotation = state.entities.annotations[annotationId];
             
@@ -42,7 +44,6 @@ const mapStateToProps = (state, ownProps) => {
         }
         // because we set this up in annotation show, all we need to do is
         // pass in the annotation id. it will return the username.
-
 
         // annotatorId = track.annotation_ids[0];  // the bug right now is that this is hardcoded to the first user in the user's array (as a test)
         // annotator = state.entities.users[annotatorId] ? state.entities.users[annotatorId].username : null;
