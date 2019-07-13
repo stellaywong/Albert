@@ -287,6 +287,7 @@ class TrackShow extends React.Component {
                         // onMouseUp={this.clickHandler}
                      >
 
+                     {/* purple arrow -- set to the same y-coordinate as what has been clicked (find one in event listeners) */}
                         {/* {this.state.displayWholeAnnotation === null ? (Youtube) : (<div className="show-annotation-container" style={borderStyle}>
                            <div className="purple-arrow" style={arrowStyle}>
                               <svg src="left_arrow.svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.87 21.32">
