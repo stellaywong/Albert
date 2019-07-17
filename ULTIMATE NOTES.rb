@@ -130,3 +130,37 @@
 # react: just components
 
 # 3. how to make one feature
+
+# 4. JSX
+ # jsx is an extra form of javascript. it allows you to create html elements such as <h2>, but that's not technically an h2: it's a javascript object.
+    # this is why we can say const header = <h2> </h2> because it's technically not an html thing, it's a jsx object that is rendered as html.
+    # it's a javascript object that stores html to be rendered
+    # class="" --> className=""
+    # selected --> selected={true}
+        # jsx converted into javascript converted into html
+        # we use curlies because of jsx
+        # declaredconst variablename = <React component />
+
+    # we use jsx files so when we use react components, we can use all the same operations you'd normally put on a jsx
+    # in our index.html, we'd have <main id="root"></main> and we render React stuff onto the root
+    # jsx allows us not to use documentElementById every single time, just once, thanks to the nice jsx layout!
+
+    # instead of this:
+        # const root = documentGetElementById('root')
+        # root.innerHTML = <h2>Hi</h2>
+        # root.append(React.createElement())
+
+    # we have:
+        # <main id="root">  <-- almost everything isn't self-closing, inputs
+            # <header />
+            # <p>
+            # <Navbar />    <-- React component is self-closing
+        # </main> 
+        # pros: it's cleaner (less repetition) && more intuitive to the final rendered page layout
+
+# 10. Bugs ####################################################
+# how we fixed the annotation bug
+# solution 1: add span tags and p tags
+# 
+# solution 2: add dataOffset
+# 

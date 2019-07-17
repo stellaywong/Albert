@@ -15,7 +15,6 @@ export const fetchAnnotation = (id) => {
 
 export const createAnnotation = (annotation) => {
     // debugger
-    // commented out
     return $.ajax({
         method: 'POST',
         url: `api/annotations/`,

@@ -217,10 +217,8 @@ class TrackShow extends React.Component {
          // display the annotation, if we click on an annotated quote
          if (this.state.displayWholeAnnotation ) {
             sidebarStuff = <ShowAnnotation
-               // the annotation body of the annotation
-               annotation={this.state.displayWholeAnnotation}
-               // the username of the annotator
-               annotator={this.state.displayAnnotator}
+               annotation={this.state.displayWholeAnnotation}     // the annotation body of the annotation
+               annotator={this.state.displayAnnotator}            // the username of the annotator
             />
          } 
          // if there is something clicked, render create annotation form component
