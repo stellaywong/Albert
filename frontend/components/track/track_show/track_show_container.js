@@ -6,6 +6,40 @@ import { fetchArtist } from '../../../actions/artist_actions';
 import { fetchAlbum } from '../../../actions/album_actions';
 import { fetchAnnotations, deleteAnnotation } from '../../../actions/annotation_actions';
 
+// quicksort method placed here
+Array.prototype.quickSort = function (comparator) {
+    if (this.length <= 1) {
+        return this;
+    };
+
+    if (typeof comparator !== "function") {
+        comparator = (x, y) => {
+            if (x === y) {
+                return 0;
+            } else if (x < y) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }
+    }
+
+    const pivot = this[0];
+    const smallArr = [];
+    const bigArr = [];
+
+    for (let i = 1; i < this.length; i++) {
+        if (comparator(this[i].start_index, pivot.start_index) === -1) {
+            smallArr.push(this[i]);
+        } else {
+            bigArr.push(this[i]);
+        }
+    }
+
+    return smallArr.quickSort(comparator).concat([pivot]).concat(bigArr.quickSort(comparator));
+}
+
+
 // // pass down current user from state --> (trackshow) component
 // const mapStateToProps = (state, ownProps) => ({
 //     track: state.entities.tracks[ownProps.match.params.trackId]
@@ -17,8 +51,6 @@ const mapStateToProps = (state, ownProps) => {
     let albumId = null;
     let artistId = null;
     let annotators = {};
-
-    
 
     //on first render, if track doesn't exist yet
     const track = state.entities.tracks[ownProps.match.params.trackId]
@@ -53,15 +85,36 @@ const mapStateToProps = (state, ownProps) => {
     };
     // else defaults to null
 
-    console.log(Object.values(state.entities.annotations).length);
-    console.log('HERE:', annotators);
+    // console.log(Object.values(state.entities.annotations).length);
+    // console.log('HERE:', annotators);
+
+    let annotationsForOneTrack = [];
+    let annotations_array = Object.values(state.entities.annotations);  //an array
+
+    // do one first loop-through and check which indices need a special format
+    // pulling all annotations for this particular page
+    // debugger
+    annotations_array.map((annotation) => {
+        if (annotation.track_id === track.id) {
+            annotationsForOneTrack.push(annotation);
+        }
+        return annotationsForOneTrack;
+    })
+
+    // quick-sorting through this page's annotations in start_index order
+    // bootstrapped onto the array class so added it permanently as long as the component exists
+    // we want to change annotationsForOneTrack 
+    
+    annotationsForOneTrack = annotationsForOneTrack.quickSort();
+    console.log(annotationsForOneTrack);
+
     return {
         currentUser: state.entities.users[state.session.id],    //to make edit track conditional
 
         track: track,
         artist: state.entities.artists[artistId],
         album: state.entities.albums[albumId],
-        annotations_array: Object.values(state.entities.annotations),  //an array
+        annotations_array: annotationsForOneTrack,
         annotators: annotators,
     }
 }

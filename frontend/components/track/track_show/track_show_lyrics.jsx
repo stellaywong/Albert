@@ -4,57 +4,9 @@ class TrackShowLyrics extends React.Component {
 
     render() {      // empty parentheses invokes the render function
 
-        const { track, annotations_array, clickHandler, setAnnotation} = this.props;       // deconstruct the object; inside this.props, we have a track. we're grabbing these things from track, and assigning to a new variable called track, used here.
+        const { track, annotationsForOneTrack, clickHandler, setAnnotation} = this.props;       // deconstruct the object; inside this.props, we have a track. we're grabbing these things from track, and assigning to a new variable called track, used here.
 
-        let annotationsForOneTrack = [];
-
-        // do one first loop-through and check which indices need a special format
-        // pulling all annotations for this particular page
-        // debugger
-        annotations_array.map((annotation) => {
-            if (annotation.track_id === this.props.track.id) {
-                annotationsForOneTrack.push(annotation);
-            }
-            return annotationsForOneTrack;
-        })
-
-        // quick-sorting through this page's annotations in start_index order
-        // bootstrapped onto the array class so added it permanently as long as the component exists
-        Array.prototype.quickSort = function (comparator) {
-            if (this.length <= 1) {
-                return this;
-            };
-
-            if (typeof comparator !== "function") {
-                comparator = (x, y) => {
-                    if (x === y) {
-                        return 0;
-                    } else if (x < y) {
-                        return -1;
-                    } else {
-                        return 1;
-                    }
-                }
-            }
-
-            const pivot = this[0];
-            const smallArr = [];
-            const bigArr = [];
-
-            for (let i = 1; i < this.length; i++) {
-                if (comparator(this[i].start_index, pivot.start_index) === -1) {
-                    smallArr.push(this[i]);
-                } else {
-                    bigArr.push(this[i]);
-                }
-            }
-
-            return smallArr.quickSort(comparator).concat([pivot]).concat(bigArr.quickSort(comparator));
-        }
-
-        annotationsForOneTrack = annotationsForOneTrack.quickSort();
-        console.log(annotationsForOneTrack);
-
+        
         // 1. <p> track.lyrics </p>
         // 2. go into track.lyrics. every time there's an annotation, put: 
         //    </p> <span>annotation</span> <p>

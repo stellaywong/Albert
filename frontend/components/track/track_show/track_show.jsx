@@ -111,7 +111,7 @@ class TrackShow extends React.Component {
       const displayTrackLyrics = track ?              // on the first render, track is undefined. (this will throw errors). as a failsafe, if track exists, that means we have a track lyrics.
          <TrackShowLyrics                             // we're passing track and annotations_array into TrackShowLyrics. their names won't be changed so in the TrackShowLyrics component (lower level than TrackShow) we can work with them with their original names.
             track={track} 
-            annotations_array={annotations_array}
+            annotationsForOneTrack={annotations_array}
             annotators={annotators}
             clickHandler={this.clickHandler}
             setAnnotation={this.setAnnotation} /> 
