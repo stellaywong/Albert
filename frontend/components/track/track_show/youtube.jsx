@@ -1,4 +1,10 @@
 import React from 'react';
+import YouTubePlayer from 'youtube-player';
+// import this directly into the file instead of running the script     <script src="https://www.youtube.com/iframe_api"></script>
+// if the page loads before the script, it will be asynchronous and sometimes the page won't load/throw error
+// it will load up inside teh environment so now each part of the youtube player doesn't need to be loaded up asynchronously.
+
+
 // Youtube API, refactored
 // The difficulty here is that the site code works in html, but here we are working in jsx.
 
@@ -21,18 +27,42 @@ class Youtube extends React.Component {
     }
 
     onYoutubeIframeAPIReady() {
-        this.player = new YT.Player('player', {
+        let player;
+
+        player = YouTubePlayer('player', {
             height: '240px',
             width: '100%',
-            videoId: this.props.videoId,        // changing THIS KEY changes the link displayed.
-                                                // cut between the first "=" equal and the first "&" ampersand
-                                                // truncate the url inside rails, then save.
-            // ?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1 // how to add this to the end of the string? how to string interpolate in jsx?
-            events: {
-                'onReady': this.onPlayerReady,
-                'onStateChange': this.onPlayerStateChange
-            }
+            videoId: this.props.videoId,
         });
+
+        // 'loadVideoById' is queued until the player is ready to receive API calls.
+        // player.loadVideoById(this.props.videoId);
+
+        // 'playVideo' is queue until the player is ready to received API calls and after 'loadVideoById' has been called.
+        // player.playVideo();
+
+        // 'stopVideo' is queued after 'playVideo'.
+        // player
+        //     .stopVideo()
+        //     .then(() => {
+        //         // Every function returns a promise that is resolved after the target function has been executed.
+        //     });
+
+
+        
+
+        // this.player = new YT.Player('player', {
+        //     height: '240px',
+        //     width: '100%',
+        //     videoId: this.props.videoId,        // changing THIS KEY changes the link displayed.
+        //                                         // cut between the first "=" equal and the first "&" ampersand
+        //                                         // truncate the url inside rails, then save.
+        //     // ?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1 // how to add this to the end of the string? how to string interpolate in jsx?
+        //     events: {
+        //         'onReady': this.onPlayerReady,
+        //         'onStateChange': this.onPlayerStateChange
+        //     }
+        // });
     }
 
 // 4. The API will call this function when the video player is ready.

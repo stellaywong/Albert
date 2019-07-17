@@ -48,9 +48,10 @@ class CreateAnnotationForm extends React.Component {
         // }
         // debugger
         const that = this;
-        this.props.createAnnotation(takeFromState).then(() => {
-            // debugger 
-            that.props.clearAnnotation()
+        this.props.createAnnotation(takeFromState).then((response) => {
+            
+            that.props.clearAnnotation();
+            that.props.setAnnotation(response.annotation, response.user.username);
         })  //must call this createTrack (same name as edit track form container) so track_form can take in 'createTrack' to accomodate both
             // .then((action) => this.props.history.push(`/annotations/${action.annotation.id}/`)); // comment this out so we don't redirect to annotations/2
     }
@@ -60,8 +61,8 @@ class CreateAnnotationForm extends React.Component {
     }
 
     render() {
-        console.log(this.state);
-        console.log(this.props);
+        // console.log(this.state);
+        // console.log(this.props);
         return (
         <div className="create-and-edit-annotation-form-container">
             <div className="create-and-edit-annotation-form">

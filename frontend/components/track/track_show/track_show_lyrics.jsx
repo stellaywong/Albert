@@ -101,7 +101,7 @@ class TrackShowLyrics extends React.Component {
 
             previousStep = endAnnotationHere;
 
-            // could use a key
+            // j is the unique key
             if (i === annotationsForOneTrack.length - 1) {
                 lyricsAnnotatedAndAnnotatable.push(
                     <span data-offset={previousStep} key={j++}>{track.lyrics.slice(previousStep, track.lyrics.length)}</span>
@@ -111,7 +111,7 @@ class TrackShowLyrics extends React.Component {
                     // </p>
                 )
             }
-            console.log(lyricsAnnotatedAndAnnotatable)
+            // console.log(lyricsAnnotatedAndAnnotatable)
         }
 
 

@@ -14,7 +14,7 @@ def model_level_truncation_method(youtube_string)
 
         begin_index = youtube_string.index(begin_char) + 4
         end_index = youtube_string.length
-        return youtube_string[begin_index...end_index]+"?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1"
+        return youtube_string[begin_index...end_index]+"?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1"
     else
         begin_char = "v="
         end_char = "&"
@@ -26,7 +26,7 @@ def model_level_truncation_method(youtube_string)
         else
             end_index = youtube_string.length
         end
-        return youtube_string[begin_index...end_index]+"?modestbranding=1;controls=0;showinfo=0;rel=0;fs=1"
+        return youtube_string[begin_index...end_index]+"?modestbranding=1;controls=1;showinfo=0;rel=0;fs=1"
     end
 
 end

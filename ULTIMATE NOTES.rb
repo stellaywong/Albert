@@ -126,13 +126,69 @@
 
 #3. Frontend ####################################################
 # thunk lets asynchronous stuff happen, without the slow (going into database) synchronous stuff.
-# redux: reducers, actions
-# react: just components
+# redux: 
+    # reducers, 
+    # actions, 
+    # store, 
+    # containers
+# react: just 
+    # components
+        # life cycle methods
+            # componentDidMount() (right after first render aka a test to see if it even works)
+            # componentDidUpdate
+    # router
+# others (just javascript)
+    # API util
+        # AJAX requests
+
+# 4. Component:
+# class component { ...
+#     componentDidMount() {}
+#             this.props.fetchTracks();           
+#     }
+#     render () { ...
+#     }
+# }
+
+# 5. Container:
+# the purpose of a container is to connect our COMPONENT with the REDUX STORE
+# instead of looking at the parent/children, the container looks at STORE
+# const msp
+# dispatch is a method you get from redux: it sends off an action and updates the reducer
+# it sends data from the function (action creator) to update ALL reducers
+# *** all actions go through all reducers
+# action has a type key so the reducer can tell whether it's relevant to me?
+# const mdp => dispatch => {
+#       actions: have a 1) type and 2) tracks
+#       fetchTracks: () => dispatch(func());
+# }
+
+# 6. Actions
+# There are 2 types of action creators:
+
+# A. THUNK ACTION CREATOR (with AJAX)
+    # middleware, allows AJAX to do their thing without slowing everything down. if it's synchronous, the rest will go through
+    # const fetchTracks = () => {
+        # promise -->   TrackAPI.requestTracks().then(callback)
+
+# B. ACTION CREATOR
+    # 
+    # const receiveAllTracks(tracks)
+    # return {type: RECEIVE_TRACKS,
+                    # tracks}
+                    
+# C. AJAX REQUEST
+    # ajax asks the backend for information. because of ajax, we get stuff from jbuilder.
+    # $.ajax({
+        # method: "GET",
+        # data: {},
+        # url: rails.url
+    # })
 
 # 3. how to make one feature
 
 # 4. JSX
- # jsx is an extra form of javascript. it allows you to create html elements such as <h2>, but that's not technically an h2: it's a javascript object.
+ # jsx is an extra form of javascript. it allows you to render html inside your components, create html elements such as <h2>, instead of 500 different method calls, but that's not technically an h2: it's a javascript object.
     # this is why we can say const header = <h2> </h2> because it's technically not an html thing, it's a jsx object that is rendered as html.
     # it's a javascript object that stores html to be rendered
     # class="" --> className=""

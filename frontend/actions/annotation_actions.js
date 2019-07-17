@@ -12,17 +12,19 @@ const receiveAnnotations = ({annotations, users}) => {
     })
 }
 
-const receiveAnnotation = (annotation) => {
-    return ({
-        type: RECEIVE_ANNOTATION,
-        annotation
+const receiveAnnotation = ({annotation, user}) => { // this is how we deconstruct the payload to pass onto the users
+    return ({                                       // show.json.jbuilder's variable names match these.
+        type: RECEIVE_ANNOTATION,                   // otherwise, we could have taken (payload) as the argument, and down here, done payload.annotation and payload.user
+        annotation,
+        user
     })
 }
 
-const removeAnnotation = (annotation) => {
+const removeAnnotation = (id) => {
+    debugger
     return ({
         type: REMOVE_ANNOTATION,
-        annotationId: annotation.id
+        annotationId: id
     })
 }
 
@@ -45,8 +47,8 @@ export const fetchAnnotation = (id) => {
 
 export const createAnnotation = (annotation) => {
     return (dispatch) => {
-        return AnnotationApiUtil.createAnnotation(annotation).then((promiseObject) => {
-            return dispatch(receiveAnnotation(promiseObject));
+        return AnnotationApiUtil.createAnnotation(annotation).then((payload) => {
+            return dispatch(receiveAnnotation(payload));
         })
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CreateAnnotationFormContainer from '../../annotations/annotation_create/create_annotation_container';
-import ShowAnnotation from '../../annotations/annotation_show/annotation_show';
+import AnnotationShow from '../../annotations/annotation_show/annotation_show_container';
 import TrackShowLyrics from '../../track/track_show/track_show_lyrics';
 import Youtube from './youtube';
 
@@ -46,6 +46,9 @@ class TrackShow extends React.Component {
       if (prevProps.track && (prevProps.track.id != this.props.match.params.trackId)) {   
          //debug: "prevProps.track &&" ensures that you can refresh the page without breaking it
          this.props.fetchTrack(this.props.match.params.trackId);
+      } else if (prevProps.annotations_array.length !== this.props.annotations_array.length){
+         this.props.fetchTrack(this.props.match.params.trackId);
+         // this.props.fetchAnnotations(this.props.match.params.trackId);
       }
    }
 
@@ -73,7 +76,7 @@ class TrackShow extends React.Component {
          quote: window.getSelection().toString(),
          // displayWholeAnnotation: "blank",
       })
-
+      debugger
       // toggling either create annotation OR show annotation
       // the quote has annotation-highlighted class.
       // no matter where the click is, is e.target
@@ -84,8 +87,6 @@ class TrackShow extends React.Component {
       }
 
       // debugger
-      // return thisIsTheState;
-
       // const start_index = window.getSelection().anchorOffset;
       // const end_index = window.getSelection().focusOffset;
       // const quote = window.getSelection().toString();
@@ -93,8 +94,6 @@ class TrackShow extends React.Component {
       // console.log(end_index);
       // console.log(quote);      
    }
-
-   
 
    render() {    //need to put in a render, otherwise you're just returning in a class   
    // debugger is where you can look at what props is
@@ -108,7 +107,6 @@ class TrackShow extends React.Component {
 
       // edit button
       const logged_in_edit_track_button = this.props.currentUser ? <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link> : null
-
       
       const displayTrackLyrics = track ?              // on the first render, track is undefined. (this will throw errors). as a failsafe, if track exists, that means we have a track lyrics.
          <TrackShowLyrics                             // we're passing track and annotations_array into TrackShowLyrics. their names won't be changed so in the TrackShowLyrics component (lower level than TrackShow) we can work with them with their original names.
@@ -119,43 +117,70 @@ class TrackShow extends React.Component {
             setAnnotation={this.setAnnotation} /> 
          : null;
 
-      let sidebarStuff = null;
-         // display the annotation, if we click on an annotated quote
-         if (this.state.displayWholeAnnotation ) {
-            sidebarStuff = <ShowAnnotation
+
+      
+      
+      let annotationSidebar = null;
+      // display the annotation, if we click on an annotated quote
+      if (this.state.displayWholeAnnotation ) {
+         annotationSidebar = 
+            <AnnotationShow
                annotation={this.state.displayWholeAnnotation}     // the annotation body of the annotation
                annotator={this.state.displayAnnotator}            // the username of the annotator
+               setAnnotation={this.setAnnotation}                 // to make the deleted annotation disappear off the sidebar
             />
-         } 
-         // if there is something clicked, render create annotation form component
-         else if (this.state.quote.length != 0) {
-            sidebarStuff = <CreateAnnotationFormContainer
+         
+      } 
+      // if there is something clicked, render create annotation form component
+      // if this conditional goes first, the condition is checked before the others, and nothing else will happen.
+      // so the other things can get checked first.
+      else if (this.state.quote.length != 0) {
+         annotationSidebar = 
+         <CreateAnnotationFormContainer
             track={this.props.track}
             annotator={this.props.currentUser}
             start_index={this.state.start_index}
             end_index={this.state.end_index}
             quote={this.state.quote}
             clearAnnotation={this.clearAnnotation}
-            />
+            setAnnotation={this.setAnnotation}
+         />
+      }
+
+      // if the user has clicked play on the youtube player, and
+      // then wants to make an annotation or open an annotation,
+      // the youtube player will still play (audio will not be interrupted)
+      let youtubeSidebarStyle = null;
+
+      if (this.state.displayWholeAnnotation || this.state.quote.length != 0) {
+         youtubeSidebarStyle = {
+            display: 'none'
          } 
-         // if the poem has no annotations, or the user has not yet tried to make one,
-         // the audio/video recording of the poem is available.
-         // if the uploading user didn't add a youtube link for a recording, don't render the video player (because it'll show a broken link)
-         // if this conditional goes first, the condition is checked before the others, and nothing else will happen.
-         // so the other things can get checked first.
-         else if (track.youtube_url !== null && track.youtube_url !== undefined) {
-            sidebarStuff = 
-            <div className="youtube-api-box">
+      } else {
+         youtubeSidebarStyle = {
+            display: 'block'
+         }
+      }
+
+
+      // if the poem has no annotations, or the user has not yet tried to make one,
+      // the audio/video recording of the poem is available.
+      // if the uploading user didn't add a youtube link for a recording, don't render the video player (because it'll show a broken link)
+      let youtubeSidebar = null;
+
+      if (track.youtube_url !== null && track.youtube_url !== undefined) {
+         youtubeSidebar =
+            <div className="youtube-api-box" style={youtubeSidebarStyle}>
                <label className="screenreader-only">Play a Recording of the Poem Button</label>
                <p>POEM RECORDING: <br></br> </p>
                <Youtube videoId={track.youtube_url} />
             </div>
             ;
-         }
-      
-      const borderStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ borderLeft: '3.75px solid rgb(153, 167, 238)', }) : ({ border: 'none', })
+      }
 
-      const arrowStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ display: 'block', }) : ({ display: 'none', }) 
+      // const borderStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ borderLeft: '3.75px solid rgb(153, 167, 238)', }) : ({ border: 'none', })
+
+      // const arrowStyle = this.state.displayWholeAnnotation || this.state.quote ? ({ display: 'block', }) : ({ display: 'none', }) 
 
       return (
          <div>
@@ -184,11 +209,11 @@ class TrackShow extends React.Component {
             {/* ternary: if there are no annotations, render track lyrics complete */}
             {/* track lyrics component */}
             <h2 className="lyrics-and-annotations">
-                  
                   {displayTrackLyrics}
 
                   <div className="show-annotation-form">
-                     {sidebarStuff}
+                     {youtubeSidebar}
+                     {annotationSidebar}
                   </div>
             </h2>
                

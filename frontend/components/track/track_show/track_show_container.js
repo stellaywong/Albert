@@ -18,6 +18,8 @@ const mapStateToProps = (state, ownProps) => {
     let artistId = null;
     let annotators = {};
 
+    
+
     //on first render, if track doesn't exist yet
     const track = state.entities.tracks[ownProps.match.params.trackId]
     if (track) {
@@ -34,6 +36,7 @@ const mapStateToProps = (state, ownProps) => {
         // time complexity: n + m
         // call each element iterated through "annotationId"
         // the array that is iterated through is called "annotation_ids"
+        debugger
         for (let annotationId of track.annotation_ids) {
             let annotation = state.entities.annotations[annotationId];
             
@@ -50,6 +53,8 @@ const mapStateToProps = (state, ownProps) => {
     };
     // else defaults to null
 
+    console.log(Object.values(state.entities.annotations).length);
+    console.log('HERE:', annotators);
     return {
         currentUser: state.entities.users[state.session.id],    //to make edit track conditional
 
@@ -57,7 +62,7 @@ const mapStateToProps = (state, ownProps) => {
         artist: state.entities.artists[artistId],
         album: state.entities.albums[albumId],
         annotations_array: Object.values(state.entities.annotations),  //an array
-        annotators
+        annotators: annotators,
     }
 }
 
