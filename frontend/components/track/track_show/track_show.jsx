@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import CreateAnnotationFormContainer from '../../annotations/annotation_create/create_annotation_container';
 import ShowAnnotation from '../../annotations/annotation_show/annotation_show';
+import TrackShowLyrics from '../../track/track_show/track_show_lyrics';
 import Youtube from './youtube';
 
 class TrackShow extends React.Component {
@@ -60,8 +61,8 @@ class TrackShow extends React.Component {
 
    clickHandler(e) {    // create new function that receives event
       // debugger
-      console.log(window.getSelection());
-
+      // console.log(window.getSelection());
+      
       // to know which object we're currently looking at
       let currentSection = parseInt(e.target.dataset.offset);
 
@@ -79,7 +80,7 @@ class TrackShow extends React.Component {
       // if the e.target doesn't have the quote's class list, it means
       // the user clicked on something else
       if (!e.target.classList.contains('annotation-highlighted')) {
-         this.setState({displayWholeAnnotation: null});
+         this.setState({ displayWholeAnnotation: null });
       }
 
       // debugger
@@ -93,125 +94,30 @@ class TrackShow extends React.Component {
       // console.log(quote);      
    }
 
+   
+
    render() {    //need to put in a render, otherwise you're just returning in a class   
    // debugger is where you can look at what props is
 
 
-   const { track, artist, album, annotations_array } = this.props;    //refactoring to be drier
+   const { track, artist, album, annotators, annotations_array } = this.props;    //refactoring to be drier
    if (!track) {
       return <div>Loading...</div>;
    }
    // debugging for add-and-create-track
 
+      // edit button
       const logged_in_edit_track_button = this.props.currentUser ? <Link to={`/tracks/${track.id}/edit`} className="edit-button">Edit Poem</Link> : null
 
-      let annotationsForOneTrack = [];
-
-      // do one first loop-through and check which indices need a special format
-      // pulling all annotations for this particular page
-      // debugger
-      annotations_array.map((annotation) => {
-         if (annotation.track_id === this.props.track.id) {
-            annotationsForOneTrack.push(annotation);
-         }
-         return annotationsForOneTrack;
-      })
-
-      // quick-sorting through this page's annotations in start_index order
-      // bootstrapped onto the array class so added it permanently as long as the component exists
-      Array.prototype.quickSort = function (comparator) {
-         if (this.length <= 1) {
-            return this;
-         };
-
-         if (typeof comparator !== "function") {
-            comparator = (x, y) => {
-               if (x === y) {
-                  return 0;
-               } else if (x < y) {
-                  return -1;
-               } else {
-                  return 1;
-               }
-            }
-         }
-
-         const pivot = this[0];
-         const smallArr = [];
-         const bigArr = [];
-
-         for (let i = 1; i < this.length; i++) {
-            if (comparator(this[i].start_index, pivot.start_index) === -1) {
-               smallArr.push(this[i]);
-            } else {
-               bigArr.push(this[i]);
-            }
-         }
-
-         return smallArr.quickSort(comparator).concat([pivot]).concat(bigArr.quickSort(comparator));
-      }
-
-      annotationsForOneTrack = annotationsForOneTrack.quickSort();
-      console.log(annotationsForOneTrack);
-
-      // 1. <p> track.lyrics </p>
-      // 2. go into track.lyrics. every time there's an annotation, put: 
-      //    </p> <span>annotation</span> <p>
-
-      //    html_safe so the annotation can't be annotated over, in an overlap
       
-      // build an array of jsx objects stacked on top of each other; they will render in order!
-      let stellaAnnotation = [];
-      let previousStep = 0;
-      let j=0;
-
-      // for (const annotation of annotationForOneTrack) -- suggestion
-
-      for (let i = 0; i < annotationsForOneTrack.length; i++){
-
-         let startAnnotationHere = Math.min(annotationsForOneTrack[i].start_index, annotationsForOneTrack[i].end_index);
-         let endAnnotationHere = Math.max(annotationsForOneTrack[i].start_index, annotationsForOneTrack[i].end_index);
-         let annotation = annotationsForOneTrack[i];
-
-         let before = track.lyrics.slice(previousStep, startAnnotationHere);
-         // debugger
-         stellaAnnotation.push(
-            <span data-offset={previousStep}>
-               {before}
-               {/* before could use a key */}
-            </span>
-         );
-
-         {/* create a separate state just for TrackShow */}
-         stellaAnnotation.push(
-               <a key={j++}
-                  unselectable = "on"
-                  onClick={() => {
-                     this.setAnnotation(annotationsForOneTrack[i], 
-                                       this.props.annotators[annotation.annotator_id]) //here we indexing into the annotators object (created in the container)
-                                                                                       // by the annotator id we took from the annotation
-                  }}
-               className="annotation-highlighted"
-               >
-               {/* annotation.quote is highlighted and already annotated */}
-               {annotation.quote}
-               </a>
-         )
-         
-         previousStep = endAnnotationHere;   
-
-         // could use a key
-         if (i === annotationsForOneTrack.length - 1) {
-            stellaAnnotation.push(
-               <span data-offset={previousStep}>{track.lyrics.slice(previousStep, track.lyrics.length)}</span>
-               // <p key={j++}>
-                  // {track.lyrics.slice(previousStep, track.lyrics.length)}
-                  // {/* slice up to, but not including, the second argument */}
-               // </p>
-            )
-         }
-         console.log(stellaAnnotation)
-      }
+      const displayTrackLyrics = track ?              // on the first render, track is undefined. (this will throw errors). as a failsafe, if track exists, that means we have a track lyrics.
+         <TrackShowLyrics                             // we're passing track and annotations_array into TrackShowLyrics. their names won't be changed so in the TrackShowLyrics component (lower level than TrackShow) we can work with them with their original names.
+            track={track} 
+            annotations_array={annotations_array}
+            annotators={annotators}
+            clickHandler={this.clickHandler}
+            setAnnotation={this.setAnnotation} /> 
+         : null;
 
       let sidebarStuff = null;
          // display the annotation, if we click on an annotated quote
@@ -278,34 +184,8 @@ class TrackShow extends React.Component {
             {/* ternary: if there are no annotations, render track lyrics complete */}
             {/* track lyrics component */}
             <h2 className="lyrics-and-annotations">
-                  {(annotationsForOneTrack.length !== 0) ?
-                     <div className="track-lyrics" ref={this.lyrics}
-                        // onClick={this.clickHandler}
-                        // onMouseDown={this.clickHandler}
-                        // onMouseUp={this.clickHandler}
-                     >
-
-                     {/* purple arrow -- set to the same y-coordinate as what has been clicked (find one in event listeners) */}
-                        {/* {this.state.displayWholeAnnotation === null ? (Youtube) : (<div className="show-annotation-container" style={borderStyle}>
-                           <div className="purple-arrow" style={arrowStyle}>
-                              <svg src="left_arrow.svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.87 21.32">
-                                 <path d="M9.37 21.32L0 10.66 9.37 0l1.5 1.32-8.21 9.34L10.87 20l-1.5 1.32"></path>
-                              </svg>
-                           </div>
-
-                        </div>)} */}
-
-                        <p onMouseUp={this.clickHandler} data-offset={previousStep}>
-                           {stellaAnnotation}
-                        </p>
-                     </div>
-                     : <div className="track-lyrics" ref={this.lyrics}
-                        // onClick={this.clickHandler}
-                        // onMouseDown={this.clickHandler}
-                        // onMouseUp={this.clickHandler}
-                     ><p onMouseUp={this.clickHandler} data-offset={0}>{track.lyrics}</p>
-                     </div>
-                  }
+                  
+                  {displayTrackLyrics}
 
                   <div className="show-annotation-form">
                      {sidebarStuff}
