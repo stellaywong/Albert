@@ -68,7 +68,7 @@
     padding: 0px 16px 0px 220px;
 }
 
-.track-lyrics {
+.track-lyrics-wrap {
     background: #ffffff;
     color: #000000;
     font-size: 18px;
@@ -82,6 +82,10 @@
 
     /* preserves line breaks */
     white-space: pre-line;       
+}
+
+.track-lyrics{
+
 }
 
 .lyrics-and-annotations {

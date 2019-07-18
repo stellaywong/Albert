@@ -17,6 +17,11 @@ class User < ApplicationRecord
     foreign_key: :annotator_id,
     class_name: :Annotation
 
+    has_many :comments,
+    primary_key: :id,
+    foreign_key: :commenter_id,
+    class_name: :Comment
+
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
         user && user.is_password?(password) ? user : nil

@@ -1,2 +1,5 @@
-
-
+.create-annotation-input-field {
+    box-shadow: #99a7ee 0 0 0.3em inset;
+    outline: 0;
+    background-color: rgba(204,204,204,.2);
+}

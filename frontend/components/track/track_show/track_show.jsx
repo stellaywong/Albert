@@ -4,6 +4,7 @@ import CreateAnnotationFormContainer from '../../annotations/annotation_create/c
 import AnnotationShow from '../../annotations/annotation_show/annotation_show_container';
 import TrackShowLyrics from '../../track/track_show/track_show_lyrics';
 import Youtube from './youtube';
+import CreateCommentContainer from '../../comments/comment_create/create_comment_container';
 
 class TrackShow extends React.Component {
    constructor(props) {
@@ -156,8 +157,12 @@ class TrackShow extends React.Component {
             setAnnotation={this.setAnnotation} /> 
          : null;
 
-
-      
+      const displayCreateCommentContainer = track ?
+         <CreateCommentContainer
+            track={this.props.track}
+            commenter={this.props.currentUser}
+         />
+         : null;
       
       let annotationSidebar = null;
       // display the annotation, if we click on an annotated quote
@@ -248,7 +253,10 @@ class TrackShow extends React.Component {
             {/* ternary: if there are no annotations, render track lyrics complete */}
             {/* track lyrics component */}
             <h2 className="lyrics-and-annotations">
+               <div className="track-lyrics-wrap">
                   {displayTrackLyrics}
+                  {displayCreateCommentContainer}
+               </div>
 
                   <div className="show-annotation-form">
                      {youtubeSidebar}

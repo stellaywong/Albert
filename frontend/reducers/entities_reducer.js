@@ -5,6 +5,7 @@ import tracksReducer from './tracks_reducer'; //
 import albumsReducer from './albums_reducer'; //
 import artistsReducer from './artists_reducer'; //
 import annotationsReducer from './annotations_reducer'; //
+import commentsReducer from './comments_reducer'; //
 
 const entitiesReducer = combineReducers({
     users: usersReducer,                     // a single key-value pair for now named users which points to the usersReducer
@@ -12,6 +13,7 @@ const entitiesReducer = combineReducers({
     albums: albumsReducer,
     artists: artistsReducer,
     annotations: annotationsReducer,
+    comments: commentsReducer,
 });
 
 export default entitiesReducer;

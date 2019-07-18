@@ -34,7 +34,7 @@ class CreateAnnotationForm extends React.Component {
             return;             // exit so it doesn't keep looking down
         }
 
-        const takeFromState = {
+        const takeFromStateAndSendToBackend = {
             annotation_body: this.state.annotation_body,
             start_index: this.state.start_index,
             end_index: this.state.end_index,
@@ -46,9 +46,8 @@ class CreateAnnotationForm extends React.Component {
         // for (var p of formData) {
         //     console.log(p);
         // }
-        // debugger
         const that = this;
-        this.props.createAnnotation(takeFromState).then((response) => {
+        this.props.createAnnotation(takeFromStateAndSendToBackend).then((response) => {
             
             that.props.clearAnnotation();
             that.props.setAnnotation(response.annotation, response.user.username);
@@ -82,45 +81,35 @@ class CreateAnnotationForm extends React.Component {
                     ></textarea>
                     {/* </label> */}
 
-                    <label className="create-and-edit-input-field-label">
-                        <input className="hide-this-field"
-                            type="integer"
-                            value={this.state.annotator_id}
-                            onChange={this.update('annotator_id')}
-                        />
-                    </label>
+                    <input className="hide-this-field"
+                        type="integer"
+                        value={this.state.annotator_id}
+                        onChange={this.update('annotator_id')}
+                    />
 
-                    <label className="create-and-edit-input-field-label">
-                        <input className="hide-this-field"
-                            type="integer"
-                            value={this.state.id}
-                            onChange={this.update('track_id')}
-                        />
-                    </label>
+                    <input className="hide-this-field"
+                        type="integer"
+                        value={this.state.id}
+                        onChange={this.update('track_id')}
+                    />
 
-                    <label className="create-and-edit-input-field-label">
-                        <input className="hide-this-field"
-                            type="integer"
-                            value={this.state.start_index}
-                            onChange={this.update('start_index')}
-                        />
-                    </label>
+                    <input className="hide-this-field"
+                        type="integer"
+                        value={this.state.start_index}
+                        onChange={this.update('start_index')}
+                    />
 
-                    <label className="create-and-edit-input-field-label">
-                        <input className="hide-this-field"
-                            type="integer"
-                            value={this.state.end_index}
-                            onChange={this.update('end_index')}
-                        />
-                    </label>
+                    <input className="hide-this-field"
+                        type="integer"
+                        value={this.state.end_index}
+                        onChange={this.update('end_index')}
+                    />
 
-                    <label className="create-and-edit-input-field-label">
-                        <input className="hide-this-field"
-                            type="text"
-                            value={this.state.quote}
-                            onChange={this.update('quote')}
-                        />
-                    </label>
+                    <input className="hide-this-field"
+                        type="text"
+                        value={this.state.quote}
+                        onChange={this.update('quote')}
+                    />
 
                     {/* custom error message to log in before making annotations, otherwise do nothing */} 
                     {(this.state.error === true) ?
@@ -134,8 +123,8 @@ class CreateAnnotationForm extends React.Component {
                     <label className="screenreader-only">Save Annotation Button</label>
                     <input
                         type="submit"
-                        value="Save"
-                        className="create-annotation-button">
+                        value="Save Annotation"
+                        className="create-annotation-and-comment-button">
                     </input>
 
                 </form>

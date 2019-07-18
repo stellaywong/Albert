@@ -16,7 +16,8 @@ const receiveTrack = (promiseObj) => {
     return ({
         type: RECEIVE_TRACK,
         track: promiseObj.track,
-        annotations: promiseObj.annotations
+        annotations: promiseObj.annotations,
+        comments: promiseObj.comments,
         // now we're sending two things at once
         // so promiseObject received now has two keys inside
     })

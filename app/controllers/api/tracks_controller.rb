@@ -12,6 +12,7 @@ class Api::TracksController < ApplicationController
         @track = Track.find(params[:id])    #.where will give you an array; .find will give you the first one it finds
         @artist = @track.artist             #this instead of Track.all: it's less data so you spend less time in your backend   
         @annotations = @track.annotations   #wonderful annotations object
+        @comments = @track.comments
         # a track belongs to an artist
         render :show
     end

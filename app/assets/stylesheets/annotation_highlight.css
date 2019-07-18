@@ -126,12 +126,6 @@
     outline-offset: -5px;
 }
 
-.create-annotation-button {
-    border-color: #0ecb27;
-    color: #0ecb27;
-    /* position: relative; */
-    cursor: pointer;
-}
 
 .purple-arrow {
     z-index: 1;
