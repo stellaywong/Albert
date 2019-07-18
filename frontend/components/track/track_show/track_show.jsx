@@ -14,7 +14,8 @@ class TrackShow extends React.Component {
          end_index: "",
          annotation_body: "",
          displayWholeAnnotation: null,
-         displayAnnotator: null
+         displayAnnotator: null,
+         beginInSection: null,   // we don't need an endInSection because we can always find out where we're ending (e.target)
       };
 
       this.lyrics = React.createRef();    // using React reference to snag lyrics object -- otherwise, cannot save object within tags to a variable
@@ -63,20 +64,58 @@ class TrackShow extends React.Component {
    }
 
    clickHandler(e) {    // create new function that receives event
-      // debugger
       // console.log(window.getSelection());
+
+      // BEGIN
+      if (this.state.beginInSection === null) {
+         this.setState({
+            beginInSection: e.target,     // allows the mouse to know where it has been put down
+         })
+         return;     //just to get out
+      }
+      // debugger
+
+      // this will extract the previous section (calculating the offset of the beginInSection)
+      let offsetForSection = parseInt(this.state.beginInSection.dataset.offset);
       
-      // to know which object we're currently looking at
-      let currentSection = parseInt(e.target.dataset.offset);
+      // END
+      // to know which object we're currently looking at -- where we ended
+      let endInSection = parseInt(e.target.dataset.offset);
+         
+      // this deconstructs annotations_array out of props so we can use it in the below loop checking for overlap
+      const { annotations_array } = this.props;
+
+      // this solves the issue of annotation overlap
+      let start_index= window.getSelection().anchorOffset + offsetForSection;
+      let end_index= window.getSelection().focusOffset + endInSection;
+
+      // if the user's new annotation overlaps part of an existing annotation
+      if (!(start_index) || !(end_index)) {
+         this.setState({ beginInSection: null });
+         return null;
+      };
+
+      for (let i=0; i<annotations_array.length; i++) {
+         let annotationStartIndex = Math.min(annotations_array[i].start_index, annotations_array[i].end_index);
+         let annotationEndIndex = Math.max(annotations_array[i].start_index, annotations_array[i].end_index);
+
+         // if the user's new annotation overlaps outside, inside of an existing annotation
+         if ((annotationStartIndex >= start_index) && (annotationEndIndex <= end_index)) {
+               // debugger
+               this.setState({ beginInSection: null });
+               return null;
+            }
+      }
 
       // debugger
       this.setState({      //allows the user to click down and release mouse to create annotation
-         start_index: window.getSelection().anchorOffset + currentSection,
-         end_index: window.getSelection().focusOffset + currentSection,
+         start_index: start_index,
+         end_index: end_index,
          quote: window.getSelection().toString(),
+         beginInSection: null,      // this resets the beginning click for the next annotation the user wants to make (because the top of this function is begun if and only if beginInSection is set to null)
          // displayWholeAnnotation: "blank",
       })
-      debugger
+      // debugger
       // toggling either create annotation OR show annotation
       // the quote has annotation-highlighted class.
       // no matter where the click is, is e.target
@@ -131,10 +170,10 @@ class TrackShow extends React.Component {
             />
          
       } 
-      // if there is something clicked, render create annotation form component
+      // if there is something clicked (it both exists, and its length is greater than 0), render create annotation form component
       // if this conditional goes first, the condition is checked before the others, and nothing else will happen.
       // so the other things can get checked first.
-      else if (this.state.quote.length != 0) {
+      else if ( this.state.quote.length != 0) {
          annotationSidebar = 
          <CreateAnnotationFormContainer
             track={this.props.track}

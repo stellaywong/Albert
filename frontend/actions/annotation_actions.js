@@ -21,7 +21,7 @@ const receiveAnnotation = ({annotation, user}) => { // this is how we deconstruc
 }
 
 const removeAnnotation = (id) => {
-    debugger
+    // debugger
     return ({
         type: REMOVE_ANNOTATION,
         annotationId: id

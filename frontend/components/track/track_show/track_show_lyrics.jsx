@@ -87,12 +87,12 @@ class TrackShowLyrics extends React.Component {
 
                         </div>)} */}
 
-                        <p onMouseUp={clickHandler} data-offset={previousStep}>
+                        <p onMouseUp={clickHandler} onMouseDown={clickHandler} data-offset={previousStep}>
                             {lyricsAnnotatedAndAnnotatable}
                         </p>
                     </div>
                     : <div className="track-lyrics" ref={this.lyrics}>
-                        <p onMouseUp={clickHandler} data-offset={0}>{track.lyrics}</p>
+                        <p onMouseUp={clickHandler} onMouseDown={clickHandler} data-offset={0}>{track.lyrics}</p>
                     </div>
                 }
             </>

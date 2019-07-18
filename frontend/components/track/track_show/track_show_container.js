@@ -68,7 +68,7 @@ const mapStateToProps = (state, ownProps) => {
         // time complexity: n + m
         // call each element iterated through "annotationId"
         // the array that is iterated through is called "annotation_ids"
-        debugger
+        // debugger
         for (let annotationId of track.annotation_ids) {
             let annotation = state.entities.annotations[annotationId];
             

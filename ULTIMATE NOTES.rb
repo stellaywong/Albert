@@ -167,24 +167,64 @@
 # There are 2 types of action creators:
 
 # A. THUNK ACTION CREATOR (with AJAX)
+    # tries to create an action by accessing the database, the backend
+    # once the ajax request comes back with the information, it converts the information into an action
     # middleware, allows AJAX to do their thing without slowing everything down. if it's synchronous, the rest will go through
+    # activated in the React Component. usually happens iwht a button press or hitting submit.
+        # it hits the mdp which tries to dispatch the Thunk Action Creator but it will finally dispatch when it returns the ajax request which returns the Action Creator.
     # const fetchTracks = () => {
         # promise -->   TrackAPI.requestTracks().then(callback)
+        # 3. write thunk actions
 
-# B. ACTION CREATOR
-    # 
-    # const receiveAllTracks(tracks)
-    # return {type: RECEIVE_TRACKS,
-                    # tracks}
-                    
-# C. AJAX REQUEST
+
+# B. AJAX REQUEST
     # ajax asks the backend for information. because of ajax, we get stuff from jbuilder.
     # $.ajax({
         # method: "GET",
         # data: {},
         # url: rails.url
     # })
+        # 1. write this first (the normal actions) to make sure your reducers aer working, taking hte actions, updating themselves. this connects the frontend ot the backend
 
+# C. ACTION CREATOR
+    # tries to create an action to be dispatched. you always see it in the format dispatch(some Action) because it's trying to send an action to teh reducers!
+    # an action is a POJO {}
+    # const receiveAllTracks(tracks)
+    # return {type: RECEIVE_TRACKS,
+    # tracks}
+        # 2. write actions
+
+# D. DISPATCH: SEND TO REDUCERS
+    # it gets dispatched
+
+# 7. STATE VS STORE ####################################################################################################
+# Redux Store = Redux State has
+    # dispatch
+    # state
+    # middleware
+    # etc.
+    # it's about THE DATABASE
+
+# Component State = this.state
+    # this.state is always separate and doesn't update. this.props will have the redux state(store) in it.
+    # the only time component state updates is with this.setState()!
+        # do NOT use this.state.thing = newthing.
+    # this.state = {
+        # key: value
+    # }
+    # render () {
+        # if this.state.hidden
+            # render null
+    # }
+    # affects HOW IT RENDERS, not about the database
+
+# REDUX STATE/(STORE) and COMPONENT STATE are connected with MSP
+# MSP:
+    # If you want this thing to re-render when the compnoent updates, update store before component state
+    # user: state.entities.user
+    # you need to see if user updates, if likes exist
+
+#####################################################################################################################
 # 3. how to make one feature
 
 # 4. JSX
