@@ -1,6 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+const myDebounce = (interval) => {
+    let timeout;
+    
+    return (argument) => {
+        const functionCall = () => {
+            timeout = null;
+            // this.props.fetchSearchResults(argument)
+            console.log(argument);
+        }
+
+        clearTimeout(timeout);
+        timeout = setTimeout(functionCall, interval);
+    }
+}
+
+// if you're a fast typer, send a search to the backend if there's a 1-second pause
+const delayedSearch = myDebounce(250);
+
+
+const handleChange = (e) => {
+    let search = e.target.value;
+
+    delayedSearch(search);
+}
+
+
+
 const Header = (props) => {
     const {currentUser, logout} = props; //destructure props here
 
@@ -25,7 +53,10 @@ const Header = (props) => {
 // for modal functionality
     return (
         <header className="header_bar">
-            <h1 className="logo">ヾ(｡ꏿ﹏ꏿ)ﾉﾞ</h1>
+            <input
+                placeholder="Search poems and more"
+                onChange={handleChange}
+            ></input>
             <a href="https://rhymestein.herokuapp.com" className="header_website">R H Y M E S T E I N</a>
             {/* <a href="http://localhost:3000/#/" className="header_website">R H Y M E S T E I N</a> */}
             {/* <h1></h1> */}
