@@ -36,7 +36,11 @@ class CreateCommentForm extends React.Component {
             track_id: this.state.track_id,
         }
 
-        this.props.createComment(takeFromStateAndSendToBackend);
+        this.props.createComment(takeFromStateAndSendToBackend).then(() => {    // the function after the .then clears the comment box after successful submit
+            this.setState({
+                comment_body: '',
+            })
+        });
     }
 
     updateCommentBody(e) {

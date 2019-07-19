@@ -13,8 +13,8 @@ class AnnotationShow extends React.Component {
 
         return (
             <>
-                <label className="screenreader-only">Show Annotation Form</label>
-                <label className="screenreader-only">{annotation.annotation_body}</label>
+                <div className="screenreader-only">Show Annotation Form</div>
+                <div className="screenreader-only">{annotation.annotation_body}</div>
 
                 <h3>{annotator}</h3>        {/* annotator's username */}
                 <h3 className="annotation-body">{annotation.annotation_body}</h3>   {/* annotation body */}
@@ -22,7 +22,7 @@ class AnnotationShow extends React.Component {
                 <button onClick={() => {
                     this.props.deleteAnnotation(annotation.id);
                     this.props.setAnnotation(null, null);   // to make the deleted annotation disappear off the sidebar
-                }}>Delete</button>
+                }}>Delete Annotation</button>
             </>
         );
     }

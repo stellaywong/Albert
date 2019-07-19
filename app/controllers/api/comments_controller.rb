@@ -3,6 +3,8 @@ class Api::CommentsController < ApplicationController
 
     def index
         @comments = Track.find(params[:trackId]).comments.includes(:commenter)
+        # debugger
+        render :index
     end
 
     def show

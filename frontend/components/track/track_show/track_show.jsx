@@ -5,6 +5,7 @@ import AnnotationShow from '../../annotations/annotation_show/annotation_show_co
 import TrackShowLyrics from '../../track/track_show/track_show_lyrics';
 import Youtube from './youtube';
 import CreateCommentContainer from '../../comments/comment_create/create_comment_container';
+import CommentShow from '../../comments/comment_show/comment_show';
 
 class TrackShow extends React.Component {
    constructor(props) {
@@ -34,6 +35,7 @@ class TrackShow extends React.Component {
          this.props.fetchAlbum(this.props.track.album_id);
          // debugger
          this.props.fetchAnnotations(this.props.match.params.trackId);
+         this.props.fetchComments(this.props.match.params.trackId);
       });
       //needs to be a thunk action creator -- must return a promise
    }
