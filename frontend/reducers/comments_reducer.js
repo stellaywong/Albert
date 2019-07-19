@@ -8,7 +8,7 @@ const commentsReducer = (oldState = {}, action) => {
     switch (action.type) {
         case RECEIVE_TRACK:                             // you can use this syntax
         case RECEIVE_COMMENTS:
-            return merge({}, oldState, action.comments) // this line is here bc otherwise the RECEIVE_TRACK normal action creator will completely bypass the comments and go directly to default
+            return action.comments // this line is here bc otherwise the RECEIVE_TRACK normal action creator will completely bypass the comments and go directly to default
         case RECEIVE_COMMENT:
             return merge({}, oldState, { [action.comment.id]: action.comment })
         case REMOVE_COMMENT:

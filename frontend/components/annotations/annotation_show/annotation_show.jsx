@@ -22,7 +22,9 @@ class AnnotationShow extends React.Component {
                 <button onClick={() => {
                     this.props.deleteAnnotation(annotation.id);
                     this.props.setAnnotation(null, null);   // to make the deleted annotation disappear off the sidebar
-                }}>Delete Annotation</button>
+                }}
+                className="create-annotation-and-comment-button"
+                >Delete Annotation</button>
             </>
         );
     }

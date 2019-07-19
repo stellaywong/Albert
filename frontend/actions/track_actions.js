@@ -11,15 +11,21 @@ const receiveTracks = (tracks) => {
     })
 }
 
-const receiveTrack = (promiseObj) => {
+const receiveTrack = (payload) => {
     // debugger
     return ({
         type: RECEIVE_TRACK,
-        track: promiseObj.track,
-        annotations: promiseObj.annotations,
-        comments: promiseObj.comments,
-        // now we're sending two things at once
-        // so promiseObject received now has two keys inside
+        track: payload.track,
+        album: payload.album,
+        artist: payload.artist,
+        users: payload.users || {},
+        annotations: payload.annotations || {},
+        comments: payload.comments || {},
+            // the reducer's worst case should always be an empty object
+            // if there aren't payload.comments, send backend-->frontend an empty object
+            // because if left side falsey, right side will get assigned to "annotations"/"comments" key value
+        // now we're sending multiple things at once
+        // so promiseObject received now has multiple keys inside
     })
 }
 

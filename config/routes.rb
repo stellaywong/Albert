@@ -10,6 +10,6 @@ Rails.application.routes.draw do
       resources :artists, only: [:index, :show, :create, :update, :destroy]
       resources :albums, only: [:index, :show, :create, :update, :destroy]
       resources :annotations, only: [:index, :show, :create, :update, :destroy]
-      resources :comments, only: [:index, :show, :create]
+      resources :comments, only: [:index, :show, :create, :destroy]
     end
 end

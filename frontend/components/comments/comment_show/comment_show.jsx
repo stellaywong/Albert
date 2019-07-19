@@ -8,7 +8,7 @@ class CommentShow extends React.Component {
 
     render() {
         const { comment, commenter } = this.props;
-
+        
         return (
             <>
                 <h3>{commenter}</h3>
@@ -17,6 +17,7 @@ class CommentShow extends React.Component {
                 <button onClick={() => {
                     this.props.deleteComment(comment.id);
                 }}
+                className="create-annotation-and-comment-button"
                 >Delete Comment</button>
             </>
         )

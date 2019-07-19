@@ -11,14 +11,15 @@ class Api::TracksController < ApplicationController
         # p add_track_debugger
         @track = Track.find(params[:id])    #.where will give you an array; .find will give you the first one it finds
         @artist = @track.artist             #this instead of Track.all: it's less data so you spend less time in your backend   
+        @album = @track.album
         @annotations = @track.annotations   #wonderful annotations object
         @comments = @track.comments
+        @users = @track.annotators + @track.commenters
         # a track belongs to an artist
         render :show
     end
 
     def create
-        # commented out
         @track = Track.new(track_params)
         # debugger
   

@@ -21,10 +21,18 @@ class Track < ApplicationRecord
     foreign_key: :track_id,
     class_name: :Annotation
 
+    has_many :annotators,
+    through: :annotations,
+    source: :annotator
+
     has_many :comments,
     primary_key: :id,
     foreign_key: :track_id,
     class_name: :Comment
+
+    has_many :commenters,
+    through: :comments,
+    source: :commenter
 
     # make a method for tracks, to be able to truncate the url
     def self.truncate_youtube_url(youtube_string)

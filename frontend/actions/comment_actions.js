@@ -23,7 +23,7 @@ const receiveComment = ({comment, user}) => {
 const removeComment = (id) => {
     return ({
         type: REMOVE_COMMENT,
-        commentId: comment.id
+        commentId: id   // points to id, not comment.id
     })
 }
 

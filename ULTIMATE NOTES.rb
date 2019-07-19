@@ -150,6 +150,10 @@
 #     }
 # }
 
+# Q: WHY DO WE NORMALIZE THE STATE?
+# because we only have one copy of everything we've seen
+# worst case scenario your frontend should be exactly the size of your backend, never bigger than your backend
+
 # 5. Container:
 # the purpose of a container is to connect our COMPONENT with the REDUX STORE
 # instead of looking at the parent/children, the container looks at STORE

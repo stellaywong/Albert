@@ -117,6 +117,7 @@ const mapStateToProps = (state, ownProps) => {
         album: state.entities.albums[albumId],
         annotations_array: annotationsForOneTrack,
         annotators: annotators,
+        comments: Object.values(state.entities.comments),
     }
 }
 

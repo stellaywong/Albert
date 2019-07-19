@@ -5,7 +5,7 @@ import AnnotationShow from '../../annotations/annotation_show/annotation_show_co
 import TrackShowLyrics from '../../track/track_show/track_show_lyrics';
 import Youtube from './youtube';
 import CreateCommentContainer from '../../comments/comment_create/create_comment_container';
-import CommentShow from '../../comments/comment_show/comment_show';
+import CommentShow from '../../comments/comment_show/comment_show_container';
 
 class TrackShow extends React.Component {
    constructor(props) {
@@ -30,13 +30,14 @@ class TrackShow extends React.Component {
    componentDidMount() {
       // p add_track_debugger
       // debugger waterfall for trackShow
-      this.props.fetchTrack(this.props.match.params.trackId).then(()=> {
-         this.props.fetchArtist(this.props.track.artist_id);
-         this.props.fetchAlbum(this.props.track.album_id);
-         // debugger
-         this.props.fetchAnnotations(this.props.match.params.trackId);
-         this.props.fetchComments(this.props.match.params.trackId);
-      });
+      this.props.fetchTrack(this.props.match.params.trackId)
+         // .then(()=> {
+         // this.props.fetchArtist(this.props.track.artist_id);
+         // this.props.fetchAlbum(this.props.track.album_id);
+         // // debugger
+         // this.props.fetchAnnotations(this.props.match.params.trackId);
+         // this.props.fetchComments(this.props.match.params.trackId);
+      // });
       //needs to be a thunk action creator -- must return a promise
    }
 
@@ -50,10 +51,7 @@ class TrackShow extends React.Component {
       if (prevProps.track && (prevProps.track.id != this.props.match.params.trackId)) {   
          //debug: "prevProps.track &&" ensures that you can refresh the page without breaking it
          this.props.fetchTrack(this.props.match.params.trackId);
-      } else if (prevProps.annotations_array.length !== this.props.annotations_array.length){
-         this.props.fetchTrack(this.props.match.params.trackId);
-         // this.props.fetchAnnotations(this.props.match.params.trackId);
-      }
+      } 
    }
 
    clearAnnotation() {
@@ -141,7 +139,7 @@ class TrackShow extends React.Component {
    // debugger is where you can look at what props is
 
 
-   const { track, artist, album, annotators, annotations_array } = this.props;    //refactoring to be drier
+   const { track, artist, album, annotators, annotations_array, comments } = this.props;    //refactoring to be drier
    if (!track) {
       return <div>Loading...</div>;
    }
@@ -166,6 +164,12 @@ class TrackShow extends React.Component {
          />
          : null;
       
+      const displayCommentShow = comments ?
+         comments.map((comment) => {
+            return <CommentShow key={comment.id} comment={comment} />
+         })
+         : null;
+
       let annotationSidebar = null;
       // display the annotation, if we click on an annotated quote
       if (this.state.displayWholeAnnotation ) {
@@ -258,6 +262,7 @@ class TrackShow extends React.Component {
                <div className="track-lyrics-wrap">
                   {displayTrackLyrics}
                   {displayCreateCommentContainer}
+                  {displayCommentShow}
                </div>
 
                   <div className="show-annotation-form">
