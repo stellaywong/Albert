@@ -1,36 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { fetchSearchResults } from '../../actions/search_actions';
+import { connect } from 'react-redux';
 
 
-const myDebounce = (interval) => {
-    let timeout;
-    
-    return (argument) => {
-        const functionCall = () => {
-            timeout = null;
-            // this.props.fetchSearchResults(argument)
-            console.log(argument);
-        }
 
-        clearTimeout(timeout);
-        timeout = setTimeout(functionCall, interval);
-    }
-}
-
-// if you're a fast typer, send a search to the backend if there's a 1-second pause
-const delayedSearch = myDebounce(250);
-
-
-const handleChange = (e) => {
-    let search = e.target.value;
-
-    delayedSearch(search);
-}
 
 
 
 const Header = (props) => {
     const {currentUser, logout} = props; //destructure props here
+
+
+    const myDebounce = (interval) => {
+        let timeout;
+
+        return (argument) => {
+            const functionCall = () => {
+                timeout = null;
+                props.fetchSearchResults(argument)
+                // console.log(argument);
+            }
+
+            clearTimeout(timeout);
+            timeout = setTimeout(functionCall, interval);
+        }
+    }
+    // if you're a fast typer, send a search to the backend if there's a 1-second pause
+    const delayedSearch = myDebounce(250);
+
+    const handleChange = (e) => {
+        let search = e.target.value;
+
+        delayedSearch(search);
+    }
+
+
+
 
 {/* display has two buttons: sign up and log in */ }
 {/* but we only want to show these two buttons if they're not logged in */ }
@@ -67,5 +73,9 @@ const Header = (props) => {
     );
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+    return {fetchSearchResults: (input) => dispatch(fetchSearchResults(input))}
+}
+
+export default connect(null, mapDispatchToProps)(Header);
 
