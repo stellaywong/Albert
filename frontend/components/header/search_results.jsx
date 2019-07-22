@@ -92,10 +92,12 @@ class SearchBarAndResults extends React.Component {
                 
                 // visually rendered on the page -- constructing each list element
                 return (
-                    <Link to={`/tracks/${searchResult.id}`} key={searchResult.id} onClick={this.clearInput}>
+                    <Link to={`/tracks/${searchResult.id}`} key={searchResult.id} onClick={this.clearInput} className="search-result-text">
                         <img src={searchResult.photoUrl} className="top-tracks-index-item-image" />
-                        <span className="search-title">{titleShortener}</span>
-                        <span className="search-artist">{searchResult.artist_name}</span>
+                        <div className="search-text-wrap">
+                            <span className="search-title">{titleShortener}</span>
+                            <span className="search-artist">{searchResult.artist_name}</span>
+                        </div>
                     </Link>
                 )
             });

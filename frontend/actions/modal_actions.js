@@ -14,3 +14,4 @@ export const closeModal = (modal) => {
         modal
     };
 };
+
