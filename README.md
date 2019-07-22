@@ -4,20 +4,20 @@ Rhymestein is a single-page application clone of Rapgenius.com, created using [R
 
 <!-- ![](giphylink.gif) -->
 
-# Table of Contents
+<!-- # Table of Contents
 * [Features and Implementation](#features-and-implementation)
 * [Design Documents](#design-documents)
-* [User Authentication](#user-authentication)
+* [User Authentication](#user-authentication) -->
 
-## Features and Implementation
-As on Rapgenius.com,
+<!-- ## Features and Implementation
+As on Rapgenius.com, -->
 
-## Design Documents
+<!-- ## Design Documents
 * [Schema](https://github.com/stellaywong/Albert1/wiki/Schema)
 * [MVP List](https://github.com/stellaywong/Albert1/wiki/MVPs)
 * [Sample State](https://github.com/stellaywong/Albert1/wiki/Sample-State)
 * [Backend Routes](https://github.com/stellaywong/Albert1/wiki/Backend-Routes)
-* [Frontend Routes](https://github.com/stellaywong/Albert1/wiki/Frontend-Routes)
+* [Frontend Routes](https://github.com/stellaywong/Albert1/wiki/Frontend-Routes) -->
 
 ### User Authentication
 Readers can sign up for accounts via an authentication system encrypted with the BCrypt gem.
