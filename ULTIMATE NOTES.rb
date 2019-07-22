@@ -261,6 +261,24 @@
 # 10. Bugs ####################################################
 # how we fixed the annotation bug
 # solution 1: add span tags and p tags
-# 
+# they're semantic tags / HTML tags. if you read them, you can get 
+# <span> means unformatted text
+# <p> is a paragraph tag
+# we use a paragraph for our main lyrics bc semantically, people should be able to understand anything in lyrics as paragraphs
+# then we created span tags with 2 classnames:
+# one type is annotated
+# the other type is annotatable
+
 # solution 2: add dataOffset
-# 
+# data-* is a wildcard attribute: as long as you start any custom attribute off with a "data-"
+# we can save the variable name
+# we use data-Offset to tell us how far off we were from the original index
+# bc once we started writing multiple spans, data-Offset has a loop that, every time a span is created,
+# data-Offset will look up, and count the indices that came before
+# so the first span, because it still needs to look up, looks at <p> tage data-Offset = 0 
+
+# solution 3: two event listeners
+# for the overlap to work
+# 1. onMouseDown: save whichever span we're on
+# 2. onMouseUp: check to see if we're still on the same span
+# otherwise, it probably means you overlapped

@@ -4,7 +4,7 @@ class TrackShowLyrics extends React.Component {
 
     render() {      // empty parentheses invokes the render function
 
-        const { track, annotationsForOneTrack, clickHandler, setAnnotation} = this.props;       // deconstruct the object; inside this.props, we have a track. we're grabbing these things from track, and assigning to a new variable called track, used here.
+        const { track, annotationsForOneTrack, mouseUpHandler, mouseDownHandler, setAnnotation} = this.props;       // deconstruct the object; inside this.props, we have a track. we're grabbing these things from track, and assigning to a new variable called track, used here.
 
         
         // 1. <p> track.lyrics </p>
@@ -87,12 +87,12 @@ class TrackShowLyrics extends React.Component {
 
                         </div>)} */}
 
-                        <p onMouseUp={clickHandler} onMouseDown={clickHandler} data-offset={previousStep}>
+                        <p onMouseUp={mouseUpHandler} onMouseDown={mouseDownHandler} data-offset={previousStep}>
                             {lyricsAnnotatedAndAnnotatable}
                         </p>
                     </div>
                     : <div className="track-lyrics" ref={this.lyrics}>
-                        <p onMouseUp={clickHandler} onMouseDown={clickHandler} data-offset={0}>{track.lyrics}</p>
+                        <p onMouseUp={mouseUpHandler} onMouseDown={mouseDownHandler} data-offset={0}>{track.lyrics}</p>
                     </div>
                 }
             </>

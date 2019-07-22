@@ -1,6 +1,8 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Route, Switch } from 'react-router-dom';
+import { clearSearchResults } from '../actions/search_actions';
+import { connect } from 'react-redux';
 
 
 // import SignupFormContainer from './session_form/signup_form_container';
@@ -14,8 +16,10 @@ import TrackIndexContainer from './track/track_index/track_index_container';
 import CreateTrackFormContainer from './track/track_create_and_edit/create_track_form_container';
 import EditTrackFormContainer from './track/track_create_and_edit/edit_track_form_container';
 
-const App = () => (
-    <div>
+const App = (props) => (
+    <div onClick={props.clearSearchResults}>
+    {/* if you click anywhere, it fires off an action that says clear search results */}
+    {/* would it be smarter if the search thing was open first? yeah, but we're moving fast and not breaking things */}
         <header>
             <Modal />
             <Header></Header>
@@ -48,4 +52,13 @@ const App = () => (
     </div>
 );
 
-export default App;
+
+
+
+const mdp = dispatch => {
+    return {
+        clearSearchResults: () => dispatch(clearSearchResults()),
+    }
+}
+
+export default connect(null, mdp)(App);

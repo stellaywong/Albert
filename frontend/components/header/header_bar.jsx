@@ -1,42 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { fetchSearchResults } from '../../actions/search_actions';
+import { fetchSearchResults, clearSearchResults } from '../../actions/search_actions';
+import SearchBarAndResults from './search_results';
 import { connect } from 'react-redux';
-
-
-
-
-
 
 const Header = (props) => {
     const {currentUser, logout} = props; //destructure props here
-
-
-    const myDebounce = (interval) => {
-        let timeout;
-
-        return (argument) => {
-            const functionCall = () => {
-                timeout = null;
-                props.fetchSearchResults(argument)
-                // console.log(argument);
-            }
-
-            clearTimeout(timeout);
-            timeout = setTimeout(functionCall, interval);
-        }
-    }
-    // if you're a fast typer, send a search to the backend if there's a 1-second pause
-    const delayedSearch = myDebounce(250);
-
-    const handleChange = (e) => {
-        let search = e.target.value;
-
-        delayedSearch(search);
-    }
-
-
-
 
 {/* display has two buttons: sign up and log in */ }
 {/* but we only want to show these two buttons if they're not logged in */ }
@@ -59,10 +28,8 @@ const Header = (props) => {
 // for modal functionality
     return (
         <header className="header_bar">
-            <input
-                placeholder="Search poems and more"
-                onChange={handleChange}
-            ></input>
+            <SearchBarAndResults />
+
             <a href="https://rhymestein.herokuapp.com" className="header_website">R H Y M E S T E I N</a>
             {/* <a href="http://localhost:3000/#/" className="header_website">R H Y M E S T E I N</a> */}
             {/* <h1></h1> */}
@@ -74,7 +41,10 @@ const Header = (props) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {fetchSearchResults: (input) => dispatch(fetchSearchResults(input))}
+    return {
+        fetchSearchResults: (input) => dispatch(fetchSearchResults(input)),
+        clearSearchResults: () => dispatch(clearSearchResults()),
+    }
 }
 
 export default connect(null, mapDispatchToProps)(Header);

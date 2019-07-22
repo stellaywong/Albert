@@ -22,7 +22,9 @@ class TrackShow extends React.Component {
 
       this.lyrics = React.createRef();    // using React reference to snag lyrics object -- otherwise, cannot save object within tags to a variable
    
-      this.clickHandler = this.clickHandler.bind(this);
+      // anything with an event listener must be bound, because otherwise we will lose the context
+      this.mouseUpHandler = this.mouseUpHandler.bind(this);
+      this.mouseDownHandler = this.mouseDownHandler.bind(this);
       this.setAnnotation = this.setAnnotation.bind(this);
       this.clearAnnotation = this.clearAnnotation.bind(this);
    }
@@ -64,17 +66,25 @@ class TrackShow extends React.Component {
       this.setState({ displayAnnotator: annotator });
    }
 
-   clickHandler(e) {    // create new function that receives event
-      // console.log(window.getSelection());
-
+   mouseDownHandler(e) {
+      // mouseDown
       // BEGIN
-      if (this.state.beginInSection === null) {
+      // if (this.state.beginInSection === null) {
          this.setState({
             beginInSection: e.target,     // allows the mouse to know where it has been put down
          })
          return;     //just to get out
-      }
+      // }
+   }
+
+   mouseUpHandler(e) {    // create new function that receives event
+      // console.log(window.getSelection());
+
       // debugger
+      // if we click outside of the lyrics, it shouldn't even try to return the values (gets rid of console error message)
+      if (this.state.beginInSection === null) {
+         return;     //just to get out
+      }
 
       // this will extract the previous section (calculating the offset of the beginInSection)
       let offsetForSection = parseInt(this.state.beginInSection.dataset.offset);
@@ -153,7 +163,8 @@ class TrackShow extends React.Component {
             track={track} 
             annotationsForOneTrack={annotations_array}
             annotators={annotators}
-            clickHandler={this.clickHandler}
+            mouseDownHandler={this.mouseDownHandler}
+            mouseUpHandler={this.mouseUpHandler}
             setAnnotation={this.setAnnotation} /> 
          : null;
 

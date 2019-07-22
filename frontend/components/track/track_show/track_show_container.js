@@ -6,6 +6,7 @@ import { fetchArtist } from '../../../actions/artist_actions';
 import { fetchAlbum } from '../../../actions/album_actions';
 import { fetchAnnotations, deleteAnnotation } from '../../../actions/annotation_actions';
 import { fetchComments } from '../../../actions/comment_actions';
+import { clearSearchResults } from '../../../actions/search_actions';
 
 // quicksort method placed here
 Array.prototype.quickSort = function (comparator) {
@@ -129,6 +130,7 @@ const mapDispatchToProps = (dispatch) => ({
     fetchAnnotations: (trackId) => dispatch(fetchAnnotations(trackId)),
     deleteAnnotation: (id) => dispatch(deleteAnnotation(id)),
     fetchComments: (trackId) => dispatch(fetchComments(trackId)),
+    clearSearchResults: () => dispatch(clearSearchResults())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackShow);

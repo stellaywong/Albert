@@ -1,0 +1,25 @@
+.search-wrap {
+    background-color: white;
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    z-index: 100;
+}
+
+.search-bar-input-field {
+    border: none;
+}
+
+.search-title {
+}
+
+.search-artist {
+
+}
+
+.search-results {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+}
