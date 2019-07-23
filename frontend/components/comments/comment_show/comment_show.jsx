@@ -9,16 +9,19 @@ class CommentShow extends React.Component {
     render() {
         const { comment, commenter } = this.props;
         
+        
         return (
             <>
-                <h3>{commenter}</h3>
-                <h3>{comment.comment_body}</h3>
+                <div className="comment-show-container">
+                    <h3 className="comment-show-commenter">{commenter}</h3>
+                    <h3>{comment.comment_body}</h3>
 
-                <button onClick={() => {
-                    this.props.deleteComment(comment.id);
-                }}
-                className="create-annotation-and-comment-button"
-                >Delete Comment</button>
+                    <button onClick={() => {
+                        this.props.deleteComment(comment.id);
+                    }}
+                        className="create-annotation-and-comment-button"
+                    >Delete Comment</button>
+                </div>
             </>
         )
     }

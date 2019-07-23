@@ -149,7 +149,7 @@ class TrackShow extends React.Component {
    // debugger is where you can look at what props is
 
 
-   const { track, artist, album, annotators, annotations_array, comments } = this.props;    //refactoring to be drier
+   const { track, artist, album, annotations_array, annotators, comments, commenters } = this.props;    //refactoring to be drier
    if (!track) {
       return <div>Loading...</div>;
    }
@@ -177,7 +177,7 @@ class TrackShow extends React.Component {
       
       const displayCommentShow = comments ?
          comments.map((comment) => {
-            return <CommentShow key={comment.id} comment={comment} />
+            return <CommentShow key={comment.id} comment={comment} commenter={commenters[comment.commenter_id]} />
          })
          : null;
 

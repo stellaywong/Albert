@@ -53,9 +53,11 @@ const mapStateToProps = (state, ownProps) => {
     let albumId = null;
     let artistId = null;
     let annotators = {};
+    let commenters = {};
 
     //on first render, if track doesn't exist yet
     const track = state.entities.tracks[ownProps.match.params.trackId]
+    const comments = Object.values(state.entities.comments);
     if (track) {
         albumId = track.album_id;
         artistId = track.artist_id;
@@ -84,6 +86,14 @@ const mapStateToProps = (state, ownProps) => {
 
         // annotatorId = track.annotation_ids[0];  // the bug right now is that this is hardcoded to the first user in the user's array (as a test)
         // annotator = state.entities.users[annotatorId] ? state.entities.users[annotatorId].username : null;
+    
+        for (let comment of comments) {
+            // let comment = state.entities.comments[commentId];
+
+            let commenterId = comment.commenter_id;
+            commenters[commenterId] = state.entities.users[commenterId].username;
+            
+        }
     };
     // else defaults to null
 
@@ -108,7 +118,7 @@ const mapStateToProps = (state, ownProps) => {
     // we want to change annotationsForOneTrack 
     
     annotationsForOneTrack = annotationsForOneTrack.quickSort();
-    console.log(annotationsForOneTrack);
+    // console.log(annotationsForOneTrack);
 
     return {
         currentUser: state.entities.users[state.session.id],    //to make edit track conditional
@@ -119,6 +129,7 @@ const mapStateToProps = (state, ownProps) => {
         annotations_array: annotationsForOneTrack,
         annotators: annotators,
         comments: Object.values(state.entities.comments),
+        commenters: commenters,
     }
 }
 

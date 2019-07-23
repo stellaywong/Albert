@@ -1,0 +1,11 @@
+.comment-show-container {
+    background: rgba(204,204,204,.2);
+    padding: .75rem;
+    display: block;
+    /* padding-top: 1.5rem; */
+}
+
+.comment-show-commenter {
+    border-top: 1px solid #99a7ee;
+    font-weight: bold;
+}
