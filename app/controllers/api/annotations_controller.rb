@@ -10,6 +10,14 @@ class Api::AnnotationsController < ApplicationController
         render :show
     end
 
+    def upvote
+        vote(1)
+    end
+
+    def downvote
+        vote(-1)
+    end
+
     def create
         @annotation = Annotation.new(annotation_params)
         @annotation.annotator_id = current_user.id
@@ -45,5 +53,24 @@ class Api::AnnotationsController < ApplicationController
     def annotation_params
         params.require(:annotation).permit(:annotation_body, :start_index, :end_index, :quote, :annotator_id, :track_id)
     end
+
+    def vote(direction)
+        @annotation = Annotation.find(params[:id])
+        @vote = @annotation.votes.find_or_initialize_by(user: current_user)    # active record relation "find_or_initialize_by"
+
+        if @vote    # if there exists a vote
+            if @vote.value == direction    # if the point value is the same, destroy the vote and keep the json at 0
+                @vote.destroy
+                render json: 0
+            else
+                @vote.update(value: direction)    # if the point value has changed, update the vote and add/subtract the json
+                render json: @vote.value
+            end
+        else      # if there doesn't exist a vote
+            @annotation.votes.create!(user_id: current_user.id, value: direction)  # make a vote with the current user's id
+            render json: direction
+        end
+  end
+
 
 end

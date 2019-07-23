@@ -9,8 +9,18 @@ Rails.application.routes.draw do
       resources :tracks, only: [:index, :show, :create, :update, :destroy]
       resources :artists, only: [:index, :show, :create, :update, :destroy]
       resources :albums, only: [:index, :show, :create, :update, :destroy]
-      resources :annotations, only: [:index, :show, :create, :update, :destroy]
-      resources :comments, only: [:index, :show, :create, :destroy]
+      resources :annotations, only: [:index, :show, :create, :update, :destroy] do
+        member do
+          post 'upvote'
+          post 'downvote'
+        end
+      end
+      resources :comments, only: [:index, :show, :create, :destroy] do
+        member do
+          post 'upvote'
+          post 'downvote'
+        end
+      end
       resources :search, only: [:index]
     end
 end
