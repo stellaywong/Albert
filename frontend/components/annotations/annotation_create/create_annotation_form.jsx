@@ -66,68 +66,72 @@ class CreateAnnotationForm extends React.Component {
         <div className="create-and-edit-annotation-form-container">
             <div className="create-and-edit-annotation-form">
                 {/* <h3 className="create_track_heading">{this.props.formType}</h3> */}
-                <form onSubmit={this.handleSubmit}>
+                <div className="annotation-whole-container">                    
+                    <form onSubmit={this.handleSubmit}>
 
-                    {/* <label className="create-and-edit-input-field-label">Annotation */}
-                    <label className="screenreader-only">Create Annotation Form</label>
-                    <label className="screenreader-only">Create Annotation</label>
-                    <label className="screenreader-only">Don't just put the poem in your own words--drop some knowledge!</label>
-                    <textarea
-                        className="create-annotation-input-field"
-                        value={this.state.annotation_body}
-                        placeholder="Don't just put the poem in your own words--drop some knowledge!"
-                        onChange={this.updateAnnotationBody.bind(this)}
-                        required
-                    ></textarea>
-                    {/* </label> */}
+                        {/* <label className="create-and-edit-input-field-label">Annotation */}
+                        <label className="screenreader-only">Create Annotation Form</label>
+                        <label className="screenreader-only">Create Annotation</label>
+                        <label className="screenreader-only">Don't just put the poem in your own words--drop some knowledge!</label>
+                        <textarea
+                            className="create-annotation-input-field"
+                            value={this.state.annotation_body}
+                            placeholder="Don't just put the poem in your own words--drop some knowledge!"
+                            onChange={this.updateAnnotationBody.bind(this)}
+                            required
+                        ></textarea>
+                        {/* </label> */}
 
-                    <input className="hide-this-field"
-                        type="integer"
-                        value={this.state.annotator_id}
-                        onChange={this.update('annotator_id')}
-                    />
+                        <input className="hide-this-field"
+                            type="integer"
+                            value={this.state.annotator_id}
+                            onChange={this.update('annotator_id')}
+                        />
 
-                    <input className="hide-this-field"
-                        type="integer"
-                        value={this.state.id}
-                        onChange={this.update('track_id')}
-                    />
+                        <input className="hide-this-field"
+                            type="integer"
+                            value={this.state.id}
+                            onChange={this.update('track_id')}
+                        />
 
-                    <input className="hide-this-field"
-                        type="integer"
-                        value={this.state.start_index}
-                        onChange={this.update('start_index')}
-                    />
+                        <input className="hide-this-field"
+                            type="integer"
+                            value={this.state.start_index}
+                            onChange={this.update('start_index')}
+                        />
 
-                    <input className="hide-this-field"
-                        type="integer"
-                        value={this.state.end_index}
-                        onChange={this.update('end_index')}
-                    />
+                        <input className="hide-this-field"
+                            type="integer"
+                            value={this.state.end_index}
+                            onChange={this.update('end_index')}
+                        />
 
-                    <input className="hide-this-field"
-                        type="text"
-                        value={this.state.quote}
-                        onChange={this.update('quote')}
-                    />
+                        <input className="hide-this-field"
+                            type="text"
+                            value={this.state.quote}
+                            onChange={this.update('quote')}
+                        />
 
-                    {/* custom error message to log in before making annotations, otherwise do nothing */} 
-                    {(this.state.error === true) ?
-                        <>
-                            <h2 className="screenreader-only"> Please sign in before creating annotation! </h2>
-                            <h2 className="error-text-message"> Please sign in before creating annotation! </h2>
-                            <br></br>
-                        </>
-                        : null
-                    }
-                    <label className="screenreader-only">Save Annotation Button</label>
-                    <input
-                        type="submit"
-                        value="Save Annotation"
-                        className="create-annotation-and-comment-button">
-                    </input>
+                        {/* custom error message to log in before making annotations, otherwise do nothing */} 
+                        {(this.state.error === true) ?
+                            <>
+                                <h2 className="screenreader-only"> Please sign in before creating annotation! </h2>
+                                <h2 className="error-text-message"> Please sign in before creating annotation! </h2>
+                                <br></br>
+                            </>
+                            : null
+                        }
+                        
+                        <label className="screenreader-only">Save Annotation Button</label>
+                        <input
+                            type="submit"
+                            value="Save Annotation"
+                            className="create-annotation-and-comment-button">
+                        </input>
+                        
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
         );
