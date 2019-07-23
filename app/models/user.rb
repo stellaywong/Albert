@@ -22,6 +22,12 @@ class User < ApplicationRecord
     foreign_key: :commenter_id,
     class_name: :Comment
 
+    has_many :votes,
+    primary_key: :id,
+    foreign_key: :voter_id,
+    class_name: :Vote,
+    inverse_of: :voter
+        
     def self.find_by_credentials(username, password)
         user = User.find_by(username: username)
         user && user.is_password?(password) ? user : nil

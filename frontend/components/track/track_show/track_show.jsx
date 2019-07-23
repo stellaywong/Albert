@@ -15,8 +15,7 @@ class TrackShow extends React.Component {
          start_index: "",
          end_index: "",
          annotation_body: "",
-         displayWholeAnnotation: null,
-         displayAnnotator: null,
+         displayAnnotationId: null,
          beginInSection: null,   // we don't need an endInSection because we can always find out where we're ending (e.target)
       };
 
@@ -60,10 +59,9 @@ class TrackShow extends React.Component {
       this.setState({ quote: "" })
    }
  
-   setAnnotation(annotation, annotator){
+   setAnnotation(annotationId){
       // debugger
-      this.setState({ displayWholeAnnotation: annotation});
-      this.setState({ displayAnnotator: annotator });
+      this.setState({ displayAnnotationId: annotationId });
    }
 
    mouseDownHandler(e) {
@@ -133,7 +131,7 @@ class TrackShow extends React.Component {
       // if the e.target doesn't have the quote's class list, it means
       // the user clicked on something else
       if (!e.target.classList.contains('annotation-highlighted')) {
-         this.setState({ displayWholeAnnotation: null });
+         this.setState({ displayAnnotationId: null });
       }
 
       // debugger
@@ -150,9 +148,13 @@ class TrackShow extends React.Component {
 
 
    const { track, artist, album, annotations_array, annotators, comments, commenters } = this.props;    //refactoring to be drier
+   const that = this;
+
    if (!track) {
       return <div>Loading...</div>;
    }
+
+   // debugger
    // debugging for add-and-create-track
 
       // edit button
@@ -183,11 +185,25 @@ class TrackShow extends React.Component {
 
       let annotationSidebar = null;
       // display the annotation, if we click on an annotated quote
-      if (this.state.displayWholeAnnotation ) {
+      if (this.state.displayAnnotationId ) {
+
+         let annotation = annotations_array.find(anno => {
+            
+            
+            if (anno.id === that.state.displayAnnotationId) {
+               
+               return anno;
+            }
+         });
+
+         // annotators[annotation.annotator_id]
+
+         let annotator = annotation ? annotators[annotation.annotator_id] : null;
+         
          annotationSidebar = 
             <AnnotationShow
-               annotation={this.state.displayWholeAnnotation}     // the annotation body of the annotation
-               annotator={this.state.displayAnnotator}            // the username of the annotator
+               annotation={annotation}     // the annotation body of the annotation
+               annotator={annotator}            // the username of the annotator
                setAnnotation={this.setAnnotation}                 // to make the deleted annotation disappear off the sidebar
             />
          
@@ -213,7 +229,7 @@ class TrackShow extends React.Component {
       // the youtube player will still play (audio will not be interrupted)
       let youtubeSidebarStyle = null;
 
-      if (this.state.displayWholeAnnotation || this.state.quote.length != 0) {
+      if (this.state.displayAnnotationId || this.state.quote.length != 0) {
          youtubeSidebarStyle = {
             display: 'none'
          } 

@@ -59,22 +59,23 @@ class Api::CommentsController < ApplicationController
         # permit it as long as it's coming from the frontend
     end
 
+
     def vote(direction)
         @comment = Comment.find(params[:id])
-        @vote = @comment.votes.find_or_initialize_by(user: current_user)    # active record relation "find_or_initialize_by"
+        @vote = Vote.find_by_voteable(@comment, current_user.id)
 
         if @vote    # if there exists a vote
             if @vote.value == direction    # if the point value is the same, destroy the vote and keep the json at 0
                 @vote.destroy
-                render json: 0
+                render json: (direction * -1)
             else
                 @vote.update(value: direction)    # if the point value has changed, update the vote and add/subtract the json
                 render json: @vote.value
             end
         else      # if there doesn't exist a vote
-            @comment.votes.create!(user_id: current_user.id, value: direction)  # make a vote with the current user's id
+            @comment.votes.create!(voter_id: current_user.id, value: direction)  # make a vote with the current user's id
             render json: direction
         end
-  end
+    end
 
 end

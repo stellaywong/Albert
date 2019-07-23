@@ -1,4 +1,6 @@
 class Annotation < ApplicationRecord
+    include Voteable
+
     validates :annotation_body, :start_index, :end_index, :quote, :annotator_id, :track_id, presence: true
 
     belongs_to :annotator,

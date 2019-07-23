@@ -1,4 +1,5 @@
 import { RECEIVE_ANNOTATIONS, RECEIVE_ANNOTATION, REMOVE_ANNOTATION } from '../actions/annotation_actions';
+import { RECEIVE_ANNOTATION_VOTE } from '../actions/vote_actions';
 import { RECEIVE_TRACK } from '../actions/track_actions';
 import { merge } from 'lodash';
 
@@ -16,6 +17,13 @@ const annotationsReducer = (oldState = {}, action) => {
             let newState = merge({}, oldState)
             delete newState[action.annotationId]
             return newState
+        case RECEIVE_ANNOTATION_VOTE:
+            let newAnnotationState = oldState[action.id];
+
+            newAnnotationState.votes += action.vote;
+            
+            return merge({}, oldState, { [newAnnotationState.id]: newAnnotationState })       // debugged for annotationShow -- syntax
+
         default:
             return oldState
     }

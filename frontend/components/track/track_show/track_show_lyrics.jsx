@@ -40,8 +40,9 @@ class TrackShowLyrics extends React.Component {
                 <a key={j++}
                     unselectable="on"
                     onClick={() => {
-                        setAnnotation(annotationsForOneTrack[i],
-                            this.props.annotators[annotation.annotator_id]) //here we indexing into the annotators object (created in the container)
+                        // setAnnotation(annotationsForOneTrack[i],
+                        //     this.props.annotators[annotation.annotator_id]) //here we indexing into the annotators object (created in the container)
+                        setAnnotation(annotation.id) //here we indexing into the annotators object (created in the container)
                         // by the annotator id we took from the annotation
                     }}
                     className="annotation-highlighted"

@@ -50,7 +50,7 @@ class CreateAnnotationForm extends React.Component {
         this.props.createAnnotation(takeFromStateAndSendToBackend).then((response) => {
             
             that.props.clearAnnotation();
-            that.props.setAnnotation(response.annotation, response.user.username);
+            that.props.setAnnotation(response.annotation.id);
         })  //must call this createTrack (same name as edit track form container) so track_form can take in 'createTrack' to accomodate both
             // .then((action) => this.props.history.push(`/annotations/${action.annotation.id}/`)); // comment this out so we don't redirect to annotations/2
     }

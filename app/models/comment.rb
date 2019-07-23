@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+    include Voteable
+
     validates :comment_body, presence: true
 
     after_initialize :ensure_track_id!

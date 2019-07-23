@@ -1,5 +1,6 @@
 import { RECEIVE_COMMENTS, RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_TRACK } from '../actions/track_actions';
+import { RECEIVE_COMMENT_VOTE } from '../actions/vote_actions';
 import { merge } from 'lodash';
 
 const commentsReducer = (oldState = {}, action) => {
@@ -15,6 +16,12 @@ const commentsReducer = (oldState = {}, action) => {
             let newState = merge({}, oldState)
             delete newState[action.commentId]
             return newState
+        case RECEIVE_COMMENT_VOTE:
+            let newCommentState = oldState[action.id];
+
+            newCommentState.votes += action.vote;
+
+            return merge({}, oldState, { [newCommentState.id]: newCommentState })       // debugged for annotationShow -- syntax
         default:
             return oldState
     }
