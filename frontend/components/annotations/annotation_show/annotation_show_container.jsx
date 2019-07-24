@@ -4,11 +4,11 @@ import {deleteAnnotation} from '../../../actions/annotation_actions';
 import { upvoteAnnotation, downvoteAnnotation } from '../../../actions/vote_actions';
 import AnnotationShow from './annotation_show';
 
-const mapStateToProps = (state) => {
-    return {
-        currentUserId: state.session.id,
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         currentUserId: state.session.id,
+//     }
+// }
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -18,4 +18,5 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AnnotationShow);
+// export default connect(mapStateToProps, mapDispatchToProps)(AnnotationShow);
+export default connect(null, mapDispatchToProps)(AnnotationShow);
