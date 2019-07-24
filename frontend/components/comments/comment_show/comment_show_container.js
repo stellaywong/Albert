@@ -5,6 +5,12 @@ import { upvoteComment, downvoteComment } from '../../../actions/vote_actions';
 
 import CommentShow from './comment_show';
 
+const mapStateToProps = (state) => {
+    return {
+        currentUserId: state.session.id,
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         deleteComment: (id) => dispatch(deleteComment(id)),
@@ -13,4 +19,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CommentShow);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentShow);
