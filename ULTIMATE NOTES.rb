@@ -258,6 +258,132 @@
         # </main> 
         # pros: it's cleaner (less repetition) && more intuitive to the final rendered page layout
 
+# 5. Props (React only) //////////////////////////////////////////////////////////////////////////////////////
+#  <Parent />
+    # React components are always written in green like this, and capitalized
+    # html language is always in blue color (this is a horrible way to teach it) <h1>
+    # jsx is just a way to use Javascript to create html elements -- using pure javascript wouldnt' do the same thing
+    # anything with a render method will always be jsx (like javascript, but extra -- also not great way to teach it)
+    # container/reducer/not rendering will always be js
+
+# <Component
+    # name={name} <-- this is a prop. 
+    # like={like}
+    # />
+    # you're saving the prop variable name (right) as a variable name (left side)
+    # this is called jsx interpolation! because otherwise it prints "name" and "like"
+    # we do this for printing purposes (rendering) -- to convert code into whatever the input should be, not the actual code itself printing
+
+# render () {
+    # return (
+        # {errors = true ? <Something /> : null}    <-- this converts javascript --> jsx object. so you can do javascript code on a jsx object.
+    # )
+# }
+    # in a jsx file, it's like javascript, you can write javascript in a jsx file
+    # but the jsx part only kicks in for the render
+
+# example: what do you do in a parent component with a div, title, paragraph, react component footer, with props and current username?
+# render() {    <-- this is the method!
+    # return (      <-- this is what the method gives back
+        # <div>         <-- this could or could not hold all the other 1) html tags 2) React components!
+            # for sematic styling, which is best practices: your tag should match your insides
+            # <h1> <h2> <h3> <h4> <h5> <h6> <p> <span> <strong><--italics expect text inside, so what goes in between is {the text to be interpolated}
+            # <title> is only used in one place in html (misleading!) so it is ALWAYS the tab text
+            # 
+        # </div> 
+    # )
+# }
+
+# 5A. React/JSX: className (Component vs. div)      <-- gets around reserved keywords of HTML by using different keywords. but it works (look wise) in HTML.
+    # A) if it's NOT a React component it becomes an ATTRIBUTE
+        # <div className={}         <-- we use className (for css) instead of class because "class" is a keyword to make a class. className is just for css.
+            # selected = true>
+            # </div>
+        # ==> renders <div class="name"> </div>
+        # for a div, a className is a keyword
+
+    # B) if it IS a React component it becomes a PROP
+        # <Component className={}   <-- this className is DIFFERENT from a div's className. it means this.props.className. className is a PROP for a React component.
+        # therefore, props (a POJO) changes to look like this
+        # props = { className: value }
+
+# 5B. HTML attributes
+# <input 
+    # type=text <-- or textarea, etc.
+    # value=""  <-- what gets sent to the backend. we start it off empty string to let the user fill it out.
+    # disabled  <-- visible but cannot be changed
+    # focused   <-- the mouse immediately starts here (like a search bar, once clicked, the cursor begins right in at the beginning of the field already)
+# />
+
+# 6. Props (with Redux) ############################################################################
+# Store/Redux state info/data
+#   --> get these through container: 
+        # A) MapStateProps (returns props from store) {tracks: ... authors: ...}
+        # B) MapDispatchToProps returns functions that will dispatch actions for you AKA button clicks
+
+# store gets its info from 
+    # A) the backend, and 
+    # B) the reducers. you can put in also 
+    # C) session and sign in info, to see who's signed in.
+
+        # 6001. this.props...: props can't be changed inside component. therefore! this.props =   XXX no reassigning!
+
+        # 6002. ...vs. this.state:
+        # constructor(props) {
+        #   this.state = {
+                # variablename = variablething
+        #   }
+        # }
+        # child components' OWN state comes with ANY class component.
+
+########### Two types of components that do one thing: print out a name #################### 
+# 6A. Functional component--immediate render
+# in child component file:
+# const Component = (props) => {
+#     const {name} = props;             <-- destructuring
+
+#     return (
+#         <h1>{name}</h1>
+#     )
+# }
+
+# 6B. Class component -- comes with bonus things (ex. lifecycle methods & state) and has room to do extra stuff
+# in child component file:
+# class Component extends React.Component {
+#     constructor(props) {
+#         super(props)
+#     }
+
+#     render(){
+#            const {name} = props;     <-- destructuring
+#         return(
+#            <h1>{name}</h1>
+#         )
+#     }
+# }
+
+# 7. Props (from React.Router) ################################################################
+# changes url
+# withRouter(ComponentName) <-- withRouter wraps the component
+    # => Router functions
+
+    # withRouter gives you extra props:
+    # 1. history (+ location + match)
+        # history.push(newUrl)  <-- replaces current url with new url
+        # history.location.pathname
+        # ownProps.match.params
+
+    # 2. params => pull out nay wildcards in url
+        # /tracks/:trackId/annotation/:annotationId --> annotationId is pulled out, put in props.params <-- put in props at the key of params
+        # params.trackId
+        # params.annotationId
+
+# ERGO:
+# child component gets its giant prop-malgam from 3 sources:    (a really good notetaker)
+# 1. parent component (react only) gives props which goes into child component
+# 2. store (from backend gives (msp, mdp) go into props) which goes into child component
+# 3. withRouter (gives (history, params) go into props) which goes into child component
+
 # 10. Bugs ####################################################
 # how we fixed the annotation bug
 # solution 1: add span tags and p tags
