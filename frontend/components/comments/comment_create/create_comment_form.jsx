@@ -75,7 +75,7 @@ class CreateCommentForm extends React.Component {
                         <label className="screenreader-only">Save Review Button</label>
                         <input
                             type="submit"
-                            value="Save Comment"
+                            value="Save Review"
                             className="create-annotation-and-comment-button"
                         ></input>
                     </form>
