@@ -57,7 +57,7 @@ class CreateCommentForm extends React.Component {
                         <textarea
                             className="comment-input-field"
                             value={this.state.comment_body}
-                            placeholder="Add a comment"
+                            placeholder="Quote a critic's review (with citation!)"
                             onChange={this.updateCommentBody.bind(this)}    //bind so the function doesn't lose its context "this" -- to keep the function updateCommentBody's field when you start typing inside the textarea
                             required
                         ></textarea>
@@ -65,14 +65,14 @@ class CreateCommentForm extends React.Component {
                         {/* custom error message to log in before making comments, otherwise do nothing */}
                         {(this.state.error === true) ?
                             <>
-                                <h2 className="screenreader-only"> Please sign in before creating comment! </h2>
-                                <h2 className="error-text-message"> Please sign in before creating comment! </h2>
+                                <h2 className="screenreader-only"> Please sign in before adding review! </h2>
+                                <h2 className="error-text-message"> Please sign in before adding review! </h2>
                                 <br></br>
                             </>
                             : null
                         }
 
-                        <label className="screenreader-only">Save Comment Button</label>
+                        <label className="screenreader-only">Save Review Button</label>
                         <input
                             type="submit"
                             value="Save Comment"
