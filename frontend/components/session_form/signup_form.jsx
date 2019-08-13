@@ -77,8 +77,8 @@ class SignupForm extends React.Component {
         }
 
         const inputs = <>
-                <label className="screenreader-only">Demo User Sign In</label>
-                <a onClick={() => this.signinDemo()} className="demo-user-button">Demo User Sign In</a>
+                {/* <label className="screenreader-only">Demo User Sign In</label> */}
+                {/* <a onClick={() => this.signinDemo()} className="demo-user-button">Demo User Sign In</a> */}
 
                 <label className="screenreader-only">Username</label>
                 <label className="signup-and-signin-input-label">Rhymestein Nickname</label>
