@@ -70,9 +70,9 @@ class CreateAnnotationForm extends React.Component {
                     <form onSubmit={this.handleSubmit}>
 
                         {/* <label className="create-and-edit-input-field-label">Annotation */}
-                        <label className="screenreader-only">Create Annotation Form</label>
-                        <label className="screenreader-only">Create Annotation</label>
-                        <label className="screenreader-only">Don't just put the poem in your own words--drop some knowledge!</label>
+                        <label className="sr-only">Create Annotation Form</label>
+                        <label className="sr-only">Create Annotation</label>
+                        <label className="sr-only">Don't just put the poem in your own words--drop some knowledge!</label>
                         <textarea
                             className="create-annotation-input-field"
                             value={this.state.annotation_body}
@@ -115,14 +115,14 @@ class CreateAnnotationForm extends React.Component {
                         {/* custom error message to log in before making annotations, otherwise do nothing */} 
                         {(this.state.error === true) ?
                             <>
-                                <h2 className="screenreader-only"> Please sign in before creating annotation! </h2>
+                                <h2 className="sr-only"> Please sign in before creating annotation! </h2>
                                 <h2 className="error-text-message"> Please sign in before creating annotation! </h2>
                                 <br></br>
                             </>
                             : null
                         }
                         
-                        <label className="screenreader-only">Save Annotation Button</label>
+                        <label className="sr-only">Save Annotation Button</label>
                         <input
                             type="submit"
                             value="Save Annotation"

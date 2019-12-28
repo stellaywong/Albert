@@ -63,13 +63,13 @@ class CommentShow extends React.Component {
                     >Delete Comment</button>
 
                     <div className='vote-buttons'>
-                        <div className="screenreader-only">Upvote Comment</div>
+                        <div className="sr-only">Upvote Comment</div>
                         <button onClick={() => this.props.upvoteComment(comment.id)} className="upvote"><i className="fas fa-thumbs-up"></i></button>
                         <span style={voteColor} >{comment.votes}</span>
                         {/* you need a tag to style this, but it must always point to an object of two-pairs */}
                         {/* you can do the styling in-line, so the css is contained in this ternary */}
                         {/* or if you have a default value (gray color) you can save it to above the return and call the styling as a variable */}
-                        <div className="screenreader-only">Downvote Comment</div>
+                        <div className="sr-only">Downvote Comment</div>
                         <button onClick={() => this.props.downvoteComment(comment.id)} className="downvote"><i className="fas fa-thumbs-down"></i></button>
                         
                         {/* <br></br> */}

@@ -77,10 +77,10 @@ class SignupForm extends React.Component {
         }
 
         const inputs = <>
-                {/* <label className="screenreader-only">Demo User Sign In</label> */}
+                {/* <label className="sr-only">Demo User Sign In</label> */}
                 {/* <a onClick={() => this.signinDemo()} className="demo-user-button">Demo User Sign In</a> */}
 
-                <label className="screenreader-only">Username</label>
+                <label className="sr-only">Username</label>
                 <label className="signup-and-signin-input-label">Rhymestein Nickname</label>
                 <input
                     type="text"
@@ -91,7 +91,7 @@ class SignupForm extends React.Component {
                     />
                     { invalidUsername }
                     
-                <label className="screenreader-only">Email</label>
+                <label className="sr-only">Email</label>
                 <label className="signup-and-signin-input-label">Email</label>
                 <input
                     type="email"
@@ -102,7 +102,7 @@ class SignupForm extends React.Component {
                     />
                     { invalidEmail}
                     
-                <label className="screenreader-only">Password</label>
+                <label className="sr-only">Password</label>
                 <label className="signup-and-signin-input-label">Password</label>
                 <input
                     type="password"
@@ -180,7 +180,7 @@ export default withRouter(SignupForm);
   // const inputs = (this.state.errors.length) ? (
         //     <>
         //         <a onClick={() => this.signinDemo()} className="demo-user-button">Demo User Sign In</a>
-        //         <label className="screenreader-only">Username</label>
+        //         <label className="sr-only">Username</label>
         //         <label className="signup-and-signin-input-label">Rhymestein Nickname</label>
 
 
@@ -196,7 +196,7 @@ export default withRouter(SignupForm);
         //             {/* {this.state.errors[0] ? (<div className="error-text-message">{this.state.errors[0]}</div>) : (<></>)} */}
         //             { invalidUsername }
 
-        //         <label className="screenreader-only">Email</label>
+        //         <label className="sr-only">Email</label>
         //         <label className="signup-and-signin-input-label">Email</label>
         //         <input 
         //             type="email" 
@@ -209,7 +209,7 @@ export default withRouter(SignupForm);
         //             {/* {this.state.errors[1] ? (<div className="error-text-message">{this.state.errors[1]}</div>) : (<></>)} */}
         //             {invalidEmail}
 
-        //         <label className="screenreader-only">Password</label>
+        //         <label className="sr-only">Password</label>
         //         <label className="signup-and-signin-input-label">Password</label>
         //         <input
         //             type="password"

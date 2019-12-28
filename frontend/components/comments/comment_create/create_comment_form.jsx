@@ -52,7 +52,7 @@ class CreateCommentForm extends React.Component {
             <div className="create-comment-form-container">
                 <div className="create-comment-form">
                     <form onSubmit={this.handleSubmit}>
-                        <label className="screenreader-only">Create Comment Form</label>
+                        <label className="sr-only">Create Comment Form</label>
 
                         <textarea
                             className="comment-input-field"
@@ -65,14 +65,14 @@ class CreateCommentForm extends React.Component {
                         {/* custom error message to log in before making comments, otherwise do nothing */}
                         {(this.state.error === true) ?
                             <>
-                                <h2 className="screenreader-only"> Please sign in before adding review! </h2>
+                                <h2 className="sr-only"> Please sign in before adding review! </h2>
                                 <h2 className="error-text-message"> Please sign in before adding review! </h2>
                                 <br></br>
                             </>
                             : null
                         }
 
-                        <label className="screenreader-only">Save Review Button</label>
+                        <label className="sr-only">Save Review Button</label>
                         <input
                             type="submit"
                             value="Save Review"
